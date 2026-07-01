@@ -311,6 +311,7 @@ Final response (after the user has reviewed or asked for auto-check) should incl
 - For any image fetched from the web: source URL + site + the attribution decision the user made.
 - For Live Photo: the `.pvt` package path, the debug `JPG + MOV` pair, target platform duration, and validation summary.
 - For Live Photo publishing: remind the user of two things: platform limits (`5s` Xiaohongshu, `3s` WeChat Official Account) and publish path (AirDrop the `.pvt` package as one item to iPhone, then publish from the matching mobile app path; desktop/web upload paths generally cannot recognize `.pvt` as a publishable Live Photo).
+- If the user cannot use the iPhone/AirDrop publishing path (e.g. desktop-only workflow, Android, or a platform that does not support Live Photo), offer a degraded delivery: export a short looping GIF or a silent MP4 clip from the same MOV source. The GIF/MP4 keeps the motion evidence but loses the Live Photo tap-to-play experience. Confirm with the user before switching to this fallback.
 - Any unresolved risks, such as source images being low resolution.
 
 ## Non-Negotiables

@@ -5,7 +5,7 @@ Run with:
 
   UV_CACHE_DIR=/private/tmp/uv-cache \
   UV_TOOL_DIR=/private/tmp/uv-tools \
-  uvx --from makelive python scripts/package-live-photo.py IMG.JPG IMG.MOV
+  uvx --from 'makelive==0.7.0' python scripts/package-live-photo.py IMG.JPG IMG.MOV
 """
 
 from __future__ import annotations

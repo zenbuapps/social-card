@@ -46,7 +46,7 @@ guizang-social-card-skill/
 │   ├── make-video-contact-sheet.py # Live Photo 视频抽帧 contact sheet
 │   ├── package-live-photo.py      # JPG+MOV 打包为 .pvt 的入口
 │   └── *.swift                    # Apple Live Photo metadata helper
-├── validate-social-deck.mjs   # 6 条规则的渲染后校验器
+├── validate-social-deck.mjs   # R1-R9 渲染后校验器
 ├── package.json / package-lock.json / node_modules   # 仅 playwright
 ├── .gitignore                 # v0.13 新增
 └── local-tests/               # 本地测试与素材（git 忽略，不随 skill 分发）

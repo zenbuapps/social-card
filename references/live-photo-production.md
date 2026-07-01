@@ -209,8 +209,10 @@ Why this tool:
 Install or run with `uv`:
 
 ```bash
-uvx makelive IMG_TEST_LIVE.JPG IMG_TEST_LIVE.MOV
+uvx --from 'makelive==0.7.0' makelive IMG_TEST_LIVE.JPG IMG_TEST_LIVE.MOV
 ```
+
+Pin the version (`0.7.0` as of 2026-07) to avoid breakage from API changes in this small-audience package.
 
 For `.pvt`, use the Python API:
 
@@ -235,6 +237,24 @@ uvx --from makelive python scripts/package-live-photo.py IMG_TEST_LIVE.JPG IMG_T
 ```
 
 Use this wrapper when available so every run prints the asset id and `.pvt` path consistently.
+
+### Swift Metadata Helpers
+
+When `makelive` is unavailable or you need to add Apple Live Photo metadata manually, the repo includes two Swift scripts. They require macOS with the system Swift toolchain (Xcode or Command Line Tools) and AVFoundation.
+
+Write the MakerNote asset identifier into a JPEG:
+
+```bash
+swift scripts/add-livephoto-maker-note.swift input.jpg output.jpg <asset-id>
+```
+
+Write the QuickTime content identifier and still-image-time metadata into a MOV:
+
+```bash
+swift scripts/add-livephoto-mov-metadata.swift input.mov output.mov <asset-id>
+```
+
+Both scripts must receive the same `<asset-id>` (a UUID string) so iPhone Photos pairs the JPG and MOV as one Live Photo. Normally `makelive` handles this automatically; the Swift scripts are a fallback for environments where Python/uvx is blocked.
 
 ## Intake Decision Tree
 

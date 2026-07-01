@@ -112,10 +112,10 @@ output/wechat-cover-pair-preview.png
 
 ## WeChat Official Account Article Live Photo
 
-Observed support is upload-path dependent:
+截至 2026-07 实测，Live Photo 支持与上传路径相关：
 
-- iPhone upload can preserve Live Photo in Official Account article editing.
-- Web upload does not expose the same Live Photo path.
+- iPhone 端上传可在公众号文章编辑中保留 Live Photo。
+- 网页端上传没有对应的 Live Photo 入口。
 - Keep Live Photo duration at or below `3s`.
 - Publish path: AirDrop the `.pvt` package as one item to iPhone, then upload from the iPhone Official Account article editing path.
 
