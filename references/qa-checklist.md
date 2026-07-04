@@ -1,110 +1,110 @@
-# QA Checklist
+# QA 檢查清單
 
-Run this before final delivery.
+在最終交付前執行這份清單。
 
-## Dimensions
+## 尺寸
 
-- Rednote images are `1080 x 1440`.
-- WeChat 21:9 cover is `2100 x 900`.
-- WeChat 1:1 cover is `1080 x 1080`.
-- WeChat pair preview exists in the same HTML when WeChat covers are requested.
-- File names are stable and ordered.
+- IG 貼文圖片是 `1080 x 1350`。
+- IG 限時動態／Reels 封面（9:16）是 `1080 x 1920`。
+- IG 方形貼文（1:1）封面是 `1080 x 1080`。
+- 當請求 IG 貼文＋限時動態組合時，配對預覽存在於同一個 HTML 中。
+- 檔名穩定且有序。
 
-## Text
+## 文字
 
-- No text overflows or touches the edge.
-- No content collides with `.foot` / `.issue-strip`. If body copy or a closing line is overlapping the page footer, the footer is probably `position: absolute` while content above grew. Switch to flex `margin-top: auto` (see Anti-pattern C in `style-system.md`).
-- Cover title is readable on a phone at thumbnail size.
-- Body text is not smaller than it needs to be.
-- Chinese line breaks are intentional.
-- Important product names, English terms, and code snippets are spelled correctly.
-- Captions match the source text; no invented facts.
+- 沒有文字溢位或碰到邊緣。
+- 沒有內容跟 `.foot` / `.issue-strip` 碰撞。若內文或結尾句蓋到頁尾，通常是頁尾用了 `position: absolute` 而上方內容變高了。改用 flex `margin-top: auto`（見 `style-system.md` 的 Anti-pattern C）。
+- 封面標題在手機上以縮圖大小仍可閱讀。
+- 內文字型沒有小過必要程度。
+- 中文斷行是刻意安排的。
+- 重要的產品名稱、英文術語與程式碼片段拼寫正確。
+- 圖說與原始文字相符；沒有捏造的事實。
 
-## Layout
+## 版面配置
 
-- Each page has one clear focal point.
-- Pages do not all use the same structure.
-- Lower empty space is either intentional or fixed.
-- Images and screenshots align to the grid.
-- Screenshot pages give the screenshot enough area.
-- 1:1 WeChat cover uses a simplified short title and is composed separately, not blindly cropped.
-- If a page overflows, measure the overflow before editing. Do not remove content until the measured overflow requires it.
-- Titles need visible breathing room before the next content block. Main display titles should usually keep at least 28px below; local headings should keep at least 16px.
+- 每一頁有一個清楚的視覺焦點。
+- 各頁不要全用同樣的結構。
+- 下方留白要嘛是刻意的，要嘛已修正。
+- 圖片與螢幕截圖對齊格線。
+- 螢幕截圖頁給截圖足夠的面積。
+- 1:1 IG 方形貼文封面使用簡化的短標題並獨立編排，而非盲目裁切。
+- 若某頁溢位，先量測溢位量再編輯。在量測出的溢位量要求之前，不要移除內容。
+- 標題與下一個內容區塊之間需要看得見的呼吸空間。主要展示標題通常下方至少保留 28px；區域標題至少保留 16px。
 
-### Overflow Correction Ladder
+### 溢位修正階梯
 
-Use validator output before changing the layout:
+在變更版面前先參考驗證器輸出：
 
-- `1-40px` over: nudge the content group up or tighten one gap/padding by 20-40px. Do not delete content.
-- `40-90px` over: compact local gaps/padding and reduce one block height. Avoid cutting copy.
-- `90-160px` over: reduce a display title slightly or compress one paragraph before deleting content.
-- `160px+` over: switch to a higher-capacity recipe, merge modules, or remove content intentionally.
+- 超出 `1-40px`：把內容群組往上推，或把某一處 gap/padding 收緊 20-40px。不要刪除內容。
+- 超出 `40-90px`：壓縮區域 gap/padding 並降低一個區塊的高度。避免刪減文案。
+- 超出 `90-160px`：略微縮小一個展示標題，或壓縮一個段落，再考慮刪內容。
+- 超出 `160px+`：改用容量更大的 recipe、合併模組，或刻意移除內容。
 
-After fixing overflow, check for over-correction:
+修正溢位後，檢查是否過度修正：
 
-- If `R8` reports large bottom whitespace, restore some spacing, move the content down slightly, or expand the final block.
-- Do not accept a fix that turns a small overflow into a large empty lower band.
-- Prefer one measured adjustment per render pass, then re-run validation.
+- 若 `R8` 回報下方留白過大，就恢復一些間距、把內容稍微往下移，或擴大最後一個區塊。
+- 不要接受一個把小溢位變成下方大片空白帶的修法。
+- 每次算圖回合偏好一次量測後的調整，然後重新執行驗證。
 
-### 4-band Density Check (3:4 only — run after render)
+### 4 橫帶密度檢查（僅限 4:5——算圖後執行）
 
-Open the rendered PNG. Mentally divide it into 4 horizontal bands of 360px each (0-25%, 25-50%, 50-75%, 75-100%). For each band, classify as:
+開啟算圖後的 PNG。在腦中把它分成 4 條各 337.5px 的水平橫帶（0-25%、25-50%、50-75%、75-100%）。把每一條分類為：
 
-- **Filled** — contains text, image, data, or rule.
-- **Justified empty** — empty for a stated reason: hero-image breathing (M01/M16), single-sentence statement (M04/M13), leading/trailing margin (top 8% / bottom 8%).
-- **Under-filled** — empty with no reason. **Any single under-filled band > 15% canvas height (>216px) is a fail.**
+- **已填滿**——包含文字、圖片、資料或線條。
+- **合理留空**——因明確理由而空：主視覺圖的呼吸空間（M01/M16）、單句陳述（M04/M13）、前導／收尾邊距（上 8% ／下 8%）。
+- **填不足**——毫無理由地空。**任何單一條填不足的橫帶 > 15% 畫布高度（>202.5px）即為不合格。**
 
-A poster passes when:
+海報透過的條件：
 
-1. Total Filled + Justified empty ≥ 100%.
-2. Filled bands cover ≥ 75% canvas height (≥ 1080px of 1440px).
-3. No two adjacent bands are both "justified empty" — that creates a >25% void mid-poster.
+1. 已填滿 + 合理留空 合計 ≥ 100%。
+2. 已填滿橫帶涵蓋 ≥ 75% 畫布高度（1350px 中的 ≥ 1012.5px）。
+3. 沒有兩條相鄰橫帶同時為「合理留空」——那會在海報中段造成 >25% 的空洞。
 
-If failing: don't shrink the canvas, don't add decorative blobs. Either expand copy (more ledger items, longer paragraphs, supporting evidence row, marginalia column) or switch recipe (M07 → M04 for genuinely-short content; M03 → M11 to add a marginal column; thin ledger → M08 Tall Ledger with bigger rows).
+若不合格：不要縮小畫布，不要加裝飾性色塊。要嘛擴充文案（更多帳目專案、更長段落、佐證列、側欄），要嘛切換 recipe（內容真的短就 M07 → M04；M03 → M11 加一個側欄；細帳目 → M08 Tall Ledger 用更大的列）。
 
-### Programmatic Layout Checks
+### 程式化版面檢查
 
-`validate-social-deck.mjs` reports:
+`validate-social-deck.mjs` 回報：
 
-- `R1` / `R8`: DOM overflow and visual overflow, including measured pixel amount and the lowest overflowing element.
-- `R8`: bottom whitespace and active content height, which catches "fixed too much" layouts.
-- `R9`: title-to-content gap, which catches titles visually touching the next block.
+- `R1` / `R8`：DOM 溢位與視覺溢位，包含量測到的畫素量與最低的溢位元素。
+- `R8`：下方留白與有效內容高度，用來抓出「修過頭」的版面。
+- `R9`：標題到內容的間距，用來抓出標題視覺上碰到下一個區塊的情況。
 
-Use these numbers as the first diagnosis. Multimodal inspection is still useful for taste, but overflow, empty lower bands, and title gaps should be handled from measured output first.
+把這些數字當作第一線診斷。多模態檢視對於品味判斷仍然有用，但溢位、下方空白帶與標題間距應優先從量測輸出來處理。
 
-## Style
+## 風格
 
-- Package uses one visual system.
-- Swiss identity test passes for every Swiss poster (see `style-system.md` "Style Identity Test"). In particular: every display title >=72px uses a typed class with weight <=300; no serif font is loaded; only one accent color is used. A bold 90px headline is not Swiss.
-- Editorial identity test passes for every Editorial poster: at least one atmosphere layer beyond a flat fill (paper grain / ink wash / WebGL); serif display family on the title; at least one of large photo well, serif pull quote, marginalia column, or true ledger structure. A flat paper with serif title + mono pills everywhere is Swiss-in-disguise.
-- Swiss uses one accent color only.
-- Magazine style uses restrained paper/ink tones.
-- No random SVG blobs, ovals, drops, circles, stickers, or decorative gradients.
-- No nested cards.
-- No excessive rounded corners.
+- 整包使用單一視覺系統。
+- 每張 Swiss 海報都透過 Swiss 識別測試（見 `style-system.md` 的「Style Identity Test」）。特別是：每個 >=72px 的展示標題都使用 weight <=300 的型別化 class；不載入 serif 字型；只用一個 accent 顏色。粗體 90px 標題不是 Swiss。
+- 每張 Editorial 海報都透過 Editorial 識別測試：至少有一層超越平塗的氛圍層（紙張顆粒／墨染／WebGL）；標題用 serif 展示字族；至少具備大型照片區、serif 引言、側欄，或真正的帳目結構其中之一。平塗紙張配 serif 標題、再到處放 mono 藥丸標籤，這只是偽裝過的 Swiss。
+- Swiss 只用一個 accent 顏色。
+- 雜誌風格使用剋制的紙／墨色調。
+- 不要隨機的 SVG 色塊、橢圓、水滴、圓形、貼紙或裝飾性漸層。
+- 不要巢狀卡片。
+- 不要過度的圓角。
 
-## Images
+## 圖片
 
-- Supplied images are not distorted.
-- Faces, hardware, product UI, and key text are not accidentally cropped.
-- Screenshots remain readable.
-- Generated images do not contain unwanted text, logos, page numbers, or poster borders.
-- Photo crops feel intentional.
-- For any image fetched from the web (Pexels / Unsplash / Flickr CC / Wallhaven / direct search): the source URL is recorded in `assets/SOURCES.md`, and the user has been asked whether to add an in-image attribution caption. The user's answer is honored. Flickr CC attribution preserves the author name when the user opts in.
+- 提供的圖片沒有變形。
+- 臉部、硬體、產品 UI 與關鍵文字沒有被意外裁掉。
+- 螢幕截圖仍然可讀。
+- 生成的圖片不含不想要的文字、logo、頁碼或海報邊框。
+- 照片裁切感覺是刻意的。
+- 任何從網路抓取的圖片（Pexels / Unsplash / Flickr CC / Wallhaven / 直接搜尋）：來源 URL 記錄在 `assets/SOURCES.md`，並且已詢問使用者是否要加上圖內出處標註。尊重使用者的回答。當使用者選擇加上時，Flickr CC 出處標註保留作者名稱。
 
-## Text-On-Image (when applicable)
+## 圖上文字（適用時）
 
-Run these only for posters where text touches a photo (full-bleed cover, large image well, generated overlay). See `references/image-overlay.md`.
+只有在文字接觸到照片的海報（滿版封面、大型圖片區、生成的疊層）才執行這些。見 `references/image-overlay.md`。
 
-- Image area ≥60% of canvas → the photo passes the quiet-zone + light tests; no-mask composition was tried first; any tint is localized, image-toned, and only used if the thumbnail check fails.
-- Subject map is documented as an HTML comment next to the hero block (face / focal feature location + safe zones).
-- No display title (≥72 px) overlaps a face, hand, or key product feature.
-- `object-position` was chosen from the subject-location table, not left at default for face shots.
-- Thumbnail test: downscale the rendered PNG to 360 px wide and confirm the title is still legible without strain.
+- 圖片面積 ≥60% 畫布 → 照片透過安靜區 + 亮度測試；先嘗試過無遮罩構圖；任何色調都是區域性、與圖片同調，且只有在縮圖檢查失敗時才使用。
+- 主體地圖以 HTML 註解記錄在主視覺區塊旁（臉部／焦點特徵位置 + 安全區）。
+- 沒有展示標題（≥72 px）蓋到臉部、手部或關鍵產品特徵。
+- `object-position` 是從主體位置表挑選的，臉部照片沒有停留在預設值。
+- 縮圖測試：把算圖後的 PNG 縮小到 360 px 寬，確認標題不費力仍可辨識。
 
-## Final Response
+## 最終回覆
 
-- Include the output path.
-- Show the main cover inline when useful.
-- Mention verification performed.
-- Mention any limitations, such as low-resolution source assets.
+- 附上輸出路徑。
+- 有用時將主封面內嵌顯示。
+- 說明執行過的驗證。
+- 說明任何限制，例如低解析度的來源素材。

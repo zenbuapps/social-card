@@ -1,152 +1,152 @@
-# Image Overlay & Subject Safety
+# 圖片疊字與主體安全
 
-Two rules that govern any poster where text sits on top of an image — full-bleed background, large photo well with title bar, or generated/AI image with text overlay.
+只要海報上有文字壓在圖片上，就受這兩條規則約束 —— 滿版背景、大照片區塊加標題列、或生成／AI 圖片疊字。
 
-A composition can pass HTML linting and still be unreadable. Both rules below must clear before you ship.
+一個構圖可以透過 HTML linting，卻仍然無法閱讀。下面兩條規則都要透過才能出圖。
 
-## Rule 1 — Selection first, mask only if selection fails
+## 規則 1 —— 先選圖，選不到才用遮罩
 
-The default editorial-magazine answer is **no mask**. Real magazine covers (Kinfolk, Cereal, Apartamento, Monocle) almost never lay a uniform black gradient over a hero photo. They rely on **photo selection + composition** so text lands in a quiet zone naturally. If you cannot find such a photo, the answer is usually to swap the photo, not to caulk over a bad one with a 70%-black scrim.
+編輯雜誌風的預設答案是**不加遮罩**。真正的雜誌封面（Kinfolk、Cereal、Apartamento、Monocle）幾乎不會在主視覺照片上蓋一層均勻的黑色漸層。它們靠的是**選圖 + 構圖**，讓文字自然落在安靜區。如果找不到這種照片，通常該做的是換照片，而不是用 70% 黑色遮罩把爛照片糊過去。
 
-Apply the steps in order. Stop at the first one that passes.
+按順序執行。透過的第一步就停。
 
-### Step 1 — Photo selection (the main lever)
+### 步驟 1 —— 選圖（最主要的槓桿）
 
-Before picking a mask, verify the photo qualifies for full-bleed treatment. Both tests must pass:
+在選遮罩之前，先確認照片夠格做滿版處理。兩項測試都要透過：
 
-**Quiet-zone test**: at least one band of ≥30% canvas (full width × ≥30% height, or full height × ≥30% width) is **low-detail / low-contrast / uniform**. Examples: out-of-focus background, deep shade, fog, calm water, plain sky, blurred grass. This band is where the title will land.
+**安靜區測試**：至少要有一條佔畫面 ≥30% 的帶狀區（整寬 × ≥30% 高，或整高 × ≥30% 寬）是**低細節／低對比／均勻**的。例如：失焦背景、深陰影、霧、平靜水面、素淨天空、模糊草地。標題就落在這條帶上。
 
-**Light test**: the photo carries **atmospheric / restrained light** — overcast, dawn fog, golden hour, forest understory, film softness, dusk silhouette. Reject high-saturation noon shots, on-camera flash, "tourist trap" selfies, generic stock cheerfulness.
+**光線測試**：照片要有**氛圍感／剋制的光** —— 陰天、清晨薄霧、黃金時刻、林下光、底片般的柔和、黃昏剪影。拒絕高飽和的正午照、機頂閃燈、「觀光客陷阱」自拍、罐頭素材式的歡樂感。
 
-If either test fails, **the photo is wrong for M16**. Fall back to M01 (split-layout cover with photo in a frame), or shoot/source again. Do not "fix it with a mask."
+任一測試沒過，**這張照片就不適合 M16**。退回 M01（照片放在框裡的分割式封面），或重拍／重找。不要「用遮罩硬救」。
 
-### Step 2 — Compose without a mask first
+### 步驟 2 —— 先不用遮罩排版
 
-Place the title inside the qualified quiet zone. Run the thumbnail contrast check (Step 4). If it reads clean, ship as-is. Most well-selected editorial photos pass at this step.
+把標題放進合格的安靜區。跑縮圖對比檢查（步驟 4）。如果讀起來乾淨，就直接出圖。大多數選得好的編輯風照片在這一步就過了。
 
-A no-mask cover signals craft. A heavily masked cover signals "we couldn't find the right photo." Try Step 2 every time before reaching for Step 3.
+不加遮罩的封面代表功力。重度遮罩的封面代表「我們找不到對的照片」。每次伸手拿步驟 3 之前，都先試步驟 2。
 
-### Step 3 — Localized, image-toned tint (fallback only)
+### 步驟 3 —— 區域性、取自畫面色調的染色（僅作 fallback）
 
-Only when Step 2 fails the contrast check. Three rules:
+只有在步驟 2 沒透過對比檢查時才用。三條規則：
 
-1. **Localized, not full-canvas.** Tint only the title region. Use `radial-gradient` centered on the title block, or a one-sided linear gradient that fades to fully transparent past the title. Never `inset: 0` over the whole image with a uniform alpha curve.
-2. **Image-toned, not black.** Sample a dark tone already in the photo and use it as the tint color. Forest → deep moss `#1a2818`. Dusk → tea-rose dusk `#4a2638`. Snow → cool grey-blue `#2a3438`. Pure black `#000` reads as "annotation layer," not "atmospheric depth."
-3. **Soft, not opaque.** Peak alpha 0.15-0.30 in the title region, falling to 0 outside. If you need >0.40 to read, the photo failed Step 1 — go back.
+1. **區域性，不是整張畫面。** 只染標題區域。用以標題區塊為中心的 `radial-gradient`，或單邊的 linear gradient，過了標題就淡到完全透明。絕對不要用 `inset: 0` 對整張圖套一條均勻的 alpha 曲線。
+2. **取自畫面色調，不是黑色。** 從照片裡既有的深色調取樣，當染色顏色。森林 → 深苔綠 `#1a2818`。黃昏 → 茶玫瑰暮色 `#4a2638`。雪地 → 冷灰藍 `#2a3438`。純黑 `#000` 看起來像「註解圖層」，而不是「氛圍深度」。
+3. **柔和，不是不透明。** 標題區域峰值 alpha 0.15-0.30，往外降到 0。如果要 >0.40 才讀得到，代表照片沒過步驟 1 —— 退回去。
 
 ```css
-/* Example: title in lower-left, image-toned soft tint */
+/* 範例：標題在左下，取自畫面色調的柔和染色 */
 .hero-bleed::after {
   content: "";
   position: absolute; inset: 0;
   background: radial-gradient(
-    60% 45% at 25% 80%,         /* centered on title block */
-    rgba(26, 40, 24, 0.28) 0%,  /* forest moss tone, soft peak */
+    60% 45% at 25% 80%,         /* 以標題區塊為中心 */
+    rgba(26, 40, 24, 0.28) 0%,  /* 森林苔綠色調，柔和峰值 */
     rgba(26, 40, 24, 0.0) 100%);
   pointer-events: none;
 }
 ```
 
-### Step 4 — Thumbnail contrast check (always)
+### 步驟 4 —— 縮圖對比檢查（每次都做）
 
-Whether or not you applied a tint:
+不管有沒有加染色：
 
-- Render the PNG, downscale to 360 px wide in Preview / a browser tab, and look.
-- Title strokes must be legible without zoom.
-- If title looks like it's "fighting" the photo → swap photo or shift title to a different quiet zone, **not** strengthen the mask.
-- If photo looks dead grey under uniform dark → mask is way too heavy or covers wrong area; restart from Step 1.
+- 算出 PNG，在 Preview／瀏覽器分頁裡縮到 360 px 寬，然後看。
+- 標題筆畫不用放大就要看得清楚。
+- 如果標題看起來在跟照片「打架」→ 換照片或把標題移到另一個安靜區，**不是**加強遮罩。
+- 如果照片在均勻暗色下看起來死灰死灰的 → 遮罩太重或蓋錯地方；從步驟 1 重來。
 
-### Banned
+### 禁止
 
-- **Uniform full-canvas vertical falloff** (the `rgba(0,0,0,.55) → .10 → .10 → .80` pattern from earlier versions of this skill). That is game-key-art treatment, not editorial.
-- **Pure black mask color**. Always image-toned (forest, dusk, snow, ink-blue, sepia).
-- Flat black/white rectangle behind text — reads like screenshot annotation.
-- `mix-blend-mode: difference` for readability — wrecks skin tones, breaks on print.
-- `img { opacity: .6 }` — kills the photo's depth, the whole point of full-bleed.
-- Reaching for Step 3 before honestly attempting Step 1 with a better photo.
+- **整張畫面均勻的垂直漸暗**（本 skill 早期版本的 `rgba(0,0,0,.55) → .10 → .10 → .80` 那種）。那是遊戲主視覺的做法，不是編輯風。
+- **純黑遮罩色**。永遠取自畫面色調（森林、黃昏、雪地、墨藍、褐棕）。
+- 文字後面墊一塊死板的黑／白矩形 —— 看起來像截圖註解。
+- 用 `mix-blend-mode: difference` 來救可讀性 —— 會毀掉膚色，印刷也會壞掉。
+- `img { opacity: .6 }` —— 殺掉照片的層次，而那正是滿版的意義所在。
+- 還沒老實地用更好的照片試過步驟 1，就先伸手拿步驟 3。
 
 ---
 
-## Rule 2 — Place text away from subject / face zones
+## 規則 2 —— 文字避開主體／臉部區域
 
-Posters in 旅行 / 游戏 / 影视 / 穿搭 / 美食 frequently use a real photo as the hero. The photo has a subject — a face, a hand, a product, a peak. Text that overlaps the subject reads as graffiti, not editorial.
+旅行／遊戲／影視／穿搭／美食類的海報常用真實照片當主視覺。照片有主體 —— 一張臉、一隻手、一件產品、一座山峰。文字壓在主體上看起來像塗鴉，不是編輯風。
 
-### Subject zone discovery — multimodal first
+### 找出主體區域 —— 先用多模態看圖
 
-Before designing the title position on a hero photo, look at the image. Open it with the Read tool and observe in plain language:
+在決定主視覺照片上的標題位置之前，先看圖。用 Read 工具開啟它，用白話描述觀察：
 
-1. Where is the **primary subject's face / focal feature**? (e.g. "the climber's face is in the upper-right third around 70% x 30% y")
-2. Where is the **edge of the subject's silhouette**? (e.g. "left edge ends at ~40% x; below that is sky")
-3. Where is the **largest open / low-detail area**? (e.g. "the lower-left quadrant is uniform fog")
+1. **主體的臉／焦點特徵**在哪裡？（例如：「攀巖者的臉在右上三分之一，約 70% x 30% y」）
+2. **主體輪廓的邊緣**在哪裡？（例如：「左邊緣到 ~40% x 結束；以下是天空」）
+3. **最大的開闊／低細節區域**在哪裡？（例如：「左下象限是均勻的霧」）
 
-Record the answers as a comment in the HTML next to the hero block:
+把答案以註解形式記在 HTML 裡、主視覺區塊旁邊：
 
 ```html
-<!-- subject map (Wukong cover hero):
-     face/skull centerpiece: 50% x 45% y, occupies ~30% of frame
-     left-side staff & weapons: 15-40% x, full height
-     safe text zone: top band (0-15% y) and bottom band (65-100% y)
+<!-- 主體地圖（悟空封面主視覺）：
+     臉／頭骨中心：50% x 45% y，佔畫面約 30%
+     左側棍棒與武器：15-40% x，滿高
+     安全文字區：上帶（0-15% y）與下帶（65-100% y）
 -->
 ```
 
-This is the input the layout uses. It's deterministic and reviewable.
+這是版面所依據的輸入。它是可決定、可審查的。
 
-### Safe-zone placement rules
+### 安全區擺放規則
 
-Given the subject map, place text in this order of preference:
+根據主體地圖，依以下優先順序擺放文字：
 
-1. **Above + below** the subject (kicker top, title bottom). 90% of full-bleed covers should do this.
-2. **One side** — if subject occupies one vertical column (e.g. portrait shot on right side), text fills the opposite column. Combine with side tint from Rule 1 Step 3 only if needed.
-3. **Diagonal corner** — only when the subject is in one corner and the opposite corner is genuinely empty. Rare.
+1. 主體的**上方 + 下方**（kicker 在上、標題在下）。90% 的滿版封面都該這樣做。
+2. **單邊** —— 如果主體佔一整條垂直欄（例如人像在右側），文字填滿對側那欄。只有必要時才搭配規則 1 步驟 3 的側邊染色。
+3. **對角** —— 只有在主體在某個角落、而對角真的空著時才用。少見。
 
-Never place display titles **across** the face. A 90 px Chinese title cutting through a person's eyes is destructive even with a mask.
+絕對不要把展示標題**橫跨**臉部。一個 90 px 的中文標題切過人的眼睛，就算加遮罩也是災難。
 
-### Composition discipline (editorial look)
+### 構圖紀律（編輯風的樣子）
 
-These four rules are what separates an editorial poster from a generic image-with-text:
+這四條規則就是編輯風海報跟普通「圖加字」的差別：
 
-- **Asymmetric placement.** Titles offset to one side / one corner read more confident than dead-centered ones. The Kinfolk / Cereal habit.
-- **Generous negative space.** Title should occupy ≤40% of the canvas. The photo and the empty quiet zone are doing the design work.
-- **Title in one quiet zone, only one.** Splitting the title into two zones (top + bottom) is fine; splitting it into three or wrapping around the subject is busy.
-- **Title never overlaps the subject silhouette.** If the only safe placement requires crossing the subject's edge, switch modes (move to a frame, diptych, or off-image title) — do not enlarge the mask.
+- **非對稱擺放。** 標題偏向一側／一角，比死板置中更有自信。這是 Kinfolk／Cereal 的習慣。
+- **大方的留白。** 標題應佔畫面 ≤40%。照片和空的安靜區在做設計的事。
+- **標題只放一個安靜區，只有一個。** 把標題拆成兩區（上 + 下）可以；拆成三區或繞著主體轉就太雜。
+- **標題絕不壓過主體輪廓。** 如果唯一的安全擺放需要跨過主體邊緣，就換模式（改用框、雙聯圖，或把標題移到圖外）—— 不要放大遮罩。
 
-### Crop guards
+### 裁切防呆
 
-The face-avoidance rule should also drive `object-position`. If the subject is in the upper third, do not use `object-position: center top` (that pushes the face into the title band).
+避開臉部的規則也應該決定 `object-position`。如果主體在上三分之一，不要用 `object-position: center top`（那會把臉推進標題帶）。
 
-| Subject location in raw image | Recommended `object-position` for 3:4 crop |
+| 原始圖中的主體位置 | 4:5 裁切建議的 `object-position` |
 | ----------------------------- | ------------------------------------------ |
-| Face / focus in upper third   | `center 25%` (lifts face higher, gives bottom room for title) |
-| Face / focus in middle third  | `center center` (default; text goes top + bottom) |
-| Face / focus in lower third   | `center 70%` (drops face down, top room for title) |
-| Wide landscape, no single subject | `center 35%` (slight upward bias to retain horizon line) |
-| Vertical portrait, full body  | `center top` |
+| 臉／焦點在上三分之一   | `center 25%`（把臉抬高，下方留空間給標題） |
+| 臉／焦點在中三分之一  | `center center`（預設；文字放上 + 下） |
+| 臉／焦點在下三分之一   | `center 70%`（把臉往下壓，上方留空間給標題） |
+| 寬闊風景、沒有單一主體 | `center 35%`（略偏上以保留地平線） |
+| 直式全身人像  | `center top` |
 
-### When the photo cannot accommodate text
+### 當照片容不下文字
 
-If running the subject map shows there is no safe zone wider than ~30% of the poster (subject fills the frame, e.g. tight portrait), do not retrofit. Options:
+如果跑完主體地圖發現沒有比海報 ~30% 更寬的安全區（主體塞滿畫面，例如貼臉人像），不要硬改。選項：
 
-- Move the photo into a **smaller frame** (use `.frame-img.r-3x4` or `.r-1x1` inside the layout — give it a defined slot, surround it with whitespace and text).
-- **Two-image diptych** with one tight subject + one negative-space image, run titles over the negative-space one.
-- **Move text off the image entirely** — title above, photo below. The Yading cover already does this.
+- 把照片移進**較小的框**（在版面裡用 `.frame-img.r-3x4` 或 `.r-1x1` —— 給它一個明確的位置，四周用留白和文字包圍）。
+- **雙聯圖**：一張貼近主體 + 一張留白的圖，把標題壓在留白那張上。
+- **把文字完全移出圖片** —— 標題在上、照片在下。亞丁那張封面就是這樣做的。
 
-A photo that demands the full canvas is not a sign that text should fight it. It is a sign that text should sit elsewhere.
+一張需要整個畫面的照片，不代表文字該去跟它硬拚。而是代表文字該待在別的地方。
 
 ---
 
-## Checklist before delivery
+## 出圖前檢查清單
 
-Run this for every poster that has text touching an image:
+每一張有文字碰到圖片的海報都要跑這份清單：
 
-- [ ] Photo passes quiet-zone test (≥30% canvas low-detail band) AND light test (atmospheric, not high-saturation noon).
-- [ ] Tried no-mask composition first. Tint only added if Step 4 contrast check failed.
-- [ ] If tinted: localized (`radial-gradient` or one-sided), image-toned color (not pure black), peak alpha ≤ 0.30.
-- [ ] No full-canvas vertical falloff present (`linear-gradient(180deg, rgba(0,0,0,.X) → ...)` over `inset:0`).
-- [ ] Subject map documented as a comment near the hero block.
-- [ ] No display title (≥ 72 px) overlaps a face / hand / key product feature / subject silhouette.
-- [ ] Title occupies ≤40% of canvas. Asymmetric placement preferred over centered.
-- [ ] `object-position` chosen from the table above, not left at default `center top` for face shots.
-- [ ] Thumbnail test passed (downscale to 360 px wide; title still legible without strain).
-- [ ] No flat black/white text plate behind the title.
+- [ ] 照片透過安靜區測試（≥30% 畫面的低細節帶）**且**光線測試（有氛圍、不是高飽和正午）。
+- [ ] 先試過不加遮罩的構圖。只有在步驟 4 對比檢查沒過時才加染色。
+- [ ] 若有染色：區域性（`radial-gradient` 或單邊）、取自畫面的顏色（非純黑）、峰值 alpha ≤ 0.30。
+- [ ] 沒有整張畫面的垂直漸暗（`linear-gradient(180deg, rgba(0,0,0,.X) → ...)` 套在 `inset:0` 上）。
+- [ ] 主體地圖有以註解形式記在主視覺區塊附近。
+- [ ] 沒有展示標題（≥ 72 px）壓到臉／手／關鍵產品特徵／主體輪廓。
+- [ ] 標題佔畫面 ≤40%。非對稱擺放優於置中。
+- [ ] `object-position` 從上表選，不要在臉部照片上留著預設的 `center top`。
+- [ ] 縮圖測試透過（縮到 360 px 寬；標題仍能不費力地閱讀）。
+- [ ] 標題後面沒有死板的黑／白文字底板。
 
-If any item fails, fix it before exporting the final PNG. Do not deliver and "we can adjust later" — the QA window for social cards is the moment of upload.
+只要有一項沒過，就在匯出最終 PNG 前修好。不要交出去再說「之後再調」—— 社群卡片的 QA 時機就是上傳的那一刻。

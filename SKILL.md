@@ -1,167 +1,167 @@
 ---
-name: guizang-social-card-skill
-description: Generate Guizang-style social card image sets, Live Photo motion cards, material-first Live Photo puzzle layouts, triple Live Photo collages, long-video-to-Live-Photo treatments, and WeChat official account cover pairs from articles, scripts, screenshots, product notes, subtitles, photos, or user-supplied videos. Use when the user asks for 小红书图文, Rednote/Xiaohongshu images, social cards, carousel images, 3:4 covers, Live Photo, 实况照片, 单视频实况拼图, 二宫格实况拼图, 三连实况拼图, 四宫格实况拼图, 微信公众号封面, WeChat 21:9 + 1:1 covers, Swiss Style, or magazine-style social images.
+name: social-card
+description: 產生繁體中文、以臺灣 Instagram 為主的社群圖卡——貼文（4:5）與輪播組圖、方形貼文（1:1）、限時動態／Reels 封面（9:16）、IG 貼文＋限動組合，以及短影音動態卡。素材可來自文章、文案、截圖、商品筆記、字幕、照片或影片。當使用者要做 Instagram 貼文圖、IG 輪播、限時動態、Reels 封面、社群圖卡、多圖組圖、4:5／1:1／9:16 圖、Facebook／Threads 貼文圖、瑞士風格（Swiss）或雜誌風（Editorial）社群圖時使用。
 ---
 
-# Guizang Social Card Skill
+# Guizang 社群圖卡技能
 
-Create polished social card packages for Xiaohongshu/Rednote, WeChat Official Account, article covers, and platform thumbnails.
+為 Instagram 貼文與輪播、限時動態／Reels 封面、文章封面圖與各平臺縮圖，製作精緻的社群圖卡組合。
 
-This skill is self-contained. It borrows visual principles from the Guizang PPT style system, but it must not edit the original PPT skill, its templates, or its references. If the original PPT skill is available, you may read it for reference only.
+這個技能是自足的。它借用 Guizang PPT 風格系統的視覺原則，但不能去改動原始 PPT 技能、它的模板或它的 references。如果原始 PPT 技能存在，你只能讀它作為參考。
 
-Generated work must live in a task folder, not in the skill root. Default to `local-tests/<slug>/` inside this repository, or use the explicit output folder requested by the user. Do not create root-level task folders such as `social-card-*`, `livephoto-*`, `wechat-*`, `output/`, or loose rendered assets next to `SKILL.md`.
+產出的成品必須放在任務資料夾裡，不要放在技能根目錄。預設放在本 repo 內的 `local-tests/<slug>/`，或使用者指定的輸出資料夾。不要建立根層級的任務資料夾，例如 `social-card-*`、`livephoto-*`、`ig-*`、`output/`，也不要把算好的散檔丟在 `SKILL.md` 旁邊。
 
-## What To Produce
+## 要產出什麼
 
-Use this skill for:
+在以下情境使用這個技能：
 
-- Social card / carousel image sets: cover plus content pages, especially Xiaohongshu/Rednote 3:4.
-- Short Live Photo motion cards when the user asks for Live Photo / 实况照片 and supplies video evidence or screen recordings.
-- Material-first Live Photo puzzle layouts when the user has high-quality video assets and wants single-video, two-grid, three-grid, or four-grid motion cards with little or no added text.
-- Triple Live Photo collages when the user has three short videos, three results, three viewpoints, or a high-information comparison that should stay inside one image-card unit.
-- Long-video intake for Live Photo: diagnose whether to trim, speed up, split into a triple collage, or ask the user for a specific time range before rendering.
-- WeChat Official Account cover pairs: one `21:9` main cover plus one `1:1` square cover, composed together in the same HTML for visual checking.
-- Screenshot-heavy product posts, article covers, tutorial carousels, outdoor/lifestyle notes, AI/product update explainers.
-- Social images that need Guizang-style Swiss or editorial magazine layouts.
+- 社群圖卡／輪播組圖：封面加內容頁，尤其是 Instagram 4:5 直式貼文。
+- 短影音動態卡：使用者要做短影音／Reels／限時動態動態卡，並提供影片證據或螢幕錄影時。
+- 素材優先的短影音拼貼：使用者有高品質影片素材，想做單影片、二格、三格或四格動態卡，且幾乎不加文字。
+- 三連短影音拼貼：使用者有三段短影片、三個結果、三個視角，或一組資訊量高、應該收在同一個圖卡單元內的對比。
+- 短影音的長影片預處理：判斷要裁切、加速、拆成三連拼貼，還是在算圖前先請使用者指定一段時間區間。
+- IG 貼文＋限時動態組合：一張 4:5 貼文加一張 9:16 限時動態／Reels 封面，寫在同一份 HTML 一起檢視視覺關係。
+- 截圖為主的產品貼文、文章封面、教學輪播、戶外／生活風格筆記、AI／產品更新說明。
+- 需要 Guizang 風格 Swiss 或雜誌風（Editorial）版面的社群圖。
 
-Do not use this skill for:
+不要用這個技能來做：
 
-- Full slide decks or horizontal PPT websites. Use the PPT skill for that.
-- Long-form video generation. Use a video skill for that. This skill only supports short, layout-bound Live Photo cards that replace a still image slot with video.
-- Pure image editing with no layout or article extraction requirement.
+- 完整簡報或橫向翻頁的 PPT 網頁。那是 PPT 技能的工作。
+- 長影片正片生成。那要用影片技能。這個技能只支援短的、綁在版面裡的短影音動態卡——用影片替換一個靜態圖位。
+- 沒有版面或文章萃取需求的純圖片修圖。
 
-### Rednote Category Capability (capability circle)
+### 內容型別能力圈（capability circle）
 
-The 11 most-common Rednote (小红书) categories fall into three buckets. See `references/category-cookbook.md` for the recipe-by-recipe routing.
+臺灣 IG 常見的內容型別可以粗分成三檔。逐條 recipe 的路由請看 `references/category-cookbook.md`。
 
-**Strong end-to-end** (text, structure, and image story all in scope):
+**端到端強勢**（文字、結構、影象敘事都在能力圈內）：
 
-- 旅行 (Travel), 职场 (Workplace), 推荐 (Recommended, after specifying a subtype).
+- 旅行、知識／教學（懶人包）、品牌／開箱（指定子類後）。
 
-**Strong on text & structure; image needs to come from the user or a sourced library:**
+**文字與結構強勢；影象需使用者提供或從相簿取得：**
 
-- 游戏 (Game), 影视 (Film/TV), 美食 食谱方向 (Food — recipes only), 彩妆 教程方向 (Makeup — tutorials only), 健身 (Fitness), 家居 (Home), 穿搭 精选方向 (Outfit — capsule/essay only).
+- 美食（食譜方向）、美妝（教學方向）、健身、居家、穿搭（精選／隨筆方向）、影視／娛樂、親子、寵物、生活風格／日常。
 
-**Outside scope — push back honestly rather than promise a result:**
+**能力圈外——誠實說清，不要硬給結果：**
 
-- 美食 菜品大片摆盘 (food-photography showcase).
-- 穿搭 日常 OOTD 全身 (daily OOTD body shots; we cannot generate or simulate).
-- 情感 梦核 / 氛围感装饰风 (dreamcore / aesthetic-light styling — clashes with both Editorial and Swiss).
-- Y2K / 千禧辣妹 / 哥特萝莉 / kawaii decorated aesthetics.
-- Pure photography showcase posts where the image is the entire deliverable.
+- 美食擺盤大圖（以擺盤攝影為主的展示）。
+- 日常 OOTD 全身穿搭實拍（我們無法生成或模擬）。
+- 氛圍感、夢核（dreamcore）風的裝飾調性——和 Editorial、Swiss 都衝突。
+- Y2K／千禧辣妹／哥德蘿莉／甜美裝飾風。
+- 以照片本身為唯一產出的純攝影貼文。
 
-When a request falls in the third bucket, name what we cannot do at intake — do not silently retrofit a layout that misses the user's intent.
+當一個需求落在第三檔，要在接單時就講清楚我們做不到——不要默默套一個偏離使用者本意的版面。
 
-## Core Principle
+## 核心原則
 
-Expression comes first. The goal is not to squeeze text into posters; it is to turn the source into a clear visual argument.
+表達優先。目標不是把文字塞進圖裡，而是把素材變成清楚的視覺論述。
 
-For each page, decide:
+每一頁都要決定：
 
-- What should the viewer understand in one glance?
-- What evidence, screenshot, or image supports it?
-- Which words must be large, and which can become captions or metadata?
-- What can be removed because it belongs in the post body, not the image?
+- 觀眾一眼要看懂什麼？
+- 有什麼證據、截圖或圖片支撐它？
+- 哪些字必須放大，哪些可以變成說明文字或 metadata？
+- 哪些東西該拿掉，因為它屬於貼文內文而不是圖片？
 
-## Required References
+## 必讀 References
 
-Read these files as needed:
+需要時讀這些檔案：
 
-- `references/platform-specs.md` for exact ratios, output sizes, and naming.
-- `references/style-system.md` for Guizang editorial and Swiss visual rules.
-- `references/theme-presets.md` when choosing electronic-magazine palettes or Swiss accent palettes.
-- `references/layout-recipes.md` when selecting carousel/social-card/WeChat page structures.
-- `references/components.md` for the shared component spec: font stacks, type scale, minimum readable sizes, Chinese title length bands, Swiss card-fill mutual-exclusion rule, image-container ratio classes, spacing tokens, and Lucide icon rules.
-- `references/background-systems.md` when building electronic-magazine WebGL/ink/paper backgrounds.
-- `references/portrait-fill.md` when adapting layouts to 3:4 and avoiding under-filled vertical space.
-- `references/content-planning.md` for cover hooks, page breakdown, and copy compression.
-- `references/production-workflow.md` for HTML/CSS rendering and image handling.
-- `references/live-photo-production.md` when the user asks for Live Photo / 实况照片 / 三连实况拼图, supplies video assets for a social card, or wants Xiaohongshu / WeChat motion-card delivery. It covers information budget, single vs triple Live Photo, long-video intake, and platform publishing reminders.
-- `references/image-overlay.md` whenever text sits on top of a photo: photo qualification, localized tint fallback, and face / subject avoidance via multimodal subject mapping.
-- `references/screenshot-treatment.md` when the user supplies an app / web / code / dashboard screenshot — picks `.frame-shot` over `.frame-img`, sets corners/shadow/bg/inset, decides on `.device-browser` or `.device-phone` chrome.
-- `references/map-component.md` when the content has spatial relationships (travel route, store locations, walking tour) — real routes default to Mapbox Static or OSM static tiles; schematic SVG is only for conceptual / illustrative maps. Pins are HTML overlays; never use live JS maps.
-- `references/title-shortener.md` when the task is a WeChat 21:9+1:1 cover pair, or any cross-platform reuse — derives the 1:1 short title from the long one (5-step extraction, 4 patterns, anti-patterns, sizing on `.poster.square`).
-- `references/category-cookbook.md` to route a user-named Rednote category (旅行 / 职场 / 游戏 / 影视 / 彩妆 / 美食 / 穿搭 / 家居 / 健身 / 情感 / 推荐) to applicable recipes and to confirm scope.
-- `references/qa-checklist.md` before delivering final images.
+- `references/platform-specs.md`：精確的比例、輸出尺寸與命名。
+- `references/style-system.md`：Guizang 雜誌風與 Swiss 的視覺硬規則。
+- `references/theme-presets.md`：挑選電子雜誌配色或 Swiss 錨點色時看。
+- `references/layout-recipes.md`：挑選輪播／社群圖卡／貼文＋限動頁面結構時看。
+- `references/components.md`：共用元件規格——字型堆疊、字級級距、最小可讀字級、中文標題長度帶、Swiss 卡片填色互斥規則、圖片容器比例 class、間距 token、Lucide icon 規則。
+- `references/background-systems.md`：做電子雜誌 WebGL／墨流／紙紋背景時看。
+- `references/portrait-fill.md`：把版面適配到 4:5、避免直式空間欠填時看。
+- `references/content-planning.md`：封面鉤子、拆頁、文案壓縮。
+- `references/production-workflow.md`：HTML/CSS 算圖與圖片處理。
+- `references/live-photo-production.md`：使用者要做短影音／Reels／限時動態／三連短影音拼貼、提供影片素材、或想要 Instagram（貼文／Reels／限動）動態卡交付時看。它涵蓋資訊量預算、單一 vs 三連短影音、長影片預處理與平臺釋出提醒。
+- `references/image-overlay.md`：只要文字要壓在照片上就看——照片資格檢查、區域性 tint 備援、以及用多模態主體對映避開人臉／主體。
+- `references/screenshot-treatment.md`：使用者提供 App／網頁／程式碼／儀表板截圖時看——選 `.frame-shot` 而非 `.frame-img`，設定圓角／陰影／背景／內縮，決定要不要用 `.device-browser` 或 `.device-phone` 外框。
+- `references/map-component.md`：內容有空間關係（旅行路線、店家位置、走讀路線）時看——真實路線預設用 Mapbox Static 或 OSM 靜態瓦片；示意用的 SVG 只給概念／示意地圖。Pin 是 HTML overlay；絕不用即時 JS 地圖。
+- `references/title-shortener.md`：任務是 IG 貼文＋限時動態組合（4:5 + 9:16），或任何跨平臺重用時看——從長標題推匯出 9:16／1:1 短標題（5 步萃取、4 種模式、反模式、在 `.poster.story` / `.poster.square` 上的字級處理）。
+- `references/category-cookbook.md`：把使用者指定的內容型別（旅行／美食／穿搭／美妝／生活風格／居家／健身／寵物／親子／知識教學／品牌開箱／影視娛樂）路由到可用的 recipe，並確認範圍。
+- `references/qa-checklist.md`：交出最終圖片前看。
 
-## Workflow
+## 工作流程
 
-### 1. Intake
+### 1. Intake（接單釐清）
 
-Gather only the missing information that changes the output:
+只補會影響輸出的缺漏資訊：
 
-- Target platforms and ratios.
-- Source text, subtitles, article, or title.
-- **Rednote category** — if the user names one of the 11 common types (旅行 / 职场 / 游戏 / 影视 / 美食 / 彩妆 / 穿搭 / 家居 / 健身 / 情感 / 推荐), route via `references/category-cookbook.md` to find the right recipes and to confirm the request is inside the capability circle (see "Rednote Category Capability" above). If a request lands in the outside-scope bucket, surface that to the user **before** designing, do not silently retrofit.
-- Supplied images/screenshots and where each should appear. **For News / Tutorial / Data / Review content, actively prompt for screenshots or photos** — they are the evidence layer. A poster with no real artifact tends to read as filler.
-- Supplied video assets, if the user asks for Live Photo. Treat user-provided video as the normal path; web-sourced free video is only for demo/promo cases or when the user explicitly asks for sourced material. Confirm the target platform because duration differs: Xiaohongshu supports `5s`; WeChat Official Account Live Photo should stay at `3s` and must be uploaded from iPhone. Before cutting, read `references/live-photo-production.md` and classify the request as single Live Photo, triple collage, or long-video intake. If the source is too long or contains multiple usable moments, do a low-cost diagnosis first, then ask once whether to trim, speed up, split into multiple wells, or use a user-specified time range. If the source is shorter than the target duration, ask whether to provide a longer clip, accept a shorter Live Photo, or explicitly allow a hold/slowdown. If the important focus is ambiguous, suggest possible crop/enlarge options but let the user decide before executing.
-- **If the user supplies only text (no images at all), ask once before designing:**
+- 目標平臺與比例。
+- 來源文字、字幕、文章或標題。
+- **內容型別** — 如果使用者指定了常見型別（旅行／美食／穿搭／美妝／生活風格／居家／健身／寵物／親子／知識教學／品牌開箱／影視娛樂），透過 `references/category-cookbook.md` 找到對的 recipe，並確認這個需求在能力圈內（見上面「內容型別能力圈」）。若需求落在能力圈外的那一檔，要在**設計之前**先跟使用者講清楚，不要默默硬套一個偏題版面。
+- 提供的圖片／截圖，以及每張該出現在哪。**新聞／教學／資料／評測類內容，要主動要求截圖或照片** — 它們是證據層。一張沒有真實素材的圖，通常看起來像填充物。
+- 提供的影片素材（如果使用者要做短影音動態卡）。把使用者提供的影片當成正常路徑；網路上找的免費影片只用於 demo／宣傳，或使用者明確要求外部素材時。要確認目標平臺，因為時長不同：Reels／貼文短影音約 `5s`；限時動態封面短影音約 `3s`。（iOS 實況照片 `.pvt` 是 iOS 專屬格式，Instagram 沒有原生 Live Photo 釋出管道；實際釋出時把 MOV 轉成 MP4 發 Reels／貼文，或短片發限時動態。）在裁切前，先讀 `references/live-photo-production.md`，把需求歸類為單一短影音、三連拼貼或長影片預處理。如果來源太長或有多個可用片段，先做一次低成本診斷，再問一次要裁切、加速、拆成多個影片井，還是用使用者指定的時間區間。如果來源比目標時長短，問要不要提供更長的片段、接受更短的短影音，還是明確允許定格／放慢。如果重點焦點不明確，提出可能的裁切／放大選項，但讓使用者在執行前決定。
+- **如果使用者只給文字（完全沒圖），設計前先問一次：**
 
   ```
-  这篇我需要 1-2 张图。三种走法：
-  A. 你自己有照片 / 截图，传给我（推荐——最不"AI 感"）
-  B. 我去 Pexels / Unsplash / Flickr 帮你找
+  這篇我需要 1-2 張圖。三種走法：
+  A. 你自己有照片／截圖，傳給我（推薦——最沒「AI 感」）
+  B. 我去 Pexels／Unsplash／Flickr 幫你找
   C. 用 AI 生成
   ```
 
-  Recommend A in one line — your own photo is what makes a poster not look AI-generated. Accept whatever the user picks (including "都行你看着办") and proceed. **Do not re-prompt later, do not keep nudging toward A across multiple turns.** This question is one-shot.
-- Preferred style if specified: Swiss Style, magazine/editorial, tech, outdoor, etc.
-- Hard constraints: title text, no image on 1:1 cover, must include a hardware photo, keep screenshot readable, and so on.
+  用一句話推薦 A——自己的照片才是讓圖不像 AI 生成的關鍵。使用者選什麼就接受什麼（包含「都可以，你決定」）然後往下做。**之後不要再問，不要在後續回合一直把使用者往 A 推。** 這個問題只問一次。
+- 使用者若有指定風格：Swiss、雜誌／Editorial、科技、戶外等。
+- 硬性限制：標題文字、1:1 封面不放圖、必須含一張硬體照片、截圖要維持可讀等等。
 
-If the user has already supplied enough context, proceed with reasonable assumptions.
+如果使用者已經給了足夠脈絡，就用合理假設往下做。
 
-If the content involves current product releases, policies, prices, claims, or news, verify unstable facts with browsing and cite sources in the final response.
+如果內容牽涉當前的產品發表、政策、價格、主張或新聞，用瀏覽器查證不穩定的事實，並在最終回覆裡附上來源。
 
-### 2. Extract The Story
+### 2. 萃取故事
 
-Turn the source into a page plan before designing.
+設計前，先把來源變成一份頁面計畫。
 
-For Rednote:
+Instagram（貼文／輪播）：
 
-- Page 1 is the cover hook.
-- Pages 2-N each carry one idea only.
-- Use 5-9 pages for most posts. Compress or combine pages when lower areas become empty.
-- Keep the post body for nuance; images should carry hooks, comparisons, checklists, and sharp takeaways.
+- 第 1 頁是封面鉤子。
+- 第 2 到 N 頁每頁只帶一個想法。
+- 多數貼文用 5-9 頁。下方區塊變空時，壓縮或合併頁面。
+- 細節留給貼文內文；圖片負責鉤子、對比、清單與犀利的結論。
 
-For WeChat:
+IG 貼文＋限時動態組合：
 
-- Always produce a paired system: `21:9` main cover and `1:1` square cover.
-- Build both covers in the same HTML file and add a combined preview section so their visual relationship can be checked together.
-- `21:9` keeps the full or near-full title, subtitle, and one strong visual relation.
-- `1:1` uses a simplified short title derived from the long title: big centered type, no image by default, no cramped subtitles.
+- 一律產出成對系統：`4:5` 貼文 + `9:16` 限時動態／Reels 封面。
+- 把兩張都寫在同一份 HTML，加一個合併預覽區塊，好一起檢視它們的視覺關係。
+- `4:5` 貼文放完整或近乎完整的標題、副標與主視覺。
+- `9:16` 限時動態用從長標題衍生的精簡短標，依直式重排：標題落在上三分之一、主視覺在中段、CTA 壓底且在安全區內，預設不塞擁擠的副標。
 
-### 3. Choose Style Mode
+### 3. 選風格模式
 
-Pick one mode per package. **The two systems are not bound to specific content types** — what changes is the visual stance, not which topic you can talk about. A workplace essay can be Editorial; a travel ledger can be Swiss. Pick by the feeling you want, not by category lookup.
+每個組合挑一個模式。**兩套系統不綁特定內容型別** — 改變的是視覺立場，不是你能談哪個主題。一篇職場隨筆可以走 Editorial；一份旅行流水帳可以走 Swiss。照你想要的感覺挑，不要照類目查表。
 
-**Editorial Magazine x E-ink** brings:
+**雜誌風（Editorial）× E-ink** 帶來：
 
-- Serif/Songti display + quiet sans body, paper + ink palette.
-- Atmosphere layer (paper grain / ink wash / WebGL canvas) over a warm paper base.
-- Ledger rows, marginalia, pull quotes, large photo wells — magazine-feature feel.
-- Best when you want the page to feel slow, considered, hand-set.
+- 襯線／宋體標題 + 安靜的無襯線內文，紙 + 墨配色。
+- 在暖紙底上疊一層氛圍層（紙紋 / 墨暈 / WebGL canvas）。
+- ledger 行、旁註、pull quote、大圖井——雜誌專題感。
+- 最適合想讓頁面感覺慢、深思、手工排版時。
 
-**Swiss International** brings:
+**瑞士國際主義（Swiss）** 帶來：
 
-- Inter / Helvetica feel, very light display at large sizes, mono labels at small.
-- Strict left-aligned grid, hairline rules, one high-saturation accent.
-- Card-fill matrices, KPI towers, h-bar charts, numbered statements — system / data feel.
-- Best when you want the page to feel engineered, quantified, decisive.
+- Inter / Helvetica 質感，大字時字重很細，小字用 mono 標籤。
+- 嚴格左對齊網格、髮絲線、單一高飽和錨點色。
+- 卡片填色矩陣、KPI 塔、水平長條圖、編號宣言——系統／資料感。
+- 最適合想讓頁面感覺工程化、量化、果斷時。
 
-If both feel viable for a piece of content, the question becomes editorial intent: "is this a feature story or a release note?" That decides the mode, not the topic itself.
+如果一段內容兩套都可行，問題就回到編輯意圖：「這是一篇專題報導，還是一則釋出說明？」由這個決定模式，而不是主題本身。
 
-Do not mix the two visual systems inside the same image set unless the user explicitly asks for a hybrid.
+除非使用者明確要求混搭，否則不要在同一組圖裡混用兩套視覺系統。
 
-Then pick one theme:
+接著挑一個主題：
 
-- Editorial Magazine x E-ink uses one of 6 magazine palettes: Ink Classic, Indigo Porcelain, Forest Ink, Kraft Paper, Dune, or Midnight Ink (the only dark variant; reserved for game key art / night photography / cinematic covers).
-- Swiss International uses one of 4 accent palettes: IKB Blue, Lemon Yellow, Lemon Green, or Safety Orange.
+- 雜誌風（Editorial）× E-ink 從 6 套雜誌配色挑一套：Ink Classic、Indigo Porcelain、Forest Ink、Kraft Paper、Dune，或 Midnight Ink（唯一的暗色版；保留給遊戲 key art／夜景攝影／影調封面）。
+- 瑞士國際主義（Swiss）從 4 套錨點色挑一套：IKB Blue、Lemon Yellow、Lemon Green，或 Safety Orange。
 
-Read `references/theme-presets.md` for exact CSS tokens. Do not invent arbitrary colors unless the user has a strict brand requirement.
+精確的 CSS token 讀 `references/theme-presets.md`。除非使用者有嚴格品牌需求，否則不要自創顏色。
 
-### 4. Plan Pages
+### 4. 規劃頁面
 
-Create a concise internal plan:
+寫一份精簡的內部計畫：
 
 ```text
 Page 01 / cover / hook / image source / layout intent
@@ -169,168 +169,168 @@ Page 02 / point / key copy / visual evidence / layout intent
 ...
 ```
 
-When the user asks for approval, show this plan before rendering. Otherwise use it internally and proceed.
+使用者要求核准時，先把這份計畫給他看再算圖。否則內部用一用就往下做。
 
-Use `references/layout-recipes.md` to choose page structures. Avoid making every page a repeated title-plus-card layout.
+用 `references/layout-recipes.md` 挑頁面結構。不要讓每頁都是重複的「標題＋卡片」版面。
 
-For 3:4 images, check `references/portrait-fill.md` before coding. A short table or ledger must be expanded into a full portrait composition with a quote column, image evidence, marginalia, larger rows, or a background hero zone.
+4:5 影象在寫程式前先看 `references/portrait-fill.md`。一張短表格或 ledger 必須擴充成完整的直式構圖：加一欄引言、影象證據、旁註、更大的行，或一個背景 hero 區。
 
-Audience-facing copy must describe the user's actual scene, not the production method. Internal terms such as `3s`, `5s`, `Live Photo`, `triple collage`, `information budget`, `long-video intake`, `speed-up`, `highlight detection`, `one action point`, or `layout template` may guide planning, filenames, QA notes, and delivery summaries, but they must not become the H1, hook, or main body copy unless the user is explicitly making an instructional post about those concepts. Before rendering, read every visible headline once as a real viewer: if it sounds like a task requirement, replace it with scene-specific copy.
+面向觀眾的文案必須描述使用者的真實場景，而不是製作方法。像 `3s`、`5s`、短影音、三連拼貼、資訊量預算、長影片預處理、加速、精彩片段偵測、單一動作點、版面模板這類內部術語，可以拿來規劃、命名檔案、寫 QA 註記與交付摘要，但除非使用者明確要做一篇解說這些概念的貼文，否則不能變成 H1、鉤子或主體文案。算圖前，用真實觀眾的眼睛把每一句可見標題讀一次：如果它聽起來像任務需求，就換成場景化文案。
 
-Do not add non-template ornaments just to satisfy an automated density warning. Extra rulers, side bars, pseudo time axes, decorative labels, or invented badges must come from an existing layout recipe or a user request. If a density warning appears, fix it by choosing a better recipe, resizing real content, or accepting the advisory warning with a visual rationale; do not put meaningless UI on the card.
+不要為了滿足自動密度警告而加非模板的裝飾。多餘的尺標、側欄、假時間軸、裝飾標籤或自創徽章，都必須來自既有的 layout recipe 或使用者要求。如果出現密度警告，靠換更好的 recipe、放大真實內容，或帶著視覺理由接受這個提示警告來修——不要在圖卡上放無意義的 UI。
 
-For Live Photo cards, plan them as normal social cards first, then decide the motion role: one action point, one small process, a before/after change, three parallel results, or ambience/evidence. The only structural change is that one or more image wells become video wells. Keep the same ratio, crop, safe-area, typography, and style mode rules; apply the still-image crop logic to the video stream. The first frame must pass the same checks as a static image: no excessive crop, key UI/content remains readable, and the card still follows the chosen layout recipe. Read `references/live-photo-production.md` before rendering.
+短影音動態卡先當成一般社群圖卡來規劃，再決定它的動態角色：一個動作點、一個小流程、一個 before/after 變化、三個並列結果，或氛圍／證據。唯一的結構改變是一個或多個圖井變成影片井。比例、裁切、安全區、字型與風格模式規則全部不變；把靜態圖的裁切邏輯套到影片串流上。首幀必須透過和靜態圖一樣的檢查：不過度裁切、關鍵 UI／內容仍可讀、圖卡仍遵循選定的 layout recipe。算圖前讀 `references/live-photo-production.md`。
 
-For material-first Live Photo puzzle cards, let the video assets lead. Use little or no copy: one short headline is enough for a single-video cover, and two-grid / three-grid / four-grid versions should usually have no added text. When a single-video cover adds text on top of the footage, use the M16 Image-Led Cover / text-on-image rules: subject map first, safe quiet zone, Editorial serif/Songti title at regular-medium weight, paper-cream text, and no default full-canvas mask. Do not invent extra kicker, meta, hairlines, labels, rulers, badges, subtitles, or explanatory production terms just to make the overlay feel designed. If only one headline is available, make the typography carry the layout: phrase-aware line break, restrained size, tracking, alignment, and placement. Treat source-embedded text as part of the footage; only avoid adding new text unless the user asks.
+素材優先的短影音拼貼卡，讓影片素材當主角。用極少或不用文案：單影片封面一組短標題就夠，二格／三格／四格版本通常不該加文字。單影片封面要在畫面上加字時，用 M16 Image-Led Cover／文字壓圖規則：先做主體對映、留安靜區、Editorial 襯線／宋體標題用 regular-medium 字重、紙奶油色文字、預設不加全畫布遮罩。不要為了讓 overlay 看起來有設計，就自創多餘的 kicker、meta、髮絲線、標籤、尺標、徽章、副標或解釋性的製作術語。如果只有一組標題，就讓字型撐起版面：斷句對齊語意、剋制字級、字距、對齊與位置。把來源內嵌的文字當成畫面的一部分；除非使用者要求，否則不要另外加新字。
 
-### 4.5. Copy The Seed Template
+### 4.5. 複製種子模板
 
-Do not write HTML from scratch. Pick one seed template based on the style mode chosen in Step 3:
+不要從零手寫 HTML。依 Step 3 選的風格模式，拷一個種子模板：
 
-- Editorial Magazine × E-ink → copy `assets/template-editorial-card.html` into the task folder as `index.html`.
-- Swiss International → copy `assets/template-swiss-card.html` into the task folder as `index.html`.
+- 雜誌風（Editorial）× E-ink → 把 `assets/template-editorial-card.html` 拷進任務資料夾當 `index.html`。
+- 瑞士國際主義（Swiss）→ 把 `assets/template-swiss-card.html` 拷進任務資料夾當 `index.html`。
 
-The seed already wires up: font loading, theme tokens, all three poster sizes (`.poster.xhs` / `.poster.square` / `.poster.wide`), the pair-preview frame, grain/background layers, and all class definitions referenced by the layout recipes.
+種子模板已經接好：字型載入、主題 token、三種畫板尺寸（`.poster.post` / `.poster.square` / `.poster.story`）、成對預覽框、grain／背景層，以及所有 layout recipe 會引用的 class 定義。
 
-Set the theme/accent on the `<html>` element:
+在 `<html>` 元素上設定主題／錨點色：
 
-- Editorial: `<html data-theme="ink-classic | indigo-porcelain | forest-ink | kraft-paper | dune | midnight-ink">`.
-- Swiss: `<html data-accent="ikb | lemon-yellow | lemon-green | safety-orange">`.
+- Editorial：`<html data-theme="ink-classic | indigo-porcelain | forest-ink | kraft-paper | dune | midnight-ink">`。
+- Swiss：`<html data-accent="ikb | lemon-yellow | lemon-green | safety-orange">`。
 
-Replace the single placeholder poster after `<!-- POSTERS_HERE -->` with one `<section class="poster ...">` block per page, each carrying the HTML skeleton from a chosen Layout Recipe (M01-M16 for Editorial, S01-S12 for Swiss). Never load the wrong template's class system: Editorial recipes assume serif display + ledger/marginalia/pipeline-v; Swiss recipes assume Inter + card-fills + matrix/h-bar/kpi-tower. Mixing them silently breaks the layout.
+把 `<!-- POSTERS_HERE -->` 後面那個佔位 poster，換成每頁一個 `<section class="poster ...">` 區塊，每個帶著從選定 Layout Recipe（Editorial 用 M01-M16，Swiss 用 S01-S12）來的 HTML 骨架。絕不要載入錯的模板 class 系統：Editorial recipe 假設襯線標題 + ledger／旁註／pipeline-v；Swiss recipe 假設 Inter + 卡片填色 + matrix／h-bar／kpi-tower。混用會靜默地毀掉版面。
 
-### 5. Build And Render
+### 5. 建置與算圖
 
-Default implementation pattern:
+預設實作模式：
 
-- Create a task folder under `local-tests/<slug>/` by default, or inside the user-requested output folder. Never put generated task folders, rendered images, MOV files, `.pvt` packages, or downloaded sources in the skill root next to `SKILL.md`.
-- Put source images in `assets/`.
-- Start from the seed template copied in Step 4.5, not a blank file. Prefer changing only the `<!-- POSTERS_HERE -->` region page-to-page. If a task needs custom layout CSS, add one clearly named task-scoped block in the copied file and keep semantic defaults reset (`figure { margin:0; }`, no browser-default spacing surprises).
-- Use Playwright or a browser screenshot tool to export each `.poster` or `.cover` node.
-- Save rendered images in `output/`.
-- Verify dimensions and inspect the rendered PNGs.
-- Keep `node validate-social-deck.mjs <task-dir>` available for auto-check passes. It checks overflow (R1), footer collision (R2), Swiss bold display (R3), minimum font size (R4), 4-band density (R5), `.h-xl` line caps (R6), browser-default figure margin drift (R7), visual bounds / bottom whitespace (R8), and title-to-content gaps (R9). Exit code 1 on any FAIL — fix before final delivery when auto-check is requested. WARN is advisory but read it.
+- 預設在 `local-tests/<slug>/` 下建任務資料夾，或使用者指定的輸出資料夾內。絕不要把生成的任務資料夾、算好的圖、MOV 檔、`.pvt` 包或下載的來源放在 `SKILL.md` 旁邊的技能根目錄。
+- 來源圖片放 `assets/`。
+- 從 Step 4.5 拷來的種子模板開始，不要用空白檔。優先只改各頁的 `<!-- POSTERS_HERE -->` 區塊。如果某任務需要客製版面 CSS，在拷來的檔案裡加一個命名清楚、任務範圍的區塊，並保持語意預設重置（`figure { margin:0; }`，不要出現瀏覽器預設間距的意外）。
+- 用 Playwright 或瀏覽器截圖工具，把每個 `.poster` 或 `.cover` 節點匯出。
+- 算好的圖存 `output/`。
+- 驗尺寸並檢視算出來的 PNG。
+- 保留 `node validate-social-deck.mjs <task-dir>` 供自動核查。它檢查溢位（R1）、footer 碰撞（R2）、Swiss 粗體大標（R3）、最小字級（R4）、4 橫帶密度（R5）、`.h-xl` 行數上限（R6）、瀏覽器預設 figure margin 漂移（R7）、視覺邊界／底部空白（R8），以及標題到內容的間距（R9）。任何 FAIL 都是 exit code 1——被要求自動核查時，最終交付前先修好。WARN 是提示，但要讀。
 
-Live Photo branch:
+短影音動態卡分支：
 
-- Decide the information budget before rendering: `3s` fits one action point; `5s` fits one small process; triple collage fits three parallel clips but not a complex story; long videos require diagnosis before editing.
-- For long sources, avoid claiming precise automatic highlight detection. Probe duration/resolution, make a sparse contact sheet, and choose between trim, speed-up, split/triple collage, or asking the user for a time range.
-- Extract a first frame from each video well, place it in the final static card layout, and show/inspect that preview before making `.pvt`. This catches crop and hierarchy issues with much lower token and render cost.
-- Render the paired MOV at the platform duration: `5s` for Xiaohongshu, `3s` for WeChat Official Account.
-- Extract the key JPG from a readable representative frame.
-- Package `JPG + MOV` into `.pvt` with `makelive`; AirDrop the `.pvt` as one item for iPhone tests.
-- Validate dimensions, duration, frame count, package contents, and motion quality. Prefer a contact-sheet frame strip for visual checks so only the final tiled image needs human/model inspection. Use `references/live-photo-production.md` for exact commands and failure-mode checks.
+- 算圖前先定資訊量預算：`3s` 裝一個動作點；`5s` 裝一個小流程；三連拼貼裝三段並列片段但裝不下複雜故事；長影片要先診斷再剪。
+- 對長來源，不要宣稱能精確自動偵測精彩片段。探測時長／解析度，做一張稀疏的 contact sheet，再在裁切、加速、拆分／三連拼貼、或請使用者指定時間區間之間做選擇。
+- 從每個影片井抽一張首幀，放進最終靜態圖卡版面，在做 `.pvt` 之前先看／檢視那張預覽。這能用低很多的 token 與算圖成本抓出裁切與層級問題。
+- 依目標時長算成對 MOV：Reels／貼文短影音約 `5s`，限時動態約 `3s`。
+- 從一張可讀的代表幀抽出關鍵 JPG。
+- 用 `makelive` 把 `JPG + MOV` 打包成 `.pvt`（iOS 實況照片格式，供 iPhone 相簿測試用）；AirDrop 一個 `.pvt` 到 iPhone 檢視。
+- 驗證尺寸、時長、幀數、包內容與動態品質。做視覺檢查時優先用 contact-sheet 幀條，這樣只有最終拼貼圖需要人／模型檢視。精確指令與失敗模式檢查用 `references/live-photo-production.md`。
 
-Do not place visible instructions, keyboard shortcuts, or usage explanations inside the images.
+不要把可見的操作說明、快捷鍵或使用解釋放進圖裡。
 
-For Editorial Magazine x E-ink, use a layered background system. Prefer a subtle WebGL ink-flow canvas or a frozen procedural canvas plus paper grain. Read `references/background-systems.md`; do not rely on a flat beige background, and do not add page-wide grid/dot backgrounds.
+雜誌風（Editorial）× E-ink 用分層背景系統。優先用細緻的 WebGL 墨流 canvas，或一個凍結的程式化 canvas 加紙紋。讀 `references/background-systems.md`；不要靠一個死平的米色底，也不要加整頁的網格／點陣背景。
 
-### 6. Image And Screenshot Handling
+### 6. 圖片與截圖處理
 
-When the user provides screenshots:
+使用者提供截圖時：
 
-- Preserve screenshot content unless the user asks for redesign.
-- Prefer programmatic framing: target-ratio canvas, safe padding, clean background, readable screenshot.
-- Do not stretch screenshots.
-- If screenshot clarity matters, enlarge the screenshot area and reduce nearby text.
+- 除非使用者要求重新設計，否則保留截圖內容。
+- 優先用程式化裱框：目標比例畫布、安全內距、乾淨背景、可讀的截圖。
+- 不要拉伸截圖。
+- 如果截圖清晰度很重要，放大截圖區、縮小旁邊的文字。
 
-#### Text-On-Image Composition
+#### 文字壓圖構圖
 
-Whenever a poster places text on top of a photo (full-bleed cover, large image well, generated-image overlay), follow `references/image-overlay.md`:
+只要一張圖把文字壓在照片上（滿版封面、大圖井、生成圖 overlay），就照 `references/image-overlay.md`：
 
-- **Selection first, tint only if needed.** A photo covering ≥60% of the canvas must first pass the quiet-zone and light tests in `image-overlay.md`. Compose without a mask first; if the thumbnail check fails, add only a localized, image-toned tint around the title area. Do not default to full-canvas falloffs.
-- **Subject mapping is mandatory.** Before placing the title, read the image with the Read tool, describe in plain language where the subject's face/focal feature sits, and record the subject map as an HTML comment next to the hero block. Place text only in the documented safe zones.
-- **Crop discipline — set `object-position` inline on every photo.** The template default (`center 50%`) is a fallback, not a recommendation. For every `<img>`, decide based on subject location and write it inline: e.g. `style="object-position:center 62%"` for mid-body subjects, `center 30%` for sky-heavy landscapes with horizon-line subjects, `center 70%` for foreground gear. See the table in `references/components.md` for ranges and `image-overlay.md` for face-photo specifics. Skipping this silently crops subjects out of frame on tall ratios (`r-3x4`, `r-21x9`).
-- **Thumbnail test.** Downscale the rendered PNG to 360 px wide and confirm the title is still legible. If the title fights the photo, move the title, swap the photo, or add a localized image-toned tint; if the photo looks dead, the tint is too heavy or the photo was wrong for text-on-image.
+- **先選圖，需要時才加 tint。** 一張覆蓋畫布 ≥60% 的照片，必須先透過 `image-overlay.md` 的安靜區與明度測試。先不加遮罩構圖；如果縮圖檢查沒過，只在標題區周圍加區域性的、與圖同調的 tint。不要預設全畫布漸層。
+- **主體對映是強制的。** 放標題前，用 Read tool 讀圖，用白話描述主體的臉／焦點在哪，把主體對映記成 hero 區塊旁的 HTML 註解。文字只放在有記錄的安全區。
+- **裁切紀律——每張照片都 inline 設 `object-position`。** 模板預設（`center 50%`）是備援，不是建議。每張 `<img>` 都要依主體位置決定並 inline 寫：例如身體中段主體用 `style="object-position:center 62%"`、天空為主地平線有主體的風景用 `center 30%`、前景器材用 `center 70%`。範圍看 `references/components.md` 的表，臉部照片細節看 `image-overlay.md`。跳過這步會在高比例（`r-3x4`、`r-21x9`）上靜默地把主體裁出畫面。
+- **縮圖測試。** 把算好的 PNG 縮到 360px 寬，確認標題還讀得到。如果標題和照片打架，就移標題、換照片，或加區域性與圖同調的 tint；如果照片看起來死掉了，就是 tint 太重或這張照片本來就不適合文字壓圖。
 
-Editorial dark covers (e.g. game journals on key art) and Swiss covers with hero photos both require these checks. Skipping them is a known failure mode (see `style-system.md` Anti-Pattern D).
+Editorial 暗色封面（例如 key art 上的遊戲誌）與帶 hero 照片的 Swiss 封面，兩者都需要這些檢查。跳過它們是已知的失敗模式（見 `style-system.md` 反模式 D）。
 
-When the user has no images:
+使用者沒有圖片時：
 
-- This branch only runs if the Step 1 "三选一" gate landed on B (web-sourced) or C (AI-generated). Never silently fall into B or C — the user picked one.
-- For C (AI-generated): use generated bitmaps only where they add real value, usually 1-2 pages. Generate images that match the page's visual role, not generic decoration. Keep generated images free of embedded titles, page numbers, logos, or fake UI labels unless explicitly needed.
-- For B (web-sourced): see the Web-Sourced Images section below.
+- 這個分支只在 Step 1 的「三選一」gate 落到 B（網路取圖）或 C（AI 生成）時才跑。絕不要默默掉進 B 或 C——使用者已經選了一個。
+- C（AI 生成）：只在真正有價值的地方用生成點陣圖，通常 1-2 頁。生成符合該頁視覺角色的圖，不是通用裝飾。生成圖裡不要有內嵌標題、頁碼、logo 或假 UI 標籤，除非明確需要。
+- B（網路取圖）：見下面的「網路取圖」段落。
 
-#### Web-Sourced Images (fallback when user has none)
+#### 網路取圖（使用者沒圖時的備援）
 
-When the user has no screenshots/photos and a generated bitmap would not fit the page's role (e.g. Editorial atmosphere shot, outdoor / lifestyle backdrop, game cover art, real-world product shot), fetch from the web instead of leaving the page thin.
+當使用者沒有截圖／照片，而生成點陣圖又不適合該頁角色時（例如 Editorial 氛圍照、戶外／生活風格背景、遊戲封面原畫、真實產品照），就從網路抓，而不是讓頁面很空。
 
-Policy: **grab first, disclose after, let the user decide on attribution.** Do not pre-filter sources by guessed license — the user is the rights holder of the final composition and decides what is acceptable.
+原則：**先抓、抓完再揭露、標註與否讓使用者決定。** 不要用猜測的授權去預先過濾來源——使用者是最終成品的權利人，由他決定什麼可以接受。
 
-Recommended sources, in order of preference. **All five below are free-tier libraries with no required licensing fees**; we do not pull from paid stock sites (视觉中国 / Getty / 站酷海洛 etc.).
+建議來源，依偏好順序。**下面五個都是免授權費的免費層相簿**；我們不從付費相簿抓（視覺中國／Getty／站酷海洛等）。
 
-1. **Unsplash** — `https://unsplash.com/s/photos/<keyword>`. Strong for outdoor / lifestyle / atmospheric backdrops. English keywords work best. License is permissive but verify case by case.
-2. **Pexels** — `https://www.pexels.com/search/<keyword>/` or `https://www.pexels.com/zh-cn/search/<keyword>/`. **Supports Chinese keyword search natively** — fills Unsplash's gap on 国内场景 (中文街景 / 国风物件 / 本地地名). Use this first when the subject is China-specific or the keyword is Chinese. Free under Pexels License.
-3. **Flickr CC-licensed pool** — `https://www.flickr.com/search/?text=<keyword>&license=2%2C3%2C4%2C5%2C6%2C9`. The license filter (`license=2,3,4,5,6,9`) restricts to Creative Commons photos. Fills the "documentary realness" gap: street photography, people-in-context, real interiors, non-styled scenes that Unsplash/Pexels lack. Always preserve CC attribution if the user opts in.
-4. **Wallhaven** — `https://wallhaven.cc/search?q=<keyword>`. Strong for game / anime / wallpaper themes. Content is user-uploaded, rights are unverified.
-5. **Direct web search** — when a specific subject is needed (a product render, a game still, a historical photo). Use WebFetch / WebSearch to find a candidate URL.
+1. **Unsplash** — `https://unsplash.com/s/photos/<keyword>`。戶外／生活風格／氛圍背景很強。英文關鍵字最好用。授權寬鬆但逐案確認。
+2. **Pexels** — `https://www.pexels.com/search/<keyword>/` 或 `https://www.pexels.com/zh-cn/search/<keyword>/`。**原生支援中文關鍵字搜尋** — 補上 Unsplash 在中文場景（臺灣街景／在地物件／本地地名）的缺口。主體是在地的、或關鍵字是中文時先用它。Pexels License 下免費。
+3. **Flickr CC 授權池** — `https://www.flickr.com/search/?text=<keyword>&license=2%2C3%2C4%2C5%2C6%2C9`。授權篩選（`license=2,3,4,5,6,9`）限縮到 Creative Commons 照片。補上「紀實真實感」的缺口：街拍、情境中的人、真實室內、非擺拍場景，這些是 Unsplash／Pexels 缺的。使用者若選擇標註，一律保留 CC 出處。
+4. **Wallhaven** — `https://wallhaven.cc/search?q=<keyword>`。遊戲／動畫／桌布主題很強。內容為使用者上傳，權利未經核實。
+5. **直接網路搜尋** — 需要特定主體時（產品渲染圖、遊戲截圖、歷史照片）。用 WebFetch／WebSearch 找候選 URL。
 
-Editorial-mode picking order: **Pexels (if keyword is Chinese / China-specific) → Unsplash → Flickr CC (if you need real-life feel) → direct search**. Swiss mode rarely needs any of these — product renders, UI screenshots, and keyshot-style images should be user-supplied or AI-generated, not stock.
+Editorial 模式取圖順序：**Pexels（關鍵字是中文／在地）→ Unsplash → Flickr CC（需要真實生活感時）→ 直接搜尋**。Swiss 模式很少需要這些——產品渲染圖、UI 截圖、keyshot 風格的圖應該由使用者提供或 AI 生成，不用相簿。
 
-How to fetch:
+怎麼抓：
 
-- Use WebFetch or `curl` to download the image into the task folder's `assets/` directory.
-- Name the file by purpose, not by hash: `assets/hero-mountain.jpg`, `assets/ui-pulse-card.png`.
-- Record the source URL in a `assets/SOURCES.md` file next to the images (one line per file: `hero-mountain.jpg ← <url>`). Always do this even if the user declines attribution in the final image — it preserves provenance for the human author.
+- 用 WebFetch 或 `curl` 把圖片下載進任務資料夾的 `assets/` 目錄。
+- 依用途命名，不要用 hash：`assets/hero-mountain.jpg`、`assets/ui-pulse-card.png`。
+- 把來源 URL 記到圖片旁的 `assets/SOURCES.md`（每檔一行：`hero-mountain.jpg ← <url>`）。就算使用者最終不標註也一律記——這保留了給人類作者的出處。
 
-After fetching, surface the provenance to the user **before** finalizing the design:
+抓完後，在**最終定稿前**把出處揭露給使用者：
 
 ```
-我从 <site> 取了这些图：
+我從 <site> 取了這些圖：
 - assets/hero-mountain.jpg — <url>
 - assets/ui-pulse-card.png — <url>
 
-⚠️ 版权未经核实。请你判断是否可用。
-是否需要在图文中标注来源？
-- 要：我把 "Photo · <site> · @<author>" 加到对应页脚 / 角标。
-- 不要：原样使用,不加注释。
+⚠️ 版權未經核實，請你判斷是否可用。
+是否需要在圖上標註來源？
+- 要：我把「Photo · <site> · @<author>」加到對應頁尾／角標。
+- 不要：原樣使用，不加註。
 ```
 
-If the user picks "标注" — add a small `mono` caption (Swiss: `.t-meta` 18-20px in corner; Editorial: `.label` next to the image well). Never crowd the caption into the layout's focal area.
+如果使用者選「標註」——加一個小的 `mono` 說明（Swiss：`.t-meta` 18-20px 放角落；Editorial：`.label` 放圖井旁）。絕不要把說明擠進版面的焦點區。
 
-If the user picks "不标注" — proceed silently. The provenance still lives in `assets/SOURCES.md` for the user's own records.
+如果使用者選「不標註」——就默默進行。出處還是留在 `assets/SOURCES.md` 供使用者自己存查。
 
-If an image is only one element among many in a composite (e.g. one of nine photos in a matrix), the user may reasonably skip attribution. Do not force a credit label that breaks the layout.
+如果一張圖只是一個合成裡的眾多元素之一（例如矩陣裡九張照片的其中一張），使用者可以合理地略過標註。不要硬塞一個會破壞版面的出處標籤。
 
-### 7. Deliver
+### 7. 交付
 
-**Show user first, validate on request.** Auto-running the validator after every render takes too long and delays the user from seeing results. Default flow:
+**先給使用者看，要求時才核查。** 每次算完都自動跑 validator 太慢，會拖到使用者看結果。預設流程：
 
-1. After rendering completes, immediately show the user the rendered images inline (absolute paths) with a one-sentence summary of what was built.
-2. Ask one question: **"先你自己看，还是我先自动核查一遍？"** (Do you want to review first, or should I run the auto-check?)
-3. If the user says "我自己看" / "先给我" / "no need" — stop here, let them inspect, and respond to whatever they raise.
-4. If the user says "你查吧" / "auto-check" / "yes" — only then run `node validate-social-deck.mjs <task-dir>`, fix any FAIL, and re-render before final delivery. Mention density/cap WARNs.
+1. 算圖完成後，立刻把算好的圖 inline 給使用者看（絕對路徑），配一句話總結做了什麼。
+2. 問一個問題：**「先你自己看，還是我先自動核查一遍？」**
+3. 如果使用者說「我自己看」／「先給我」／「不用」——就停在這裡，讓他檢視，再回應他提出的任何事。
+4. 如果使用者說「你查吧」／「自動核查」／「好」——才跑 `node validate-social-deck.mjs <task-dir>`，修掉所有 FAIL，最終交付前重算。順帶提密度／上限的 WARN。
 
-Never silently run the validator before showing the user — it costs minutes per pass and the user often spots issues faster.
+絕不要在給使用者看之前默默跑 validator——它每輪要花好幾分鐘，而使用者常常更快就看出問題。
 
-Final response (after the user has reviewed or asked for auto-check) should include:
+最終回覆（在使用者已檢視或要求自動核查後）應包含：
 
-- Output folder path.
-- Rendered images shown inline with absolute paths when useful.
-- A short note on dimensions and verification (or "not yet validated, awaiting your review").
-- For any image fetched from the web: source URL + site + the attribution decision the user made.
-- For Live Photo: the `.pvt` package path, the debug `JPG + MOV` pair, target platform duration, and validation summary.
-- For Live Photo publishing: remind the user of two things: platform limits (`5s` Xiaohongshu, `3s` WeChat Official Account) and publish path (AirDrop the `.pvt` package as one item to iPhone, then publish from the matching mobile app path; desktop/web upload paths generally cannot recognize `.pvt` as a publishable Live Photo).
-- If the user cannot use the iPhone/AirDrop publishing path (e.g. desktop-only workflow, Android, or a platform that does not support Live Photo), offer a degraded delivery: export a short looping GIF or a silent MP4 clip from the same MOV source. The GIF/MP4 keeps the motion evidence but loses the Live Photo tap-to-play experience. Confirm with the user before switching to this fallback.
-- Any unresolved risks, such as source images being low resolution.
+- 輸出資料夾路徑。
+- 有用時，用絕對路徑 inline 顯示算好的圖。
+- 一句話說明尺寸與驗證（或「尚未驗證，等你先看」）。
+- 任何從網路抓的圖：來源 URL + 網站 + 使用者做的標註決定。
+- 短影音動態卡：`.pvt` 包路徑、除錯用的 `JPG + MOV` 對、目標平臺時長、驗證摘要。
+- 短影音釋出：提醒使用者兩件事：(1) 這些動態卡是短影音／實況照片格式，Instagram 沒有原生 Live Photo 釋出管道；實務上把 MOV 轉成 MP4 發 Reels／貼文，或短片發限時動態。(2) `.pvt` 是 iOS 實況照片專屬格式，只能存進 iPhone 相簿（AirDrop 一個 `.pvt` 到 iPhone），一般桌面／網頁與 Instagram 上傳流程都不吃 `.pvt`。時長參考：Reels／貼文短影音約 `5s`、限時動態約 `3s`。
+- 如果使用者無法用 iPhone／AirDrop 這條路徑（例如純桌面流程、Android，或平臺不支援），對 Instagram 來說 MP4（Reels）／短片（限動）本來就是主要路徑：從同一份 MOV 匯出一段短迴圈 GIF 或無聲 MP4。GIF／MP4 保留動態證據，但沒有實況照片點按播放的體驗。切換前先跟使用者確認。
+- 任何未解的風險，例如來源圖解析度太低。
 
-## Non-Negotiables
+## 不可妥協
 
-- Never edit the original Guizang PPT skill or any upstream skill copied from elsewhere.
-- Never create generated work in the skill root. All task artifacts must be under `local-tests/<slug>/` by default, or under a user-requested output folder. Root-level generated folders like `social-card-*`, `livephoto-*`, `wechat-*`, and loose output assets are forbidden.
-- Do not create random decorative SVG ovals, blobs, rain drops, stickers, or meaningless circles.
-- Do not use nested cards or generic SaaS card layouts as the default.
-- Do not let text overflow, touch the edge, or collide with the footer band. Pin `.foot` with `margin-top: auto` inside a flex column, never with `position: absolute` over growing content.
-- When content overflows, measure the amount before editing. Small overflows should get small fixes: `1-40px` means nudge/tighten, `40-90px` means local compaction, `90-160px` means slight title or paragraph compression, and only `160px+` should trigger recipe changes or content removal. After fixing, check R8 bottom whitespace so the page does not swing from overflow to a giant empty lower band.
-- Do not let a title touch the next content block. Main display titles should usually keep at least `28px` below; local headings should keep at least `16px`. Use validator R9 before relying on visual inspection.
-- Do not let text become too small to read on mobile.
-- Do not write inline `font-size` + `font-weight` on display titles in Swiss. Use the typed classes (`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`). A 80-120px headline at weight 700-900 is not Swiss; "the larger, the lighter" is a hard rule.
-- Do not deliver Editorial posters with a flat paper background, mono labels on every row, and no atmosphere layer. Run the Editorial Identity Test in `references/style-system.md` — a serif title alone does not make a poster Editorial.
-- Do not fake data, release details, or percentages.
-- Do not crop faces, key UI text, or hardware/product details unless the user explicitly accepts it.
-- Do not turn a video card into a fake still sequence without saying so. If a source is shorter than the target duration, ask for a longer source, use a shorter platform-safe duration, or explicitly document any hold/slowdown.
-- Do not skip the first-frame preview for Live Photo. Video is an image well with motion; its first frame must satisfy the static 3:4 layout and crop rules before rendering the MOV.
-- Do not let result videos scroll through section boundaries in a shallow crop; this creates the "overlapping video" failure. Inspect contact sheets and choose a stable time window before packaging.
-- Do not guess the user's visual priority when enlarging/cropping video for readability. Offer the crop/enlarge tradeoff and apply it after the user confirms, unless the request already makes the focal region explicit.
-- Do not reuse a 21:9 cover by blindly cropping it into 1:1. Compose each ratio separately.
-- **3:4 卡必须吃满画布**。Content (text + image + data) 必须覆盖 ≥75% 画布高度。任何 >15% 画布高度的纯空白带都需要"留白理由"：(a) hero image 自带呼吸、(b) 单句宣言式 hero statement、(c) 段落顶/底 leading & trailing whitespace（前后总和 ≤15%）。**禁止用 `<div style="flex: 1"></div>` 上下夹击把内容塞到中段**——杂志页留白逻辑不适用于社交卡（杂志靠对开页吸收留白，社交卡逐张独立刷，欠填看着像 PPT 漏排）。Recipe-by-recipe 最小密度见 `references/layout-recipes.md` 每条 recipe 的「Minimum density」段。Render 后必须跑 `qa-checklist.md` 的 4 横带密度检查。
+- 絕不改動原始 Guizang PPT 技能，或任何從別處拷來的上游技能。
+- 絕不把生成成品放在技能根目錄。所有任務產物預設放在 `local-tests/<slug>/`，或使用者指定的輸出資料夾。根層級的生成資料夾（`social-card-*`、`livephoto-*`、`ig-*`）與散落的 output 檔案一律禁止。
+- 不要亂做裝飾性的 SVG 橢圓、blob、雨滴、貼紙或無意義的圓圈。
+- 不要把巢狀卡片或通用 SaaS 卡片版面當成預設。
+- 不要讓文字溢位、貼邊，或撞到 footer 帶。用 flex 直欄裡的 `margin-top: auto` 釘住 `.foot`，絕不用 `position: absolute` 壓在會增長的內容上。
+- 內容溢位時，先量再改。小溢位用小修：`1-40px` 是微調／收緊，`40-90px` 是區域性壓縮，`90-160px` 是輕度壓縮標題或段落，只有 `160px+` 才觸發換 recipe 或刪內容。修完檢查 R8 底部空白，避免頁面從溢位擺盪到下方一大塊空白。
+- 不要讓標題貼到下一個內容區塊。主展示標題通常至少留 `28px` 在下方；區域性標題至少留 `16px`。靠視覺檢查前先用 validator R9。
+- 不要讓文字小到手機讀不了。
+- Swiss 展示標題不要 inline 寫 `font-size` + `font-weight`。用有型別的 class（`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`）。80-120px 標題配 700-900 字重不是 Swiss；「越大越細」是硬規則。
+- 不要交出一張平紙底、每行都是 mono 標籤、沒有氛圍層的 Editorial 圖。跑 `references/style-system.md` 的 Editorial Identity Test——光一個襯線標題不會讓一張圖變 Editorial。
+- 不要偽造資料、釋出細節或百分比。
+- 不要裁掉人臉、關鍵 UI 文字或硬體／產品細節，除非使用者明確接受。
+- 不要把影片卡變成假的靜態序列還不講。如果來源比目標時長短，就要更長的來源、用更短的平臺安全時長，或明確記錄任何定格／放慢。
+- 不要跳過短影音的首幀預覽。影片是一個帶動態的圖井；它的首幀必須先滿足靜態 4:5 版面與裁切規則，再算 MOV。
+- 不要讓結果影片在淺裁切下滾過區塊邊界；這會造成「影片重疊」的失敗。檢視 contact sheet，選一個穩定的時間窗再打包。
+- 為了可讀性放大／裁切影片時，不要猜使用者的視覺優先順序。提出裁切／放大的取捨，等使用者確認後再套，除非需求已經明確指出焦點區。
+- 不要把一張 4:5 貼文直接硬裁成 9:16 重用。每個比例分別構圖。
+- **4:5 卡必須吃滿畫布。** 內容（文字＋影象＋資料）必須覆蓋 ≥75% 畫布高度。任何 >15% 畫布高度的純空白帶都需要「留白理由」：(a) hero image 自帶呼吸、(b) 單句宣言式 hero statement、(c) 段落頂／底的 leading & trailing whitespace（前後總和 ≤15%）。**禁止用 `<div style="flex: 1"></div>` 上下夾擊把內容擠到中段**——雜誌頁留白邏輯不適用於社群卡（雜誌靠對開頁吸收留白，社群卡逐張獨立刷，欠填看起來像 PPT 漏排）。逐條 recipe 的最小密度見 `references/layout-recipes.md` 每條 recipe 的「Minimum density」段。算圖後必須跑 `qa-checklist.md` 的 4 橫帶密度檢查。

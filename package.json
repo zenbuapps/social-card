@@ -1,7 +1,7 @@
 {
-  "name": "guizang-social-card-skill",
+  "name": "social-card",
   "version": "1.0.0",
-  "description": "",
+  "description": "繁體中文、以台灣 Instagram 為主的社群圖卡技能（貼文 4:5／方形 1:1／限時動態 9:16）。Fork 自 op7418/guizang-social-card-skill。",
   "main": "index.js",
   "scripts": {
     "test:docs": "node scripts/check-skill-docs.mjs",

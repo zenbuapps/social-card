@@ -1,128 +1,138 @@
-# Title Shortener (1:1 covers + cross-platform reuse)
+# 標題精簡器（限時動態 9:16 短標題 + 1:1 方版 + 跨版位重用）
 
-A long title that works in a 3:4 XHS card or a 21:9 WeChat cover **does not** work in a 1:1 square. Square covers need a different sentence — shorter, blunter, with one idea hitting the viewer in the first glance. This file is the playbook for generating that second title.
+在 4:5 IG 貼文／輪播能成立的長標題，**塞不進** 9:16 限時動態／Reels 封面，也塞不進 1:1 方版。這些窄版位需要另一句話——更短、更直接，一眼就打中人。這份檔案就是產生那句「第二標題（短標題）」的操作手冊。
 
-It also applies whenever you reuse one piece of content across multiple platforms: XHS carousel + WeChat cover pair + Lvshu single — each surface has a different attention budget.
+只要同一則內容要跨多個版位重用，這份也適用：4:5 貼文／輪播 + 9:16 限時動態封面 + 1:1 方版——每個版位的注意力預算都不同。
 
-## Why a separate title is needed
+## 為什麼需要另寫一句短標題
 
-Tested empirically across the smoke decks:
+跨多份測試稿實測整理：
 
-| Source title (3:4 / 21:9)                                | Squeezed into 1:1 verbatim         | Authored short title    |
-| -------------------------------------------------------- | ---------------------------------- | ----------------------- |
-| 第三次进山，装备比上一次轻 3.4kg                          | overflows at 88px, fights bleed    | 装备减重 3.4kg          |
-| 开源了一个 Skill，让 AI 接管你屏幕边那张便签纸           | 3-line wrap, looks like a paragraph | AI 接管便签纸           |
-| 当代年轻人，不为了变美，只为了不丑                       | 4-line wrap on `.poster.square`     | 不为变美，只为不丑      |
-| 我把家从北京搬到大理后，第一次安静地写完了一本书         | overflows even at 80px              | 北京到大理，写完一本书   |
+| 來源標題（4:5 貼文）                              | 原句硬塞（9:16／1:1）              | 另寫的短標題            |
+| -------------------------------------------------- | ---------------------------------- | ----------------------- |
+| 第三次進山，裝備比上一次輕 3.4kg                   | 88px 就爆框、跟出血打架            | 裝備減重 3.4kg          |
+| 開源了一個 Skill，讓 AI 接管你螢幕邊那張便條紙     | 折成 3 行，看起來像一段文字        | AI 接管便條紙           |
+| 當代年輕人，不為了變美，只為了不醜                 | 在 `.poster.square` 折成 4 行      | 不為變美，只為不醜      |
+| 我把家從臺北搬到花蓮後，第一次安靜地寫完一本書     | 連 80px 都爆框                    | 臺北到花蓮，寫完一本書  |
 
-The squeezed version reads as a wall of text. The authored short title reads as a poster headline.
+原句硬塞會變成一面文字牆；另寫的短標題才讀得像海報標題。
 
-## The 5-step extraction
+## 五步萃取法
 
-When the user gives you a long title (or you wrote one for the 3:4 cover), derive the 1:1 like this:
+當使用者給你一個長標題（或你為 4:5 貼文封面寫的那句），照這樣匯出 9:16／1:1 的短標題：
 
-**1. Identify the core verb.** Every good poster headline has one. `接管` / `减重` / `搬到` / `写完`. Drop modifiers, drop preambles, drop adjectival noise.
+**1. 找出核心動詞。** 每個好海報標題都有一個。`接管`／`減重`／`搬到`／`寫完`。拿掉修飾語、拿掉前導語、拿掉形容詞雜訊。
 
-**2. Identify the core object.** What is the verb acting on? `便签纸` / `装备` / `家` / `书`. Skip qualifiers (`你屏幕边那张` → `便签纸`).
+**2. 找出核心受詞。** 動詞在對什麼施力？`便條紙`／`裝備`／`家`／`書`。略掉限定語（`你螢幕邊那張` → `便條紙`）。
 
-**3. Compress to 4-10 Chinese characters.** That is the readable band for 88-120px type on a 1080×1080 canvas. Outside that band, you either need 2 lines (still OK), 3+ lines (almost certainly wrong), or a typographic stunt (one giant character + meta — see Big Word recipe below).
+**3. 壓到 4-10 個中文字。** 這是 1080×1080 畫布上 88-120px 字級的易讀區間。超出這區間，你就得換成 2 行（還 OK）、3 行以上（幾乎一定錯）、或排版特技（一個巨大字＋meta——見下方 Big Word recipe）。
 
-**4. Drop English unless it carries the verb.** Mixed CJK + Latin at large size is a Swiss/Editorial trick that takes a lot of practice. For 1:1 short titles, prefer pure Chinese. Exceptions: brand names (`AI`, `Mac`, `iOS`), domain terms with no Chinese equivalent (`PPT`, `MCP`).
+**4. 除非英文字身就是動詞，否則拿掉英文。** 大字級的中英混排是 Swiss／Editorial 的技巧，很吃練習。1:1／9:16 短標題請用純中文。例外：品牌名（`AI`、`Mac`、`iOS`）、沒有中文對應的領域詞（`PPT`、`MCP`）。
 
-**5. Add a small subtitle only if needed for disambiguation.** Most 1:1 covers don't need one. If you must add it, use `.kicker` or `.t-meta` size (20-22px mono), never a second `.h-xl`.
+**5. 只有需要消歧義時才加小副標。** 多數 1:1 封面不用。真要加就用 `.kicker` 或 `.t-meta` 尺寸（20-22px mono），絕不用第二個 `.h-xl`。
 
-## Patterns that work for 1:1 covers
+## 適合方版／限時動態封面的短標題樣式
 
-### A · Verb + Object (single line, 4-8 chars)
-
-```
-装备减重 3.4kg
-AI 接管便签纸
-家搬到大理
-眼线一笔到位
-```
-
-Use when the verb is concrete and the object is short. The headline does the work alone — no subtitle.
-
-### B · Two-clause cut (comma between, 2 lines)
+### A · 動詞 + 受詞（單行，4-8 字）
 
 ```
-不为变美，
-只为不丑
+裝備減重 3.4kg
+AI 接管便條紙
+家搬到花蓮
+眼線一筆到位
+```
+
+動詞具體、受詞短時使用。標題自己就把事做完——不用副標。
+
+### B · 兩句對切（中間逗號，2 行）
+
+```
+不為變美，
+只為不醜
 ```
 
 ```
-六个停靠点，
-两天走完
+六個停靠點，
+兩天走完
 ```
 
-Use when the title needs a contrast or a setup-payoff. Hard-break at the comma; don't let CJK auto-wrap pick the line. Each line should be ≤ 6 characters.
+當標題需要對比或「鋪陳—收尾」時使用。在逗號處硬斷行；別讓 CJK 自動換行決定斷點。每行應 ≤ 6 字。
 
-### C · Big Word (one giant character + meta)
+### C · Big Word（一個巨大字＋meta）
 
 ```html
 <h1 class="h-hero" style="font-size:520px; line-height:0.86;">家</h1>
-<p class="t-meta">从北京搬到大理</p>
+<p class="t-meta">從臺北搬到花蓮</p>
 ```
 
-A single character can carry a cover if it's the conceptual anchor of the piece. Pair it with a 1-line meta in mono. Don't try this with 2 characters — it always looks worse than either 1 or 4+.
+當單一字就是整篇的概念錨點時，它可以撐起一張封面。搭配一行 mono 的 meta。別用 2 個字試這招——結果永遠比 1 個字或 4 字以上更差。
 
-### D · Number-led headline
+### D · 數字開頭標題
 
 ```
 ↓ 3.4kg
-装备减重
+裝備減重
 ```
 
 ```
 1+1=3
-共创笔记
+共創筆記
 ```
 
-When the numerical fact is the news, lead with it. Editorial uses `.num-mega` (200px) over an 56px serif subtitle; Swiss uses `.num-mega` (200px) over a 22px mono cat.
+當數字事實就是新聞點時，把它放前面。Editorial 用 `.num-mega`（200px）壓一行 56px serif 副標；Swiss 用 `.num-mega`（200px）壓一行 22px mono 的類別字。
 
-## Anti-patterns
+## 反樣式（Anti-patterns）
 
-- **Squeezing the 21:9 title.** Cover the urge to use the same exact sentence. The square needs a separate sentence.
-- **Adding "如何"/"怎样"/"为什么" preambles.** Question-form titles are too long for 1:1. Use a declarative form: `怎样减重装备` → `装备减重 3.4kg`.
-- **Three-line titles.** If your draft wraps to 3 lines on `.poster.square`, shorten the copy — never shrink `.h-hero` below 152px. Three lines collapses into a paragraph.
-- **Adding a long subtitle.** A 1:1 cover with a 2-line subtitle reads as a flyer. If the subtitle is essential, you probably picked the wrong recipe — switch to a `.poster.xhs` 3:4 instead.
-- **English-only titles when the content is Chinese.** Looks like stock template. Mix only when the English carries the actual headline (e.g. brand launch).
+- **硬塞 4:5 貼文的長標題。** 忍住想用同一句的衝動。窄版位（9:16／1:1）需要另一句。
+- **加「如何」／「怎樣」／「為什麼」前導語。** 疑問句式對 1:1／9:16 太長。用陳述句：`怎樣減重灌備` → `裝備減重 3.4kg`。
+- **三行標題。** 草稿在 `.poster.square` 折到 3 行就砍字——絕不把 `.h-hero` 縮到 152px 以下。三行會塌成一段文字。
+- **加長副標。** 帶 2 行副標的 1:1 封面讀起來像傳單。副標若非有不可，你八成挑錯 recipe——改用 `.poster.post` 4:5。
+- **中文內容卻用純英文標題。** 看起來像現成模板。只有英文字身就是真正標題（例如品牌發表）才混。
 
-## Sizing on `.poster.square` (1080×1080)
+## `.poster.square`（1080×1080）字級
 
-Type scale defaults on square boards:
+方版板的字級預設：
 
-| Style     | Class       | Default size | Use                                |
-| --------- | ----------- | ------------ | ---------------------------------- |
-| Editorial | `.h-display`| 110px        | Pattern A or B, 1-2 lines          |
-| Editorial | `.h-xl`     |  78px        | Subtitle or secondary headline     |
-| Swiss     | `.h-hero`   | 200px        | Pattern A or B, 1-2 lines          |
-| Swiss     | `.h-statement` | 160px     | Same role as `.h-hero`, slightly tamer |
-| Both      | `.num-mega` | 200px        | Pattern D leading number           |
+| 風格      | Class       | 預設字級 | 用途                                   |
+| --------- | ----------- | -------- | -------------------------------------- |
+| Editorial | `.h-display`| 110px    | 樣式 A 或 B，1-2 行                     |
+| Editorial | `.h-xl`     |  78px    | 副標或次要標題                         |
+| Swiss     | `.h-hero`   | 200px    | 樣式 A 或 B，1-2 行                     |
+| Swiss     | `.h-statement` | 160px | 與 `.h-hero` 同角色，稍收斂            |
+| 通用      | `.num-mega` | 200px    | 樣式 D 的開頭數字                      |
 
-If a single-line short title is ≤ 4 Chinese chars on Swiss square, you can push `.h-hero` to 240px without overflow.
+在 Swiss 方版上，單行短標題若 ≤ 4 個中文字，可把 `.h-hero` 推到 240px 而不爆框。
 
-## Cross-platform pairing
+## `.poster.story`（1080×1920，9:16）字級
 
-When the same content runs as XHS carousel + WeChat cover pair + Lvshu single:
+限時動態／Reels 封面的短標題落在畫面「上三分之一」，且要在中央安全帶內（避開上方 ~220px／下方 ~250px、左右安全邊 64px——見 platform-specs 的 story 安全區）。因為安全帶比整張 1:1 畫布更窄：
 
-| Surface              | Title source                                | Length band              |
-| -------------------- | ------------------------------------------- | ------------------------ |
-| XHS p1 cover (3:4)   | Authored long title (12-30 chars)           | 1-2 lines, ≤ 9 chars/line|
-| WeChat 21:9 main     | Authored long title or 80% of it            | 1 line, ≤ 14 chars       |
-| WeChat 1:1 square    | Shortened per this file (4-10 chars)        | 1-2 lines, ≤ 6 chars/line|
-| Lvshu single (3:4)   | Same as XHS p1 or shortened to 8-12 chars   | 1-2 lines                |
+- 標題控制在 1-2 行，字級別超過 ~200px。
+- 主視覺放中段。
+- CTA 壓底、但仍落在下方安全區內。
 
-The 1:1 short title is the **shortest** of the family. If you cannot shorten further without losing meaning, the content probably needs a different framing — talk to the user.
+同一句短標題在方版與 story 上通常都能用；差別只在垂直落位與安全區，不需再重寫一次文案。
 
-## Workflow integration
+## 跨版位配對
 
-When a user task includes "公众号封面" or "WeChat cover", you should:
+當同一則內容要跑成 4:5 貼文／輪播 + 9:16 限時動態封面 + 1:1 方版時：
 
-1. Write the long title for 21:9 first.
-2. Apply this file's 5-step extraction to derive the 1:1 short title.
-3. Print both in the planning notes before rendering.
-4. Render both in the same HTML file, plus a `.pair-preview` section showing them side-by-side.
+| 版位                       | 標題來源                                   | 長度區間                     |
+| -------------------------- | ------------------------------------------ | ---------------------------- |
+| IG 貼文／輪播首圖（4:5）   | 撰寫的長標題（12-30 字）                    | 1-2 行，每行 ≤ 9 字          |
+| 限時動態／Reels 封面（9:16）| 依本檔精簡（4-10 字）                       | 1-2 行，每行 ≤ 6 字，落中央安全帶 |
+| 方版貼文（1:1）            | 依本檔精簡（4-10 字）                       | 1-2 行，每行 ≤ 6 字          |
+| FB 粉專／Threads 單張（4:5）| 同 IG 貼文，或精簡到 8-12 字                | 1-2 行                       |
 
-If the user supplies only one title and asks for the pair, derive the short one yourself and call it out in the response (don't silently swap text — the user needs to confirm the shortening reads right).
+9:16 與 1:1 的短標題是這一家族裡**最短**的。如果不再精簡就會失去意義，那這則內容八成需要換一個切角——跟使用者談。
+
+## 工作流整合
+
+當使用者的任務出現「IG 貼文 + 限時動態」或「貼文＋限動組合」時，你要：
+
+1. 先寫 4:5 貼文的長標題。
+2. 用本檔的五步萃取法匯出 9:16 限時動態的短標題。
+3. 在規劃筆記裡把兩句都印出來，再開始 render。
+4. 在同一份 HTML 一起 render，並多做一個 `.pair-preview` 區塊，並排展示兩者。
+
+如果使用者只給一句卻要一組，就自己匯出短標題並在回覆中點名（別偷偷換字——使用者需要確認精簡後讀起來對）。

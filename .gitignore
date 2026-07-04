@@ -6,7 +6,8 @@ outputs/
 # Guard against accidental task artifacts created in the skill root.
 /social-card-*/
 /livephoto-*/
-/wechat-*/
+/ig-post-*/
+/ig-story-*/
 /output/
 /*.png
 /*.jpg

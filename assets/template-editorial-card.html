@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-theme="ink-classic">
 <head>
   <meta charset="utf-8">
-  <title>[必填] 替换为社交卡组标题 · Social Card Set</title>
+  <title>[必填] 替換為社交卡組標題 · Social Card Set</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +12,10 @@
        Editorial Magazine × E-ink — Social Card Seed Template
        ---------------------------------------------------------
        Three boards built in one HTML:
-         .poster.xhs      1080×1440  (3:4   小红书)
-         .poster.square   1080×1080  (1:1   微信方封面)
-         .poster.wide     2100× 900  (21:9  微信主封面)
-         .pair-preview                       21:9 + 1:1 配对预览
+         .poster.post      1080×1350  (4:5   IG 直式貼文／輪播)
+         .poster.square   1080×1080  (1:1   方形貼文)
+         .poster.story     1080×1920  (9:16  IG 限時動態／Reels 封面)
+         .pair-preview                       貼文 4:5 ＋ 限動 9:16 並排預覽
 
        Theme switching via <html data-theme="…">:
          ink-classic | indigo-porcelain | forest-ink | kraft-paper | dune | midnight-ink
@@ -138,15 +138,15 @@
       overflow: hidden;
       isolation: isolate;
     }
-    .poster.xhs    { width: 1080px; height: 1440px; }
+    .poster.post    { width: 1080px; height: 1350px; }
     .poster.square { width: 1080px; height: 1080px; }
-    .poster.wide   { width: 2100px; height:  900px; }
+    .poster.story   { width: 1080px; height: 1920px; }
     .poster figure { margin: 0; }
 
     /* Default content padding by board */
-    .poster.xhs    .content { padding: 96px 88px; }
+    .poster.post    .content { padding: 96px 88px; }
     .poster.square .content { padding: 88px 88px; }
-    .poster.wide   .content { padding: 88px 120px; }
+    .poster.story   .content { padding: 160px 80px 220px; }
     .content { position: relative; width: 100%; height: 100%; z-index: 2; }
 
     /* ---------- 5. Background layers (paper grain + WebGL) ---------- */
@@ -287,9 +287,9 @@
     .poster.square .body      { font-size: 26px; }
 
     /* Wide boards have horizontal headlines */
-    .poster.wide .h-display   { font-size: 128px; }
-    .poster.wide .h-xl        { font-size: 96px; }
-    .poster.wide .lead        { font-size: 34px; }
+    .poster.story .h-display   { font-size: 120px; }
+    .poster.story .h-xl        { font-size: 80px; }
+    .poster.story .lead        { font-size: 30px; }
 
     /* ---------- 7. Issue label + page metadata ---------- */
     .issue-row {
@@ -325,7 +325,7 @@
       border-top: 1px solid var(--line);
       padding-top: 18px;
     }
-    .poster.wide .issue-strip { left: 120px; right: 120px; }
+    .poster.story .issue-strip { left: 80px; right: 80px; bottom: 230px; }
     .issue-strip span { white-space: nowrap; }
 
     /* ---------- 8. Layout primitives ---------- */
@@ -704,19 +704,18 @@
 
     /* ---------- 11. Pair preview frame ---------- */
     .pair-preview {
-      width: 2400px;
-      min-height: 1180px;
+      width: 2304px;
+      min-height: 2016px;
       background: var(--paper-2);
       padding: 48px;
       display: grid;
-      grid-template-columns: 2100px 1080px;
-      grid-template-rows: 900px 1080px;
+      grid-template-columns: 1080px 1080px;
       gap: 48px;
-      align-content: center;
+      align-items: center;
       justify-content: center;
     }
-    .pair-preview .preview-wide   { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
-    .pair-preview .preview-square { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+    .pair-preview .preview-post   { align-self: center; }
+    .pair-preview .preview-story  { align-self: center; }
     .pair-preview .preview-label {
       font-family: var(--mono);
       font-size: 20px;
@@ -739,18 +738,18 @@
       color: var(--muted);
       z-index: 3;
     }
-    .poster.xhs .corner-tl,
+    .poster.post .corner-tl,
     .poster.square .corner-tl { left: 88px; top: 56px; }
-    .poster.xhs .corner-tr,
+    .poster.post .corner-tr,
     .poster.square .corner-tr { right: 88px; top: 56px; }
-    .poster.xhs .corner-bl,
+    .poster.post .corner-bl,
     .poster.square .corner-bl { left: 88px; bottom: 56px; }
-    .poster.xhs .corner-br,
+    .poster.post .corner-br,
     .poster.square .corner-br { right: 88px; bottom: 56px; }
-    .poster.wide .corner-tl { left: 120px; top: 56px; }
-    .poster.wide .corner-tr { right: 120px; top: 56px; }
-    .poster.wide .corner-bl { left: 120px; bottom: 56px; }
-    .poster.wide .corner-br { right: 120px; bottom: 56px; }
+    .poster.story .corner-tl { left: 80px; top: 150px; }
+    .poster.story .corner-tr { right: 80px; top: 150px; }
+    .poster.story .corner-bl { left: 80px; bottom: 250px; }
+    .poster.story .corner-br { right: 80px; bottom: 250px; }
   </style>
 </head>
 <body>
@@ -763,23 +762,23 @@
     <!-- POSTERS_HERE -->
     <!--
       Replace the placeholder posters below with real content.
-      Each poster carries one Layout Recipe (M01-M15) from
+      Each poster carries one Layout Recipe (M01-M16) from
       references/layout-recipes.md.
 
       Available board sizes:
-        <section class="poster xhs"    id="xhs-01">…</section>   3:4
-        <section class="poster square" id="wechat-1x1">…</section> 1:1
-        <section class="poster wide"   id="wechat-21x9">…</section> 21:9
+        <section class="poster post"    id="post-01">…</section>   4:5  IG 直式貼文／輪播
+        <section class="poster square" id="square-01">…</section> 1:1  方形貼文
+        <section class="poster story"   id="story-01">…</section> 9:16 IG 限時動態／Reels 封面
 
-      For WeChat covers, also include a <section class="pair-preview">
-      that places the 21:9 + 1:1 side-by-side for review.
+      For an IG post + story pair, also include a <section class="pair-preview">
+      that places the 4:5 post and 9:16 story side-by-side for review.
     -->
 
     <!-- ============================================================
-         Placeholder: M01 Magazine Issue Cover (3:4)
+         Placeholder: M01 Magazine Issue Cover (4:5)
          Replace with real cover content from layout-recipes.md.
          ============================================================ -->
-    <section class="poster xhs" id="xhs-01">
+    <section class="poster post" id="post-01">
       <canvas class="mag-bg" data-bg="ink-flow"></canvas>
       <div class="grain"></div>
       <div class="content stack gap-4">
@@ -788,13 +787,13 @@
         </div>
         <div class="stack gap-2">
           <p class="kicker">封面 · Cover</p>
-          <h1 class="h-display">[标题占位]<br>替换为真实文案</h1>
+          <h1 class="h-display">[標題佔位]<br>換成真實文案</h1>
           <p class="h-sub">A working subtitle</p>
         </div>
         <figure class="frame-img r-16x10">
           <img src="assets/cover.jpg" alt="cover image placeholder">
         </figure>
-        <p class="lead">用一段克制的引语解释为什么这一组卡片值得读完。</p>
+        <p class="lead">用一段剋制的引言，說明為什麼這組貼文值得看完。</p>
       </div>
       <div class="issue-strip">
         <span>Issue · Magazine</span>
