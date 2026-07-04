@@ -13,7 +13,7 @@
 
 ## 主體前置處理
 
-在裝框之前，先決定截圖真正的主體是什麼。如果來源截圖裡有浮在不相關頁面上的 modal／卡片、桌面外框、被裁掉一半的側邊文字、遊標殘影、通知碎片，或殘留的背景 UI，先裁到前景的視窗／卡片，再把清乾淨的主體放進舞臺。當主體後面帶著意外的文字或部分 UI 時，不要去美化整張原始截圖。
+在裝框之前，先決定截圖真正的主體是什麼。如果來源截圖裡有浮在不相關頁面上的 modal／卡片、桌面外框、被裁掉一半的側邊文字、遊標殘影、通知碎片，或殘留的背景 UI，先裁到前景的視窗／卡片，再把清乾淨的主體放進舞台。當主體後面帶著意外的文字或部分 UI 時，不要去美化整張原始截圖。
 
 截圖美化不得引入透視、傾斜、旋轉或 3D 傾角，除非使用者明確要求做成情境模型（mockup）。CleanShot 風格的處理是正投影的：主體擺正、等比縮放、安靜的背景、清楚的安全內距。
 
@@ -64,22 +64,22 @@
 - Swiss → 90% 用 `shadow-none`。只有浮在 `bg-grid`／`bg-dot` 上的截圖才用 `shadow-soft`。`shadow-ed` 會在陰影裡加一條 `1px` 外框 —— 保留給主視覺截圖。
 - Editorial → `bg-paper-2` 上用 `shadow-soft` 是溫暖的預設。主視覺截圖用 `shadow-ed`。
 
-### 4. `bg-*`（截圖的「舞臺」）
+### 4. `bg-*`（截圖的「舞台」）
 
 | Token        | Swiss 角色          | Editorial 角色         |
 | ------------ | ------------------- | ---------------------- |
-| `bg-paper`   | 預設樸素舞臺 | 同上                   |
-| `bg-paper-2` | n/a                 | 預設溫暖舞臺     |
-| `bg-grey-1`  | 預設樸素舞臺 | n/a                    |
+| `bg-paper`   | 預設樸素舞台 | 同上                   |
+| `bg-paper-2` | n/a                 | 預設溫暖舞台     |
+| `bg-grey-1`  | 預設樸素舞台 | n/a                    |
 | `bg-grid`    | 工程／資料 | 田野筆記式工程 |
 | `bg-dot`     | 微妙的結構     | 微妙的結構         |
 | `bg-ink`     | 深色模式 UI 截圖  | 深色模式 UI 截圖      |
 
-背景**絕不**用強調色。如果截圖需要強調色，就在旁邊加一個 `.t-cat` chip 或 `.kicker` —— 不要去染舞臺。
+背景**絕不**用強調色。如果截圖需要強調色，就在旁邊加一個 `.t-cat` chip 或 `.kicker` —— 不要去染舞台。
 
 #### 純色 `bg-*` vs 素材 `bg-asset-*`
 
-上面的 token 是 **CSS 生成的純色** —— 平塗色調、快、不依賴素材。它們夠用，但對程式碼／IDE／儀表板／密集 UI 截圖來說會顯得單薄。從 PPT skill 移植過來，兩個 seed 模板也各附了 9 張**真實紋理 WebP** 背景，放在 `assets/screenshot-backgrounds/` 底下。當截圖是頁面主視覺、當純色舞臺太單薄、或當你需要印刷雜誌的溫度／顆粒感時，就用這些。
+上面的 token 是 **CSS 生成的純色** —— 平塗色調、快、不依賴素材。它們夠用，但對程式碼／IDE／儀表板／密集 UI 截圖來說會顯得單薄。從 PPT skill 移植過來，兩個 seed 模板也各附了 9 張**真實紋理 WebP** 背景，放在 `assets/screenshot-backgrounds/` 底下。當截圖是頁面主視覺、當純色舞台太單薄、或當你需要印刷雜誌的溫度／顆粒感時，就用這些。
 
 Editorial 素材（`assets/screenshot-backgrounds/style-a/`）：
 
@@ -102,17 +102,17 @@ Swiss 素材（`assets/screenshot-backgrounds/style-b/`）：
 
 **經驗法則**
 
-- 不要混強調色 —— `data-accent="ikb"` 的組不能用 `bg-asset-safety-orange` 舞臺。
+- 不要混強調色 —— `data-accent="ikb"` 的組不能用 `bg-asset-safety-orange` 舞台。
 - 素材背景本身已經有紋理；不要再疊 `shadow-ed`（那條 `1px` 外框會看起來像 SaaS 邊框）。用 `shadow-soft` 或 `shadow-none`。
-- 每一組只決定一次素材舞臺要不要成為視覺識別的一部分 —— 不要在一整組純色舞臺裡撒一張素材背景，那看起來像樣品卡。
+- 每一組只決定一次素材舞台要不要成為視覺識別的一部分 —— 不要在一整組純色舞台裡撒一張素材背景，那看起來像樣品卡。
 - 這些素材在 16:10 和 16:9 下裁切是安全的。對於高的 `r-3x4` 或方形 `r-1x1` 版位，優先用純色 `bg-*` —— 紋理圖樣過度裁切時會顯得怪。
 
 **路徑注意**：`.bg-asset-*` 規則用 `url("../assets/screenshot-backgrounds/...")` —— 這假設你的組的 `index.html` 位在 `assets/` 下一層目錄。如果你把組放到別處，就在本地用正確的相對路徑覆寫這些規則。
 
-### 5. `inset-*`（截圖與舞臺之間的內距）
+### 5. `inset-*`（截圖與舞台之間的內距）
 
 - `inset-none` —— 圖片填滿框。當截圖本身已經有視窗外框時用。
-- `inset-sub`（Swiss 20 px／Editorial 24 px）—— 預設。讓舞臺呼吸。
+- `inset-sub`（Swiss 20 px／Editorial 24 px）—— 預設。讓舞台呼吸。
 - `inset-bal`（Swiss 48 px／Editorial 56 px）—— 當截圖很雜、需要顯得沉靜時用。
 
 ### 6. `fit-cover`（覆寫）
@@ -167,7 +167,7 @@ seed 附了兩個外層 class，用來包住 `.frame-shot`：
 
 兩組涵蓋 80% 情況的配方。
 
-**Swiss 產品展示** —— 純舞臺、無陰影：
+**Swiss 產品展示** —— 純舞台、無陰影：
 ```
 .frame-shot.r-16x10.corners-sq.shadow-none.bg-grey-1.inset-bal
 ```
@@ -177,12 +177,12 @@ seed 附了兩個外層 class，用來包住 `.frame-shot`：
 .frame-shot.r-16x10.corners-sm.shadow-soft.bg-paper-2.inset-sub
 ```
 
-**Editorial 主視覺 + 真實紋理** —— 雜誌等級的舞臺：
+**Editorial 主視覺 + 真實紋理** —— 雜誌等級的舞台：
 ```
 .frame-shot.r-16x10.corners-sm.shadow-soft.bg-asset-monocle-classic.inset-bal
 ```
 
-**Swiss 主視覺 + 品牌一致的舞臺** —— 只有強調色與素材相符時：
+**Swiss 主視覺 + 品牌一致的舞台** —— 只有強調色與素材相符時：
 ```
 .frame-shot.r-16x10.corners-sq.shadow-none.bg-asset-ikb-dot.inset-bal
 ```

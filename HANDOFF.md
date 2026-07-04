@@ -1,6 +1,6 @@
 # Handoff — guizang-social-card-skill
 
-最後更新：2026-07-01 · 版本：v0.15（短影音封面生產規則：3s/5s 平臺限制、拼貼版式、長影片處理、釋出提醒、可見文案與不自造規則）
+最後更新：2026-07-01 · 版本：v0.15（短影音封面生產規則：3s/5s 平台限制、拼貼版式、長影片處理、釋出提醒、可見文案與不自造規則）
 
 這份檔案只記錄**事實**：目前 skill 由哪些檔案組成、每個檔案管什麼、本輪更新改了什麼、怎麼驗證它還能跑。想讀「為什麼這樣做」或「未來要怎麼走」，去看 `PRODUCT.md`。
 
@@ -19,11 +19,11 @@ guizang-social-card-skill/
 │   ├── template-editorial-card.html   # 雜誌風種子
 │   ├── template-swiss-card.html       # 瑞士風種子
 │   ├── magazine-bg-webgl.js           # WebGL 墨流背景
-│   └── screenshot-backgrounds/        # 9 張 WebP 截圖舞臺底（v0.14 從 PPT skill port）
+│   └── screenshot-backgrounds/        # 9 張 WebP 截圖舞台底（v0.14 從 PPT skill port）
 │       ├── style-a/                   #   5 張 Editorial（dune / forest-ink / indigo-porcelain / kraft-paper / monocle-classic）
 │       └── style-b/                   #   4 張 Swiss（ikb-dot / lemon-green-dot / lemon-grid / safety-orange）
 ├── references/                # 子規範，按需讀取
-│   ├── platform-specs.md      平臺 × 解析度 × 命名
+│   ├── platform-specs.md      平台 × 解析度 × 命名
 │   ├── style-system.md        兩種風格的硬規則與反模式
 │   ├── theme-presets.md       6 套雜誌 palette（含 Midnight Ink）+ 4 套 Swiss accent
 │   ├── layout-recipes.md      版式骨架（M01-M16 + S01-S12 + IG 貼文/限時動態）
@@ -72,7 +72,7 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 | 風格模式 | 2 個（Editorial Magazine × E-ink / Swiss International） |
 | 主題色 | Editorial 6 套（5 淺 + 1 暗 Midnight Ink）+ Swiss 4 套 = 10 套 |
 | 版式骨架 | Editorial 16 個（M01-M16）+ Swiss 12 個（S01-S12）= 28 個 |
-| 平臺 × 比例 | Instagram 4:5 / 1:1，貼文 + 限時動態 4:5 + 9:16 配對，方封面 1:1 |
+| 平台 × 比例 | Instagram 4:5 / 1:1，貼文 + 限時動態 4:5 + 9:16 配對，方封面 1:1 |
 | Instagram 品類涵蓋 | 11 個品類中 7 個完整支援，4 個需使用者提供素材，4 個明確不接 |
 | 種子模板 | 2 份（Editorial / Swiss），單檔案即含全部 class 與字型 |
 | 已交付案例 | 7 個 demo（2 個 image-cover + 5 個 kit） |
@@ -86,11 +86,11 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 
 ### v0.15 · 2026-07-01（本輪）
 
-主題：**短影音封面從一次測試能力收口成 Skill 規則**。本輪把兩天聊天裡關於平臺限制、拼貼版式、長影片處理、品類判斷、釋出路徑和執行失誤的結論寫迴檔案，並補上檔案測試。
+主題：**短影音封面從一次測試能力收口成 Skill 規則**。本輪把兩天聊天裡關於平台限制、拼貼版式、長影片處理、品類判斷、釋出路徑和執行失誤的結論寫迴檔案，並補上檔案測試。
 
 **新增**
-- `references/live-photo-production.md`：短影音封面生產規範。涵蓋 `.pvt` 打包、AirDrop/iPhone 測試、Instagram `5s`、Facebook 粉專 `3s`、資訊量判斷、三連拼貼、material-first 拼貼、長影片低成本診斷、contact sheet、平臺釋出提醒和常見故障。
-- `scripts/check-skill-docs.mjs`：檔案約束測試。目前卡住根目錄產物、短影音拼貼能力、M16 圖片壓字規則、可見文案規則、非模板裝飾禁令、平臺釋出提醒、產品復盤和交接記錄。
+- `references/live-photo-production.md`：短影音封面生產規範。涵蓋 `.pvt` 打包、AirDrop/iPhone 測試、Instagram `5s`、Facebook 粉專 `3s`、資訊量判斷、三連拼貼、material-first 拼貼、長影片低成本診斷、contact sheet、平台釋出提醒和常見故障。
+- `scripts/check-skill-docs.mjs`：檔案約束測試。目前卡住根目錄產物、短影音拼貼能力、M16 圖片壓字規則、可見文案規則、非模板裝飾禁令、平台釋出提醒、產品復盤和交接記錄。
 - `scripts/make-video-contact-sheet.py`：把影片按少量時間點抽成 contact sheet，用於長影片或短影音封面視覺檢查，避免預設密集抽格。
 - `scripts/package-live-photo.py` 及 Swift helper：把 JPG + MOV 寫入 Apple Live Photo metadata 並打包成 `.pvt`，用於 iPhone/AirDrop 測試。
 
@@ -100,7 +100,7 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 - `SKILL.md` 加可見文案規則：卡面文案必須描述使用者真實場景，不能把 `3s`、`5s`、`短影音封面`、`三連拼貼`、`資訊量`、`長影片處理`、`倍速`、`高光檢測` 等內部製作詞寫成標題或正文。
 - `SKILL.md` 加 material-first 規則：單影片加字必須走 M16 / image-overlay 的圖片壓字邏輯；如果只有一個標題，就用斷行、字級、字重、字距、對齊和位置做排版，不發明 kicker、meta、hairline、線條、刻度、徽章、字幕或說明文字。
 - `references/category-cookbook.md` 加短影音場景庫（Live Photo Scene Library）。它不是固定模板清單，而是判斷素材在 `3s` / `5s` 內能承載多少資訊，以及適合單影片、三連、拼貼、修剪還是不做短影音封面。
-- `references/platform-specs.md` 加 Instagram / Facebook 粉專短影音封面平臺說明：Instagram `5s`，Facebook 粉專貼文內 `3s`，釋出路徑以手機端為準。
+- `references/platform-specs.md` 加 Instagram / Facebook 粉專短影音封面平台說明：Instagram `5s`，Facebook 粉專貼文內 `3s`，釋出路徑以手機端為準。
 - `PRODUCT.md` 加 `短影音（Reels／限時動態）復盤（2026-07-01）`，記錄這次需求、產品判斷、執行問題和驗收標準。
 
 **本輪測試素材與輸出**
@@ -122,7 +122,7 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 
 ### v0.14 · 2026-05-28（本輪）
 
-主題：**截圖美化素材從 PPT skill 遷移**。v0.11 當時只 port 了規則檔案（`references/screenshot-treatment.md` 154 行）和工具類（`.frame-shot.*` + `.device-browser` / `.device-phone`），但 PPT skill 的真實材質 WebP 背景**整個目錄沒拷過來**，導致 `.bg-paper / bg-grid / bg-dot` 這些舞臺底全是純 CSS 實色，截圖密度高的卡片視覺偏薄。本輪把素材補齊。
+主題：**截圖美化素材從 PPT skill 遷移**。v0.11 當時只 port 了規則檔案（`references/screenshot-treatment.md` 154 行）和工具類（`.frame-shot.*` + `.device-browser` / `.device-phone`），但 PPT skill 的真實材質 WebP 背景**整個目錄沒拷過來**，導致 `.bg-paper / bg-grid / bg-dot` 這些舞台底全是純 CSS 實色，截圖密度高的卡片視覺偏薄。本輪把素材補齊。
 
 **改動事實**：
 - 新增 `assets/screenshot-backgrounds/`，整個目錄 1.8 MB / 9 張 WebP：
@@ -202,7 +202,7 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 1. 截圖美化資產 port（仍在短期清單）
 2. 地圖元件（同上）
 3. 4:5 貼文短標題生成器（同上）
-4. 多平臺一次出包（同上）
+4. 多平台一次出包（同上）
 5. `social-card-wukong-breakout` 未重新生成——v0.12 是規則修復，不回灌歷史 Codex 測試
 
 ### v0.11 · 2026-05-27
@@ -233,7 +233,7 @@ v0.13 起：git 儲存庫。`local-tests/` 整個目錄在 `.gitignore` 中，co
 1. 截圖美化資產 port（下一件）
 2. 地圖元件
 3. 4:5 貼文短標題生成器
-4. 多平臺一次出包
+4. 多平台一次出包
 
 ### v0.10 · 2026-05-26
 
@@ -446,7 +446,7 @@ ls output/
 ## 6. 已知風險與限制（事實層面）
 
 - **校驗指令碼是按需兜底**。`validate-social-deck.mjs` 已可檢查溢位、頁尾碰撞、字級下限、密度、標題行數與 figure 預設 margin 漂移；預設交付流先給使用者看，使用者要求 auto-check 時再跑。
-- **沒有跨平臺一次出包工具**。一篇文章要同時出 Instagram 4:5 + 貼文 + 限時動態組合（4:5+9:16）+ 方封面 1:1，目前要手動開兩個任務資料夾。
+- **沒有跨平台一次出包工具**。一篇文章要同時出 Instagram 4:5 + 貼文 + 限時動態組合（4:5+9:16）+ 方封面 1:1，目前要手動開兩個任務資料夾。
 - **品類能力圈未硬編碼**。`category-cookbook.md` 寫明瞭 4 個不接的品類，但 skill 不會主動拒絕；需要執行者在 Step 1 自己讀到並主動告知使用者。
 - **圖片來源署名機制是「使用者決定」**。`SOURCES.md` 總會寫，但是否在圖上加標註由使用者回答。這不是技術限制是產品決策（見 `PRODUCT.md`）。
 - **短影音高光選擇只是低成本診斷**。預設只做稀疏抽格 / contact sheet / 時間段建議，不承諾精準識別轉場、空鏡、黑場或最佳高光。

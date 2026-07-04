@@ -1,6 +1,6 @@
 # Guizang 社群圖卡 Skill · IG 貼文／輪播 · 貼文＋限時動態組合
 
-> 本專案 fork 自 [op7418/guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill)，在地化為繁體中文、以臺灣 Instagram 為主的版本。原始視覺系統（Guizang 電子雜誌風 / 瑞士國際主義）的美學與版權歸原作者。
+> 本專案 fork 自 [op7418/guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill)，在地化為繁體中文、以台灣 Instagram 為主的版本。原始視覺系統（Guizang 電子雜誌風 / 瑞士國際主義）的美學與版權歸原作者。
 
 ![GitHub stars](https://img.shields.io/github/stars/zenbuapps/social-card?style=flat-square)
 ![License](https://img.shields.io/github/license/zenbuapps/social-card?style=flat-square)
@@ -89,10 +89,10 @@ npx skills add https://github.com/zenbuapps/social-card --skill social-card
 
 ## 短影音動態卡生成指南
 
-1. **確認平臺和素材**：使用者影片是預設輸入；公開影片素材只用於 demo / 宣傳測試。先確認要發 Reels／貼文、限時動態，還是隻是本地測試。
+1. **確認平台和素材**：使用者影片是預設輸入；公開影片素材只用於 demo / 宣傳測試。先確認要發 Reels／貼文、限時動態，還是隻是本地測試。
 2. **判斷資訊量**：問自己 `3s/5s` 內觀眾能看到什麼。如果需要解釋、音訊或完整教程才能懂，就不應該硬塞進短影音。
 3. **選擇結構**：單個強素材用單影片動態卡；多個好素材用二格 / 三格 / 四格；三個並列結果用三連；長影片先做低成本診斷。
-4. **先做靜態卡檢查**：首幀必須像一張合格社群卡。檢查裁切、主體、文字位置、平臺安全區，不要把製作要求寫成觀眾可見文案。
+4. **先做靜態卡檢查**：首幀必須像一張合格社群卡。檢查裁切、主體、文字位置、平台安全區，不要把製作要求寫成觀眾可見文案。
 5. **再生成動態資產**：在任務資料夾輸出預覽影片、關鍵 JPG、MOV 和 `.pvt`；不要把生成結果寫到 Skill 根目錄。
 6. **交付時提醒釋出路徑**：Reels／貼文短影音約 `5s`，限時動態約 `3s`。`.pvt` 是 iOS 實況照片格式，Instagram 沒有原生 Live Photo 釋出管道——實務上把 MOV 轉成 MP4 發 Reels／貼文，或短片發限時動態；桌面端／IG 上傳流程一般不吃 `.pvt`。
 
@@ -110,7 +110,7 @@ npx skills add https://github.com/zenbuapps/social-card --skill social-card
 
 **❌ 不適合**：橫向翻頁 PPT（用 [guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill)）/ 長影片正片剪輯 / 純圖片修圖 / 無版式訴求的純文字編輯
 
-## 臺灣 IG 常見內容型別適配
+## 台灣 IG 常見內容型別適配
 
 按「能力圈」分三檔，詳見 [`references/category-cookbook.md`](./references/category-cookbook.md)：
 
@@ -148,9 +148,9 @@ npx skills add https://github.com/zenbuapps/social-card --skill social-card
 - **交付簡單**：`output/*.png` 直接發，不需要部署、不需要匯出工具
 - **動態卡可落地**：短影音分支輸出 `JPG + MOV + .pvt`，並記錄 Reels／限動的時長參考與（iOS 實況照片）手機端釋出路徑
 
-## 平臺支援
+## 平台支援
 
-| 平臺 | 狀態 | 說明 |
+| 平台 | 狀態 | 說明 |
 |------|------|------|
 | Claude Code | 支援 | 原生 Skill 工作流，適合生成 + 迭代圖卡 |
 | Codex | 支援 | 適合長流程圖卡生成、呼叫圖片源、做視覺檢查 |
@@ -199,7 +199,7 @@ git clone https://github.com/zenbuapps/social-card.git ~/.claude/skills/social-c
 
 Skill 本身是結構化工作流，Agent 會按 7 步走：
 
-1. **Intake** — 抓 4 件事：目標平臺 / 風格 / 內容素材 / 使用者圖。無圖時一次性給 A/B/C 三選（自己拍圖 / AI 生圖 / 網路取圖），不二次勸導
+1. **Intake** — 抓 4 件事：目標平台 / 風格 / 內容素材 / 使用者圖。無圖時一次性給 A/B/C 三選（自己拍圖 / AI 生圖 / 網路取圖），不二次勸導
 2. **Style & Theme** — 選 Editorial 還是 Swiss，再從 10 套預設裡選主題色。不允許自訂 hex
 3. **Layout Selection** — 根據內容結構從 28 個版式骨架裡挑、貼、改文案。Editorial 16 個 / Swiss 12 個
 4. **Asset Prep** — 取圖（Unsplash / Pexels / Flickr CC / Wallhaven / 直接搜尋），落本地 + 寫 `SOURCES.md`；問使用者要不要標來源
@@ -271,11 +271,11 @@ social-card/
 │   ├── template-editorial-card.html      ← Editorial 種子（6 主題 / 3 畫板）
 │   ├── template-swiss-card.html          ← Swiss 種子（4 accent / 3 畫板）
 │   ├── magazine-bg-webgl.js              ← WebGL 墨流背景
-│   └── screenshot-backgrounds/           ← 9 張截圖舞臺底（WebP）
+│   └── screenshot-backgrounds/           ← 9 張截圖舞台底（WebP）
 │       ├── style-a/                      ←   Editorial 5 套
 │       └── style-b/                      ←   Swiss 4 套
 └── references/
-    ├── platform-specs.md                 ← 平臺 × 解析度 × 命名
+    ├── platform-specs.md                 ← 平台 × 解析度 × 命名
     ├── style-system.md                   ← 兩種風格的硬規則與反模式
     ├── theme-presets.md                  ← 10 套色票詳解
     ├── layout-recipes.md                 ← 28 個版式骨架（M01-M16 + S01-S12）
@@ -283,7 +283,7 @@ social-card/
     ├── background-systems.md             ← 墨流 / 網格 / 紙紋層
     ├── portrait-fill.md                  ← 4:5 板的留白對策
     ├── content-planning.md               ← 鉤子 / 拆頁 / 文案壓縮
-    ├── category-cookbook.md              ← 臺灣 IG 內容型別路由表
+    ├── category-cookbook.md              ← 台灣 IG 內容型別路由表
     ├── image-overlay.md                  ← 文字壓圖 + 主體避讓規則
     ├── screenshot-treatment.md           ← `.frame-shot` 工具類 + 截圖美化
     ├── map-component.md                  ← `.map-block` MapLibre 地圖
@@ -319,9 +319,9 @@ social-card/
 - 補充更多 Editorial 長內容下的字級上限冒煙測試
 - 擴充套件 Swiss 資料類版式（更多圖表骨架）
 - AI 出圖後處理：算圖後主動詢問是否做區域性修復 / 整張重出
-- 增加更多臺灣 IG 內容型別的官方推薦版式包（目前端到端可用的比例仍在擴充）
+- 增加更多台灣 IG 內容型別的官方推薦版式包（目前端到端可用的比例仍在擴充）
 - 擴充短影音範例庫：單影片、拼貼、遊戲攻略、生活風格、產品更新
-- 整理 WorkBuddy 等平臺上架版本
+- 整理 WorkBuddy 等平台上架版本
 
 ## FAQ
 

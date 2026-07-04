@@ -4,7 +4,7 @@
 
 ## Editorial Magazine x E-ink 色板
 
-這些色板改編自 Guizang PPT 的電子雜誌模式，用於製作 Instagram、Facebook 等平臺的靜態貼文圖片。
+這些色板改編自 Guizang PPT 的電子雜誌模式，用於製作 Instagram、Facebook 等平台的靜態貼文圖片。
 
 ### Ink Classic
 
