@@ -1,6 +1,8 @@
 # Guizang 社群圖卡 Skill · IG 貼文／輪播 · 貼文＋限時動態組合
 
 > 本專案 fork 自 [op7418/guizang-social-card-skill](https://github.com/op7418/guizang-social-card-skill)，在地化為繁體中文、以台灣 Instagram 為主的版本。原始視覺系統（Guizang 電子雜誌風 / 瑞士國際主義）的美學與版權歸原作者。
+>
+> 擴散層（`social-card-reviewer` 審稿員、`spread-rubric.md`、`captions.md` 四平台文案）概念改寫自 [DennisWei9898/social-cards-engine](https://github.com/DennisWei9898/social-cards-engine)（MIT）。
 
 ![GitHub stars](https://img.shields.io/github/stars/zenbuapps/social-card?style=flat-square)
 ![License](https://img.shields.io/github/license/zenbuapps/social-card?style=flat-square)
