@@ -1,30 +1,30 @@
-# Screenshot Treatment
+# 截圖處理
 
-When the user supplies an app / web / code / dashboard screenshot, **do not** drop it raw into a `.frame-img`. The aspect ratio mismatch crops UI and the harsh edge looks SaaS-y. Use `.frame-shot` instead — a sibling class added to both seed templates.
+當使用者提供 App／網頁／程式碼／儀表板截圖時，**不要**把它原封不動塞進 `.frame-img`。比例不合會裁掉 UI，銳利的邊緣看起來很 SaaS。改用 `.frame-shot` —— 這是加在兩個 seed 模板裡的姊妹 class。
 
-## When to reach for it
+## 什麼時候用它
 
-- App / Web UI capture — anything with a status bar, tab bar, toolbar, or window chrome.
-- Code / terminal screenshots.
-- Dashboard / chart screenshots that need to keep every label readable.
-- IDE captures where text density matters more than composition.
+- App／網頁 UI 截圖 —— 任何有狀態列、分頁列、工具列或視窗外框的畫面。
+- 程式碼／終端機截圖。
+- 需要保留每個標籤可讀的儀表板／圖表截圖。
+- 文字密度比構圖更重要的 IDE 截圖。
 
-For **photographic** content (people, scenery, products) — keep using `.frame-img`. The treatments below assume a pixel-perfect UI source where contain-fit is non-negotiable.
+**照片型**內容（人物、風景、產品）—— 繼續用 `.frame-img`。以下的處理方式都假設來源是畫素精準的 UI，contain-fit 沒得商量。
 
-## Subject Prep
+## 主體前置處理
 
-Before framing, decide what the actual screenshot subject is. If the source capture contains a floating modal/card over an unrelated page, desktop chrome, cropped side text, cursor trails, notification fragments, or leftover background UI, crop to the foreground window/card first and then place that cleaned subject into the stage. Do not beautify the entire raw capture when it carries accidental text or partial UI behind the subject.
+在裝框之前，先決定截圖真正的主體是什麼。如果來源截圖裡有浮在不相關頁面上的 modal／卡片、桌面外框、被裁掉一半的側邊文字、遊標殘影、通知碎片，或殘留的背景 UI，先裁到前景的視窗／卡片，再把清乾淨的主體放進舞臺。當主體後面帶著意外的文字或部分 UI 時，不要去美化整張原始截圖。
 
-Screenshot beautification must not introduce perspective, skew, rotation, or 3D tilt unless the user explicitly asks for a mockup scene. A CleanShot-style treatment is orthographic: straight subject, equal scaling, quiet background, and clear safe padding.
+截圖美化不得引入透視、傾斜、旋轉或 3D 傾角，除非使用者明確要求做成情境模型（mockup）。CleanShot 風格的處理是正投影的：主體擺正、等比縮放、安靜的背景、清楚的安全內距。
 
-## Anatomy
+## 結構
 
 ```
 .frame-shot.r-{ratio}.corners-{sq|sm|md}.shadow-{none|soft|ed}.bg-{paper|grid|dot|grey-1|ink}.inset-{none|sub|bal}
-  └─ <img src="…">         (object-fit: contain by default)
+  └─ <img src="…">         （預設 object-fit: contain）
 ```
 
-Optional wrapping:
+選用的外層包裹：
 
 ```
 .device-browser
@@ -36,98 +36,98 @@ Optional wrapping:
        └─ <img>
 ```
 
-## Parameters
+## 引數
 
-Pick six values before writing the markup. Treat this like the M16 cover decision tree — pick once, don't fiddle mid-build.
+在寫 markup 之前先選好六個值。把它當成 M16 封面的決策樹 —— 選一次，做到一半不要反覆改。
 
-### 1. `r-*` ratio (required, matches slot)
+### 1. `r-*` 比例（必填，對應版位）
 
-| Class      | Use                                                       |
+| Class      | 用途                                                       |
 | ---------- | --------------------------------------------------------- |
-| `r-16x10`  | Default for app / web shots, looks like a real window     |
-| `r-16x9`   | Landscape video / dashboard / wide chart                  |
-| `r-4x3`    | Classic desktop window, legacy app                        |
-| `r-3x2`    | DSLR-style — only if the source is photographic UI mockup |
-| `r-1x1`    | App icon / square widget                                  |
-| `r-3x4`    | Mobile portrait shot (pair with `.device-phone`)          |
-| `r-21x9`   | Multi-monitor / ultra-wide / WeChat hero                  |
+| `r-16x10`  | App／網頁截圖的預設，看起來像真的視窗     |
+| `r-16x9`   | 橫式影片／儀表板／寬圖表                  |
+| `r-4x3`    | 經典桌面視窗、舊版 App                    |
+| `r-3x2`    | 單眼相機風 —— 只有來源是照片型 UI mockup 時才用 |
+| `r-1x1`    | App 圖示／方形小工具                       |
+| `r-3x4`    | 手機直式截圖（搭配 `.device-phone`）          |
+| `r-21x9`   | 多螢幕／超寬螢幕／寬版橫幅主視覺             |
 
-### 2. `corners-*` (style-locked default)
+### 2. `corners-*`（風格鎖定的預設）
 
-- **Swiss** default: `corners-sq`. Use `corners-sm` only if the slot has surrounding shadow or chrome.
-- **Editorial** default: `corners-sm` (6 px). Bump to `corners-md` (14 px) for "cutout" feel on paper.
+- **Swiss** 預設：`corners-sq`。只有當版位周圍有陰影或外框時才用 `corners-sm`。
+- **Editorial** 預設：`corners-sm`（6 px）。想在紙面上做出「剪貼」感時，升到 `corners-md`（14 px）。
 
-Never go above 14 px — anything bigger reads as iOS marketing.
+絕不超過 14 px —— 再大就看起來像 iOS 行銷素材。
 
-### 3. `shadow-*` (style-locked default)
+### 3. `shadow-*`（風格鎖定的預設）
 
-- Swiss → `shadow-none` 90% of the time. `shadow-soft` only on screenshots that float on `bg-grid` / `bg-dot`. `shadow-ed` adds a `1px` outline as part of the shadow — reserve for hero shots.
-- Editorial → `shadow-soft` on `bg-paper-2` is the warm default. `shadow-ed` for hero shots.
+- Swiss → 90% 用 `shadow-none`。只有浮在 `bg-grid`／`bg-dot` 上的截圖才用 `shadow-soft`。`shadow-ed` 會在陰影裡加一條 `1px` 外框 —— 保留給主視覺截圖。
+- Editorial → `bg-paper-2` 上用 `shadow-soft` 是溫暖的預設。主視覺截圖用 `shadow-ed`。
 
-### 4. `bg-*` (the screenshot "stage")
+### 4. `bg-*`（截圖的「舞臺」）
 
-| Token        | Swiss role          | Editorial role         |
+| Token        | Swiss 角色          | Editorial 角色         |
 | ------------ | ------------------- | ---------------------- |
-| `bg-paper`   | Default plain stage | Same                   |
-| `bg-paper-2` | n/a                 | Default warm stage     |
-| `bg-grey-1`  | Default plain stage | n/a                    |
-| `bg-grid`    | Engineering / data  | Field-notes engineering |
-| `bg-dot`     | Subtle structure    | Subtle structure       |
-| `bg-ink`     | Dark-mode UI shot   | Dark-mode UI shot      |
+| `bg-paper`   | 預設樸素舞臺 | 同上                   |
+| `bg-paper-2` | n/a                 | 預設溫暖舞臺     |
+| `bg-grey-1`  | 預設樸素舞臺 | n/a                    |
+| `bg-grid`    | 工程／資料 | 田野筆記式工程 |
+| `bg-dot`     | 微妙的結構     | 微妙的結構         |
+| `bg-ink`     | 深色模式 UI 截圖  | 深色模式 UI 截圖      |
 
-Backgrounds are **never** accent-coloured. If the screenshot needs an accent emphasis, add a `.t-cat` chip or `.kicker` next to it — don't tint the stage.
+背景**絕不**用強調色。如果截圖需要強調色，就在旁邊加一個 `.t-cat` chip 或 `.kicker` —— 不要去染舞臺。
 
-#### Solid `bg-*` vs asset `bg-asset-*`
+#### 純色 `bg-*` vs 素材 `bg-asset-*`
 
-The tokens above are **CSS-generated solids** — flat tones, fast, no asset dependency. They work, but for code / IDE / dashboard / dense-UI captures they can feel undersold. Ported from the PPT skill, both seed templates also ship 9 **real texture WebP** backgrounds under `assets/screenshot-backgrounds/`. Reach for these when the screenshot is the page's hero, when a solid stage feels too thin, or when you need the warmth/grain of a printed magazine.
+上面的 token 是 **CSS 生成的純色** —— 平塗色調、快、不依賴素材。它們夠用，但對程式碼／IDE／儀表板／密集 UI 截圖來說會顯得單薄。從 PPT skill 移植過來，兩個 seed 模板也各附了 9 張**真實紋理 WebP** 背景，放在 `assets/screenshot-backgrounds/` 底下。當截圖是頁面主視覺、當純色舞臺太單薄、或當你需要印刷雜誌的溫度／顆粒感時，就用這些。
 
-Editorial assets (`assets/screenshot-backgrounds/style-a/`):
+Editorial 素材（`assets/screenshot-backgrounds/style-a/`）：
 
-| Class                       | Tone               | Best for                                          |
+| Class                       | 色調               | 適合                                          |
 | --------------------------- | ------------------ | ------------------------------------------------- |
-| `bg-asset-dune`             | Warm sand          | Travel / outdoor app shots, lifestyle products    |
-| `bg-asset-forest-ink`       | Deep forest green  | Dark-mode UI on Editorial — pairs with `ink-classic` |
-| `bg-asset-indigo-porcelain` | Cool porcelain     | Reading / writing apps, design tools              |
-| `bg-asset-kraft-paper`      | Kraft brown        | Notes / journaling / handwritten apps             |
-| `bg-asset-monocle-classic`  | Cream paper        | Default warm hero — most magazine-like            |
+| `bg-asset-dune`             | 暖沙色               | 旅行／戶外 App 截圖、生活風格產品    |
+| `bg-asset-forest-ink`       | 深森林綠  | Editorial 上的深色模式 UI —— 搭配 `ink-classic` |
+| `bg-asset-indigo-porcelain` | 冷瓷色     | 閱讀／寫作 App、設計工具              |
+| `bg-asset-kraft-paper`      | 牛皮紙棕         | 筆記／手帳／手寫 App                   |
+| `bg-asset-monocle-classic`  | 奶油紙色         | 預設的溫暖主視覺 —— 最有雜誌感    |
 
-Swiss assets (`assets/screenshot-backgrounds/style-b/`):
+Swiss 素材（`assets/screenshot-backgrounds/style-b/`）：
 
-| Class                      | Accent            | Use only when current accent matches             |
+| Class                      | 強調色            | 只在目前強調色相符時使用             |
 | -------------------------- | ----------------- | ------------------------------------------------ |
-| `bg-asset-ikb-dot`         | IKB Klein Blue    | `data-accent="ikb"` decks only                   |
-| `bg-asset-lemon-green-dot` | Lemon-green       | `data-accent="lemon-green"` decks only           |
-| `bg-asset-lemon-grid`      | Lemon-yellow      | `data-accent="lemon"` decks only                 |
-| `bg-asset-safety-orange`   | Safety orange     | `data-accent="safety-orange"` decks only         |
+| `bg-asset-ikb-dot`         | IKB 克萊因藍    | 只用在 `data-accent="ikb"` 的組                   |
+| `bg-asset-lemon-green-dot` | 檸檬綠       | 只用在 `data-accent="lemon-green"` 的組           |
+| `bg-asset-lemon-grid`      | 檸檬黃      | 只用在 `data-accent="lemon"` 的組           |
+| `bg-asset-safety-orange`   | 安全橘     | 只用在 `data-accent="safety-orange"` 的組         |
 
-**Rules of thumb**
+**經驗法則**
 
-- Don't mix accents — a `data-accent="ikb"` deck must not pull a `bg-asset-safety-orange` stage.
-- Asset backgrounds already carry texture; don't stack `shadow-ed` on top (the `1px` outline will read as a SaaS frame). Use `shadow-soft` or `shadow-none`.
-- Decide once per deck whether asset stages are part of the visual identity — don't sprinkle one asset background into a deck of solid stages, it looks like a sample card.
-- These assets are crop-safe at 16:10 and 16:9. For tall `r-3x4` or square `r-1x1` slots, prefer solid `bg-*` — the texture pattern can read awkwardly when over-cropped.
+- 不要混強調色 —— `data-accent="ikb"` 的組不能用 `bg-asset-safety-orange` 舞臺。
+- 素材背景本身已經有紋理；不要再疊 `shadow-ed`（那條 `1px` 外框會看起來像 SaaS 邊框）。用 `shadow-soft` 或 `shadow-none`。
+- 每一組只決定一次素材舞臺要不要成為視覺識別的一部分 —— 不要在一整組純色舞臺裡撒一張素材背景，那看起來像樣品卡。
+- 這些素材在 16:10 和 16:9 下裁切是安全的。對於高的 `r-3x4` 或方形 `r-1x1` 版位，優先用純色 `bg-*` —— 紋理圖樣過度裁切時會顯得怪。
 
-**Path note**: the `.bg-asset-*` rules use `url("../assets/screenshot-backgrounds/...")` — this assumes your deck's `index.html` lives one directory below `assets/`. If you place the deck elsewhere, override these rules locally with the correct relative path.
+**路徑注意**：`.bg-asset-*` 規則用 `url("../assets/screenshot-backgrounds/...")` —— 這假設你的組的 `index.html` 位在 `assets/` 下一層目錄。如果你把組放到別處，就在本地用正確的相對路徑覆寫這些規則。
 
-### 5. `inset-*` (padding between shot and stage)
+### 5. `inset-*`（截圖與舞臺之間的內距）
 
-- `inset-none` — image fills the frame. Use when the screenshot itself already has window chrome.
-- `inset-sub` (Swiss 20 px / Editorial 24 px) — default. Lets the stage breathe.
-- `inset-bal` (Swiss 48 px / Editorial 56 px) — when the shot is busy and needs to feel calm.
+- `inset-none` —— 圖片填滿框。當截圖本身已經有視窗外框時用。
+- `inset-sub`（Swiss 20 px／Editorial 24 px）—— 預設。讓舞臺呼吸。
+- `inset-bal`（Swiss 48 px／Editorial 56 px）—— 當截圖很雜、需要顯得沉靜時用。
 
-### 6. `fit-cover` (override)
+### 6. `fit-cover`（覆寫）
 
-Default is `object-fit: contain` — this is the whole point of `.frame-shot`. **Only** add `.fit-cover` when:
-- The slot is a hero where exact pixels of the source don't matter (e.g. a code shot used as a background pattern).
-- The user explicitly says they want the shot cropped.
+預設是 `object-fit: contain` —— 這正是 `.frame-shot` 的重點。**只有**在以下情況才加 `.fit-cover`：
+- 版位是主視覺、來源的精確畫素不重要時（例如把程式碼截圖當背景圖樣）。
+- 使用者明確表示要把截圖裁切。
 
-## Device chrome
+## 裝置外框
 
-Two wrapper classes ship with the seeds. They wrap a `.frame-shot`:
+seed 附了兩個外層 class，用來包住 `.frame-shot`：
 
 ### `.device-browser`
 
-Adds a 32–36 px chrome bar with traffic-light dots. Use for web / desktop app captures.
+加一條 32–36 px 的外框列，帶紅綠燈圓點。用於網頁／桌面 App 截圖。
 
 ```html
 <div class="device-browser">
@@ -137,60 +137,60 @@ Adds a 32–36 px chrome bar with traffic-light dots. Use for web / desktop app 
 </div>
 ```
 
-Pair with `shadow-soft` on the screenshot itself for a desk-photo feel.
+在截圖本身搭配 `shadow-soft`，做出桌面照片的感覺。
 
 ### `.device-phone`
 
-Wraps a 3:4 or 16:10 shot in an ink-coloured bezel with 18-24 px rounded inner corners. Use for mobile captures.
+把 3:4 或 16:10 的截圖包進墨色邊框，內角圓 18-24 px。用於手機截圖。
 
 ```html
 <div class="device-phone">
   <div class="frame-shot r-3x4 bg-paper inset-none">
-    <img src="assets/app.png" alt="WeChat detail">
+    <img src="assets/app.png" alt="LINE detail">
   </div>
 </div>
 ```
 
-Don't stack `corners-md` on top of `.device-phone` — the bezel already rounds the inner shot.
+不要在 `.device-phone` 上再疊 `corners-md` —— 邊框已經把內部截圖的角磨圓了。
 
-## Safe-area cropping
+## 安全區裁切
 
-When the user delivers a full-screen capture (1290×2796 iOS / 1080×2400 Android / 1920×1080 desktop), do **not** show the status bar, dock, or browser tab strip unless that chrome is the subject. Crop before importing:
+當使用者給的是全螢幕截圖（1290×2796 iOS／1080×2400 Android／1920×1080 桌面），**不要**顯示狀態列、Dock 或瀏覽器分頁列，除非那個外框就是主體。匯入前先裁切：
 
-1. Trim the iOS / Android status bar (top 47-59 px on retina).
-2. Trim the home indicator / nav gesture bar (bottom 34 px on iOS).
-3. For desktop: trim everything above the page content unless wrapped in `.device-browser`.
+1. 裁掉 iOS／Android 狀態列（retina 上方 47-59 px）。
+2. 裁掉 home indicator／導覽手勢列（iOS 下方 34 px）。
+3. 桌面：除非用 `.device-browser` 包起來，否則裁掉頁面內容以上的所有東西。
 
-If you can't crop ahead of time, use `object-position: center 6%` to bias the visible region downward — but this is a workaround, not the preferred path.
+如果沒辦法事先裁切，用 `object-position: center 6%` 把可見區域往下偏 —— 但這是權宜之計，不是首選。
 
-## Style cheat-sheet
+## 樣式速查表
 
-Two recipes that cover 80% of cases.
+兩組涵蓋 80% 情況的配方。
 
-**Swiss product demo** — pure stage, no shadow:
+**Swiss 產品展示** —— 純舞臺、無陰影：
 ```
 .frame-shot.r-16x10.corners-sq.shadow-none.bg-grey-1.inset-bal
 ```
 
-**Editorial deep-dive** — desk-photo warmth:
+**Editorial 深度報導** —— 桌面照片的溫度：
 ```
 .frame-shot.r-16x10.corners-sm.shadow-soft.bg-paper-2.inset-sub
 ```
 
-**Editorial hero with real texture** — magazine-grade stage:
+**Editorial 主視覺 + 真實紋理** —— 雜誌等級的舞臺：
 ```
 .frame-shot.r-16x10.corners-sm.shadow-soft.bg-asset-monocle-classic.inset-bal
 ```
 
-**Swiss hero with brand-aligned stage** — only when accent matches asset:
+**Swiss 主視覺 + 品牌一致的舞臺** —— 只有強調色與素材相符時：
 ```
 .frame-shot.r-16x10.corners-sq.shadow-none.bg-asset-ikb-dot.inset-bal
 ```
 
-For comparison shots (before / after), use **the same parameters** on both — different treatment between cells reads as inconsistency, not contrast.
+對比截圖（前／後）兩張要用**相同的引數** —— 兩格用不同處理看起來是不一致，不是對比。
 
-## Validator
+## 驗證器
 
-`validate-social-deck.mjs` doesn't have a screenshot-specific rule (yet). The existing R1 / R2 / R5 still apply: a `.frame-shot` that overflows or pushes the footer is still a fail.
+`validate-social-deck.mjs` 還沒有專門針對截圖的規則。既有的 R1／R2／R5 仍然適用：`.frame-shot` 溢位或把頁尾推掉，一樣算失敗。
 
-If a deck mixes `.frame-img` and `.frame-shot` on the same poster, that's usually a smell — pick one approach per poster.
+如果一組在同一張海報上混用 `.frame-img` 和 `.frame-shot`，通常是壞味道 —— 每張海報只選一種做法。

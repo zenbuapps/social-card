@@ -1,18 +1,18 @@
-# Content Planning
+# 內容規劃
 
-## Compression Ladder
+## 壓縮階梯
 
-Start from the user's original text and compress in layers:
+從使用者的原始文字出發，分層壓縮：
 
-1. Core claim: one sentence.
-2. Viewer promise: what the reader gets from swiping.
-3. Section map: 4-8 ideas.
-4. Page hooks: short, concrete, not abstract.
-5. Body fragments: only the words needed to explain the visual.
+1. 核心主張：一句話。
+2. 給讀者的承諾：滑完能得到什麼。
+3. 段落地圖：4-8 個重點。
+4. 每頁鉤子：短、具體、不抽象。
+5. 內文碎片：只留解釋視覺所需的字。
 
-Do not put the full article on images. The image set is a visual outline that makes the user want to read the caption/body.
+不要把整篇文章塞到圖片上。這組圖是視覺大綱，目的是讓使用者想去讀貼文說明／內文。
 
-## Rednote Page Plan Template
+## IG 貼文頁面規劃範本
 
 ```text
 Title:
@@ -34,129 +34,129 @@ Image assets:
 ...
 ```
 
-## Good Page Roles
+## 好的頁面角色
 
-Use varied roles instead of repeating the same card page:
+用多樣的角色，不要一直重複同一種卡片頁：
 
-- Hook cover.
-- Problem scene.
-- Misconception vs reality.
-- Checklist.
-- Comparison.
-- Product screenshot evidence.
-- One big quote or conclusion.
-- Step-by-step flow.
-- Gear list or buying guide.
-- Summary page with "remember these three".
+- 鉤子封面。
+- 問題場景。
+- 迷思 vs 現實。
+- 檢查清單。
+- 對比。
+- 產品截圖證據。
+- 一句大引言或結論。
+- 逐步流程。
+- 裝備清單或購買指南。
+- 「記住這三點」的總結頁。
 
-## Copy Rules
+## 文案規則
 
-- Titles should be plain and sharp.
-- Avoid abstract labels like "背景介绍" unless the page is actually context.
-- Use verbs and consequences: "高帮鞋会让脚更闷" is better than "鞋子选择".
-- For product updates, lead with the user-facing change, then add the feature name.
-- For outdoor posts, lead with the embodied problem: hot, wet, slippery, heavy, exposed, lost, cold.
-- For AI/tool posts, lead with workflow change: faster capture, less manual work, cross-app automation, editable output.
+- 標題要平實而銳利。
+- 避免像「背景介紹」這種抽象標籤，除非那頁真的是在講脈絡。
+- 用動詞和後果：「高筒鞋會讓腳更悶」比「鞋子選擇」好。
+- 產品更新時，先講使用者看得到的改變，再補上功能名稱。
+- 戶外貼文，先講身體感受到的問題：熱、濕、滑、重、暴露、迷路、冷。
+- AI／工具貼文，先講工作流程的改變：更快擷取、更少手動、跨 App 自動化、可編輯的輸出。
 
-## Cover Hook Patterns
+## 封面鉤子句型
 
-Use one of these:
+用下面其中一種：
 
-- "终于有 Mac 版了"
-- "新手别急着买"
-- "这个功能真的改变用法"
-- "我替你踩过坑了"
-- "先看这 5 个点"
-- "不要被装备带着走"
-- "从此不用手动..."
+- 「終於有 Mac 版了」
+- 「新手別急著買」
+- 「這個功能真的改變用法」
+- 「我幫你踩過雷了」
+- 「先看這 5 個點」
+- 「不要被裝備牽著走」
+- 「從此不用手動...」
 
-Avoid:
+避免：
 
-- Overlong complete article titles.
-- Vague hype without a concrete object.
-- Multiple unrelated claims on one cover.
+- 過長的完整文章標題。
+- 沒有具體物件的空泛炒作。
+- 一張封面塞多個不相關的主張。
 
-## WeChat Square Title Compression
+## 方形貼文標題壓縮
 
-When producing a WeChat `1:1` cover, derive a short title from the long `21:9` title.
+製作 `1:1` 方形貼文封面時，從 `9:16` 限時動態的長標題衍生出短標題。
 
-Rules:
+規則：
 
-- Preserve the core object and the strongest action.
-- Use 4-10 Chinese characters when possible.
-- Use 2 short lines if one line becomes too cramped.
-- Remove explanations, clauses, and long modifiers.
-- Do not use the full long title in the square.
+- 保留核心物件與最強的動作。
+- 盡量用 4-10 個中文字。
+- 如果一行太擠，就用兩行短句。
+- 拿掉解釋、子句和冗長的修飾語。
+- 方形版不要用完整的長標題。
 
-Examples:
+範例：
 
 ```text
-开源了一个 Skill，让 AI 接管你屏幕边那张便签纸
-=> AI 接管便签纸
+開源了一個 Skill，讓 AI 接管你螢幕邊那張便利貼
+=> AI 接管便利貼
 ```
 
 ```text
-Codex 史诗级更新，体验爆炸提升
+Codex 史詩級更新，體驗爆炸提升
 => Codex 大更新
 ```
 
-## Image-Led Sequence (lifestyle, image-heavy content)
+## 以圖片為主的序列（生活風格、圖片量大的內容）
 
-When the user has multiple good lifestyle photos (旅行 / 户外 / 自家成菜 / 家居 / 真实情感场景), front-load the strongest photo on page 1 and let pages 2-3 carry the text/data. Do not bury great photos.
+當使用者有多張好的生活風格照片（旅行／戶外／自家料理／居家／真實情感場景），把最強的照片放在第 1 頁，讓第 2-3 頁承載文字／資料。別把好照片埋起來。
 
-Pattern:
+版式：
 
 ```
-P1   M16 Image-Led Cover    ← single best photo, full bleed, restrained title
-P2   S11 / M05 / M10         ← text-heavy: ledger / checklist / mini-data — eye rests
-P3   M02 Field-Note Photo    ← second-best photo, in a frame, with caption
-P4-N M02 / M11               ← more field notes or marginalia essays
-P_last  M07 / M04            ← closing note or pull quote
+P1   M16 Image-Led Cover    ← 單張最佳照片、滿版、剋制的標題
+P2   S11 / M05 / M10         ← 文字為主：表列／檢查清單／小資料 — 讓視線休息
+P3   M02 Field-Note Photo    ← 次佳照片，放進框裡，加說明
+P4-N M02 / M11               ← 更多田野筆記或邊註短文
+P_last  M07 / M04            ← 結尾註記或引言
 ```
 
-Hard rule: **never two M16 in a row**. After a full-bleed cover the eye needs to settle on text before another big image. Two image-led covers back-to-back read as "we couldn't decide which photo to use."
+硬規則：**絕對不要連續兩張 M16**。滿版封面之後，視線需要先落在文字上，才能接下一張大圖。兩張以圖片為主的封面連在一起，會讓人覺得「我們選不出要用哪張照片」。
 
-When this pattern does NOT apply:
+以下情況不適用這個版式：
 
-- News / tutorial / data / review posts — the cover is a hook line, not a photo. Use M01 or S01.
-- Posts with one good photo only — use M16 for P1, then M02 once on P3-4 with that same photo or a different angle. Do not pad.
-- Swiss-mode product/release posts — photos in Swiss are product renders or UI screenshots, not lifestyle. Use S08 Image Hero, not M16.
+- 新聞／教學／資料／評測貼文 —— 封面是一句鉤子，不是照片。用 M01 或 S01。
+- 只有一張好照片的貼文 —— 第 1 頁用 M16，然後在第 3-4 頁用一次 M02，放同一張照片或不同角度。不要硬湊。
+- Swiss 模式的產品／發表貼文 —— Swiss 裡的照片是產品算圖或 UI 截圖，不是生活風格。用 S08 Image Hero，不要用 M16。
 
-For the cover title placement and typography on a great photo, see `references/layout-recipes.md` M16 (4 modes: 顶压底沉 / 侧栏立柱 / 角落徽章 / 下沉条带) and `references/image-overlay.md` (subject map + localized tint fallback).
+好照片上的封面標題擺放與字型排版，見 `references/layout-recipes.md` 的 M16（4 種模式：頂壓底沉／側欄立柱／角落徽章／下沉條帶）與 `references/image-overlay.md`（主體地圖 + 在地化色調 fallback）。
 
-## Page Count Guidance
+## 頁數建議
 
-- 600-1000 Chinese characters: 5-7 images.
-- 1000-1800 Chinese characters: 7-9 images.
-- Very long source: compress to 8-10 images and put the rest in caption/body.
-- If several pages have large empty lower areas, merge adjacent ideas.
+- 600-1000 個中文字：5-7 張圖。
+- 1000-1800 個中文字：7-9 張圖。
+- 來源很長：壓到 8-10 張圖，其餘放到貼文說明／內文。
+- 如果好幾頁下方都留一大片空白，就把相鄰的重點合併。
 
-## Matching Visuals To Content
+## 視覺與內容的搭配
 
-Use visuals only when they support the point:
+只有在視覺能支撐重點時才用：
 
-- Screenshot: proof of a product feature or UI.
-- Photo: scene, object, person, outdoor atmosphere.
-- Generated image: missing scene, conceptual hero, stylized product/lifestyle illustration.
-- Diagram: flow, cross-app chain, checklist, system relation.
+- 截圖：證明產品功能或 UI。
+- 照片：場景、物件、人物、戶外氛圍。
+- 生成圖：缺少的場景、概念型主視覺、風格化的產品／生活插圖。
+- 圖表：流程、跨 App 串接、檢查清單、系統關係。
 
-Generated image prompts should be short and role-specific:
+生成圖的提示詞要簡短、針對角色：
 
 ```text
-Editorial documentary photo for a Rednote hiking gear guide, summer mountain trail, lightweight long-sleeve outfit, natural sunlight, clean composition, no text, no logo, 3:4.
+Editorial documentary photo for an Instagram hiking gear guide, summer mountain trail, lightweight long-sleeve outfit, natural sunlight, clean composition, no text, no logo, 4:5.
 ```
 
 ```text
-Swiss style conceptual product image, Android home screen widgets generated by natural language, clean off-white background, one IKB blue accent, no text, no logo, 3:4.
+Swiss style conceptual product image, Android home screen widgets generated by natural language, clean off-white background, one IKB blue accent, no text, no logo, 4:5.
 ```
 
-## Captions And Metadata
+## 說明文字與元資訊
 
-Small recurring elements help the set feel designed:
+反覆出現的小元素能讓整組看起來有設計感：
 
-- Category row: `AI TOOL / UPDATE / 2026`
-- Issue row: `SUMMER HIKING / BEGINNER GUIDE`
-- Page number: `03 / 08`
-- Compact labels: `DO`, `DON'T`, `WHY`, `NOTE`
+- 類別列：`AI TOOL / UPDATE / 2026`
+- 期數列：`SUMMER HIKING / BEGINNER GUIDE`
+- 頁碼：`03 / 08`
+- 精簡標籤：`DO`、`DON'T`、`WHY`、`NOTE`
 
-Keep these consistent. They should support orientation, not become decoration.
+保持一致。它們是幫助定位的，不該淪為裝飾。

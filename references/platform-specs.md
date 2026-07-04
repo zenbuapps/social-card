@@ -1,142 +1,146 @@
-# Platform Specs
+# 平臺規格（臺灣社群 / Instagram）
 
-Use high-resolution exports. The user can downsample later.
+一律用高解析度匯出，使用者之後可以自行縮小。
 
-## Xiaohongshu / Rednote
+本技能以 **Instagram** 為主，同一組尺寸也適用 **Facebook** 與 **Threads**；LINE 於文末附註。
 
-Default size:
+## Instagram 直式貼文 / 輪播（主力預設）
 
-- `1080 x 1440`
-- Ratio: `3:4`
-- Export: PNG for text-heavy images, JPEG only when photo-only and file size matters.
+預設尺寸：
 
-Safe area:
+- `1080 × 1350`
+- 比例：`4:5`
+- 匯出：文字多的用 PNG；純照片、在意檔案大小時才用 JPEG。
+- CSS board：`.poster.post`
 
-- Side margin: 72-96px.
-- Top margin: 72-112px.
-- Bottom margin: 80-120px.
-- Keep all text and key objects inside the safe area.
+為什麼是 4:5：這是 IG 貼文與輪播在動態牆上能佔到**最大版面**的直式比例，比 1:1 更吸睛，是臺灣經營 IG 的主力格式。
 
-Recommended set:
+安全區：
 
-- 1 cover.
-- 4-8 content pages.
-- 1 summary or checklist page if the article benefits from it.
-- Optional Live Photo card for motion-heavy evidence. Use `references/live-photo-production.md` when making `.pvt` packages for AirDrop and iPhone testing.
+- 左右邊界：72–96px。
+- 上邊界：72–100px。
+- 下邊界：80–110px。
+- 所有文字與關鍵物件都留在安全區內。
 
-Live Photo:
+建議組數：
 
-- Duration: up to `5s`.
-- Keep the same `1080 x 1440` / `3:4` canvas and safe area as static Rednote cards.
-- Use Live Photo when motion is the evidence: fast generation, before/after UI, product interaction, app/game demo, scroll reveal, or process-to-result comparison.
-- Package as `.pvt` for iPhone/AirDrop testing. Loose JPG/MOV pairs often import as separate assets.
-- Publish path: AirDrop the `.pvt` package as one item to iPhone, then publish from the Xiaohongshu app. Desktop/web upload cannot be treated as the primary Live Photo publishing path.
+- 1 張封面。
+- 4–8 張內容頁（輪播）。
+- 需要的話補 1 張總結／懶人包收尾頁。
 
-Naming:
+命名：
 
 ```text
-output/xhs-01-cover.png
-output/xhs-02-<topic>.png
-output/xhs-03-<topic>.png
+output/ig-post-01-cover.png
+output/ig-post-02-<topic>.png
+output/ig-post-03-<topic>.png
 ...
 ```
 
-Cover structure:
+封面結構：
 
-- Big title with a sharp hook.
-- One strong visual: supplied image, screenshot, generated photo, or product object.
-- Bottom line with 3-5 key points or a compact issue strip.
-- Avoid long subtitles. Put nuance in later pages.
+- 大標題，鉤子要利。
+- 一個強視覺：使用者提供的照片、截圖、生成圖或商品實物。
+- 底部一行放 3–5 個重點，或一條精簡的資訊條。
+- 避免長副標；細節留到後面幾頁。
 
-Content page structure:
+內容頁結構：
 
-- One idea per page.
-- 12-30 Chinese characters for the title when possible.
-- 2-4 short bullet fragments or one concise paragraph.
-- If a page has a screenshot, reduce the text and give the screenshot enough area.
-- If lower space is empty across pages, combine pages or add a functional element such as checklist, comparison row, quote, or image evidence.
+- 一頁一個重點。
+- 標題盡量控制在 12–30 個中文字。
+- 2–4 個短句片段，或一段精簡的段落。
+- 有截圖的頁面，減少文字、把截圖放大到看得清。
+- 若各頁下方常常空掉，就合併頁面或補上功能性元素：懶人包清單、對照列、引言、或影像佐證。
 
-## WeChat Official Account Cover Pair
+## 方形貼文 1:1
 
-Generate a pair: one `21:9` main cover and one `1:1` square cover. Build both in the same HTML file, and include a combined preview section that places them together for visual checking.
+預設尺寸：
 
-### 21:9 Main Cover
+- `1080 × 1080`
+- 比例：`1:1`
+- CSS board：`.poster.square`
 
-Default size:
+用途：
 
-- `2100 x 900`
-- Ratio: `21:9`
+- IG／FB 動態牆通用的方形貼文。
+- 大字、置中、留白足夠，縮圖也讀得清。
+- 預設不放圖、不放小副標，一個概念講清楚。
 
-Use:
-
-- Main article cover.
-- Full or near-full headline, subtitle, and visual evidence.
-- Keep title readable near center-left or within a clear safe band.
-- Avoid an empty middle. Increase title scale, image scale, or spacing if the center feels hollow.
-
-### 1:1 Cover
-
-Default size:
-
-- `1080 x 1080`
-- Ratio: `1:1`
-
-Default style:
-
-- Short title only, simplified from the long title.
-- Big type, center aligned.
-- No image unless the user explicitly asks for one.
-- No subtitle by default.
-- Strong contrast and enough breathing room.
-
-Short-title rule:
-
-- Extract the core object and action from the long title.
-- Keep it to roughly 4-10 Chinese characters, or 2 short lines when needed.
-- Do not squeeze the full `21:9` title into the square.
-
-Example:
+命名：
 
 ```text
-Long: 开源了一个 Skill，让 AI 接管你屏幕边那张便签纸
-Square: AI 接管便签纸
+output/ig-square-cover.png
+output/ig-square-<topic>.png
 ```
 
-Naming:
+## Instagram 限時動態 / Reels 封面 9:16
+
+預設尺寸：
+
+- `1080 × 1920`
+- 比例：`9:16`（**直式**滿版）
+- CSS board：`.poster.story`
+
+安全區（**很重要**，限動與 Reels 上下都會被介面元件蓋住）：
+
+- 上方保留約 `220px`：帳號頭像、名稱、關閉鈕。
+- 下方保留約 `250px`：回覆列 /「傳送訊息」/ Reels 的說明文字與互動按鈕。
+- 左右安全邊 `64px`。
+- 主要標題與 CTA 一律落在中央安全帶內（約 `1080 × 1450` 的可視區）。
+
+用途：
+
+- 限時動態單張、Reels 封面、活動預告、導流到貼文或連結。
+- 直式構圖：標題放上三分之一、主視覺置中、CTA / 資訊壓在下方安全區之上。
+
+命名：
 
 ```text
-output/wechat-21x9-cover.png
-output/wechat-1x1-cover.png
-output/wechat-cover-pair-preview.png
+output/ig-story-01.png
+output/ig-story-<topic>.png
 ```
 
-## WeChat Official Account Article Live Photo
+## IG 貼文 + 限時動態 組合
 
-截至 2026-07 实测，Live Photo 支持与上传路径相关：
+同一個主題常常要「貼文」與「限時動態」兩種版位一起出。做法：
 
-- iPhone 端上传可在公众号文章编辑中保留 Live Photo。
-- 网页端上传没有对应的 Live Photo 入口。
-- Keep Live Photo duration at or below `3s`.
-- Publish path: AirDrop the `.pvt` package as one item to iPhone, then upload from the iPhone Official Account article editing path.
+- 在同一個 HTML 檔裡同時做 `4:5` 貼文與 `9:16` 限動，並加一段 `.pair-preview` 把兩者並排，方便一起檢查視覺一致性。
+- **貼文（4:5）**：完整標題、副標與主視覺。
+- **限動（9:16）**：把長標題精簡成短標題（見 `references/title-shortener.md`），大字直式、CTA 壓底且在安全區內。
+- 不要把 `4:5` 的完整標題硬塞進 `9:16`；兩個版位分開構圖。
 
-Use the same `3:4` card standard as Rednote when the user wants a WeChat article body card. If the publisher must use the desktop/web path, export a GIF or short video fallback instead of promising Live Photo support.
+命名：
 
-## Screenshot And Photo Placement
+```text
+output/ig-post-01-cover.png
+output/ig-story-01.png
+output/ig-post-story-pair-preview.png
+```
 
-For supplied screenshots/photos:
+## 其他臺灣平臺
 
-- Put originals in `assets/`.
-- Use CSS `object-fit:cover` only when cropping is safe.
-- Use CSS `object-fit:contain` for UI screenshots, dense text, code, tables, or app windows.
-- Set `object-position` deliberately: top for long UI when top matters, center for objects, 35%-45% vertical for portraits.
-- Do not pin images to the canvas edge unless the design intentionally uses bleed.
+- **Facebook 貼文 / 粉專**：可直接沿用 `4:5`（1080×1350）或 `1:1`（1080×1080）；FB 限時動態同 IG `9:16`。
+- **Threads**：直式圖片同 IG `4:5`；圖卡本身用 `4:5` 即可。
+- **LINE**：LINE VOOM 直式貼文可用 `4:5` / `9:16`；官方帳號圖文選單（Rich Menu）常見 `2500×1686`（大版）或 `2500×843`（半版）—需要時另外指定，非本技能預設。
 
-## Final Response Media
+## 短影音（Reels / 限時動態）動態卡
 
-In Codex desktop, local media can be shown with absolute paths:
+本技能的動態卡以 **IG Reels / 限時動態封面**為主，把靜態卡的其中一個影像槽換成影片。詳見 `references/live-photo-production.md`。iPhone Live Photo（`.pvt`）為 iOS 專屬格式、**非 IG 原生釋出格式**，僅在使用者明確需要 iPhone 端 Live Photo 時作為附加做法。
+
+## 截圖與照片放置
+
+使用者提供截圖／照片時：
+
+- 原檔放 `assets/`。
+- 只有在裁切安全時才用 CSS `object-fit:cover`。
+- UI 截圖、密集文字、程式碼、表格、App 視窗一律用 `object-fit:contain`。
+- 刻意設定 `object-position`：長 UI 需要看上方就用 top、物件用 center、人像用 35%–45% 的垂直位置。
+- 除非刻意做滿版出血，否則不要把圖片貼齊畫布邊緣。
+
+## 最終回覆的圖片
+
+若環境支援，最終回覆用絕對路徑把最重要的圖（尤其是封面、以及使用者指定要看的頁）直接顯示出來：
 
 ```markdown
-![cover](/absolute/path/to/output/xhs-01-cover.png)
+![封面](/absolute/path/to/output/ig-post-01-cover.png)
 ```
-
-Do this for the most important images, especially the cover and any pages the user asked to inspect.

@@ -1,85 +1,85 @@
-# Portrait Fill Rules
+# 直式吃滿規則
 
-3:4 social images have much more vertical space than a horizontal PPT slide. A layout that works in 16:9 often becomes a thin strip in 3:4. Solve that at the planning stage.
+4:5 社群圖比橫式 PPT 投影片有更多垂直空間。在 16:9 能用的版面，放到 4:5 常常變成一條細長條。這要在規劃階段就解決。
 
-## Vertical Zones
+## 垂直分割槽
 
-Think of a 1080x1440 Rednote image as five zones:
+把一張 1080×1350 的 IG 圖片想成五個區塊：
 
-| Zone | Typical Height | Role |
+| 區塊 | 常見高度 | 角色 |
 | --- | --- | --- |
-| Header/meta | 56-90px | issue label, category, page |
-| Title/lead | 240-420px | hook and claim |
-| Evidence/body | 520-760px | image, ledger, diagram, comparison |
-| Bottom strip | 90-180px | captions, checklist, summary |
-| Footer | 52-86px | issue/page metadata |
+| 頁首/元資訊 | 56-90px | 期數標籤、類別、頁碼 |
+| 標題/引言 | 240-420px | 鉤子與主張 |
+| 證據/主體 | 520-760px | 圖片、表列、圖表、對比 |
+| 底部條帶 | 90-180px | 說明文字、檢查清單、摘要 |
+| 頁尾 | 52-86px | 期數/頁碼元資訊 |
 
-Not every page needs all five, but every page needs an intentional vertical composition.
+不是每一頁都要用滿五區，但每一頁都需要刻意安排的垂直構圖。
 
-## Underfilled Page Smells
+## 頁面填不滿的壞味道
 
-Revise if:
+出現以下情況就重做：
 
-- A table or ledger occupies less than 45% of the canvas height.
-- The lower 25% of the page is empty without being an atmospheric hero page.
-- Four list items are rendered as short rows with large blank space below.
-- A screenshot is small even though it is the evidence.
-- Body copy is centered in the middle with no top/bottom rhythm.
+- 表格或表列佔畫面高度不到 45%。
+- 頁面下方 25% 是空的，卻又不是氛圍型主視覺頁。
+- 四個清單專案做成矮矮幾列，下面留一大片空白。
+- 截圖明明是證據，卻做得很小。
+- 內文置中擺在中間，上下沒有節奏。
 
-## Fixes For Thin Tables
+## 矮表格的修法
 
-When a table is too short:
+當表格太矮：
 
-1. Increase row height to 118-170px.
-2. Add a left marginal column with large numbers, keywords, or category labels.
-3. Add a pull quote column beside the table.
-4. Add a top or bottom issue strip with 2-3 consequences.
-5. Convert the table to M08 Tall Ledger.
-6. If there are only 2-3 points, use M04 Pull Quote or M09 Atmospheric Thesis instead of a table.
+1. 把列高加大到 118-170px。
+2. 左側加一欄邊註，放大數字、關鍵字或類別標籤。
+3. 在表格旁加一欄引言（pull quote）。
+4. 上方或下方加一條議題條帶，列 2-3 個後果。
+5. 把表格改成 M08 Tall Ledger。
+6. 如果只有 2-3 個重點，就用 M04 Pull Quote 或 M09 Atmospheric Thesis，不要用表格。
 
-## Fixes For Sparse Text
+## 文字稀疏的修法
 
-If a page has only one core sentence:
+如果一頁只有一句核心句：
 
-- Use M09 Atmospheric Thesis with visible WebGL/ink background.
-- Make the sentence the hero, not a small paragraph.
-- Add one small source/context row.
-- Use dark/ink page if the package needs rhythm.
+- 用 M09 Atmospheric Thesis，搭配看得見的 WebGL／水墨背景。
+- 讓這句話成為主角，而不是一小段文字。
+- 加一條小小的來源／脈絡列。
+- 如果整組需要節奏，就用深色／水墨頁。
 
-## Fixes For Screenshot Pages
+## 截圖頁的修法
 
-If screenshot content matters:
+如果截圖內容很重要：
 
-- Give it 45%-65% of the page height.
-- Put only one key sentence above it.
-- Use a bottom caption band instead of a side paragraph.
-- Crop carefully; preserve readable UI labels.
+- 給它佔頁面高度的 45%-65%。
+- 上方只放一句關鍵句。
+- 用底部說明條帶，而不是側邊段落。
+- 小心裁切；保留可讀的 UI 標籤。
 
-## Page Rhythm
+## 頁面節奏
 
-For a 7-page Rednote set, use at least 5 distinct shapes:
+一組 7 頁的 IG 輪播組圖，至少要用 5 種不同的版式：
 
-- Cover / feature image.
-- Essay split.
-- Tall ledger.
-- Evidence screenshot.
-- Pull quote or atmospheric thesis.
-- Checklist/comparison.
-- Closing note.
+- 封面／主視覺圖。
+- 散文分割版。
+- 高表列（tall ledger）。
+- 證據截圖。
+- 引言或氛圍主張。
+- 檢查清單／對比。
+- 結尾註記。
 
-Avoid repeating `title + lead + 3 rows` more than twice in one set.
+同一組裡，`title + lead + 3 rows` 這種版式不要重複超過兩次。
 
-## Minimum Occupancy
+## 最低佔比
 
-As a rough rule, the active composition should occupy at least 78% of the page height.
+粗略原則：主要構圖至少要佔頁面高度的 78%。
 
-This can include:
+可以包含：
 
-- Large type.
-- Images/screenshots.
-- Ledger rows.
-- Background atmosphere on hero pages.
-- Caption bands.
-- Marginalia columns.
+- 大字。
+- 圖片／截圖。
+- 表列的列。
+- 主視覺頁的背景氛圍。
+- 說明條帶。
+- 邊註欄。
 
-Whitespace is good only when it is designed. Empty leftover space is not.
+留白只有在刻意設計時才好。剩下沒用到的空白不算。

@@ -1,258 +1,281 @@
-# Category Cookbook
+# 內容型別速查表（Category Cookbook）
 
-Per-category cheat sheet for the 11 most common Rednote (小红书) content types. Each entry maps a category to:
+臺灣 IG 常見內容型別的逐類速查表。每一類都對應到：
 
-- **What we can do** — concrete poster types this skill produces well.
-- **Style mode** — which side of the system (Editorial / Swiss) fits.
-- **Recipes** — which layout IDs (M01-M15 / S01-S12) are first reach.
-- **Text scheme** — how text relates to image (text-on-image / text-beside-image / text-only).
-- **Image source** — where the photos come from.
-- **Common pitfalls** — the way this category breaks.
+- **能做什麼** — 這個 skill 擅長產出的海報型別。
+- **風格模式** — 系統的哪一側（Editorial／Swiss）比較合。
+- **Recipes** — 哪些版型程式碼（M01-M16／S01-S12）是第一順位。
+- **文圖關係** — 文字怎麼跟圖相處（text-on-image／text-beside-image／text-only）。
+- **影像來源** — 照片從哪來。
+- **常見地雷** — 這一類通常怎麼壞掉。
 
-This is a routing document. When the user names a category, find the row here and start from the listed recipes instead of building from a blank file.
+這是一份路由檔案。當使用者說出某個型別時，來這裡找到那一列，從列出的 recipes 開始，而不是從空白檔案硬蓋。
 
-For any category, if a poster has a full-bleed image with text on top, also follow `image-overlay.md` (photo qualification, localized tint fallback, and subject avoidance).
+任何型別，只要海報是「滿版圖＋圖上疊字」，就同時遵守 `image-overlay.md`（照片資格判定、在地化色調 fallback、主體迴避）。
 
-## Live Photo Scene Library
+## 短影音場景庫
 
-This is not a fixed template list. When the user supplies video, infer the scenario and information budget from the actual content, then choose single Live Photo, triple collage, long-video trimming, or a non-Live-Photo fallback.
+這不是固定模板清單。當使用者提供影片時，從實際內容推斷情境與資訊量，再選 單則短影音、三連短影音拼貼、長影片裁切、或非短影音的退路。
 
-Use `references/live-photo-production.md` for duration limits and rendering details. This section only decides what kind of motion is worth showing.
+用 `references/live-photo-production.md` 看時長限制與 render 細節。這一節只決定「哪種動態值得秀」。
 
-| Scenario | User problem | Motion value | Best Live Photo form |
+| 場景 | 使用者的痛點 | 動態的價值 | 最佳短影音形式 |
 | --- | --- | --- | --- |
-| 游戏攻略 / gameplay guide | A screenshot cannot explain timing, route, or operation rhythm | show the key move plus success state | single `5s` for one move; triple collage for three strategies or stages |
-| 产品更新 / product update | Static screenshots lack "how it works" proof | show trigger → interaction → result | single `3-5s`; triple collage for three features or three generated outputs |
-| 教程技巧 / tutorial | Step images are too fragmented | show the one critical action or failure-prone step | single `3-5s`; long videos should be trimmed, not compressed whole |
-| AI 模型测试 / model demo | Static results do not prove process or credibility | show prompt/process/result evidence | triple collage for multiple results; single for one clear generation path |
-| 旅行攻略 / travel | A pretty place photo has atmosphere but not process | add arrival, route, movement, or现场感 around a static guide card | single `5s`; avoid pure scenery loops with no informational role |
-| 生活方式 / packing / living | Product or object photos feel too staged | show real handling, packing, opening, setup, or use | single `5s`; triple collage for checklist-style sequences |
-| 电商种草 / product rec | Product photos do not prove texture, scale, or use state | show touch, rotation, fit, before/after, or detail | single `3-5s`; triple collage for detail / scale / result |
-| 健身动作 / fitness movement | One pose cannot explain trajectory | show range, rhythm, or correction | single `3-5s`; triple collage for wrong / fix / result |
-| 美食手作 / food & craft | Finished photo misses the satisfying change | show pour, stir, cut, assemble, melt, or final reveal | single `3-5s`; avoid full recipes in one Live Photo |
-| 家居改造 / home before-after | Before/after static pair feels disconnected | show the transition or the practical action | single for one transformation; triple collage for before / process / after |
+| 遊戲攻略 / gameplay guide | 截圖說不清時機、路線、操作節奏 | 秀關鍵操作＋成功狀態 | 單則 5s 秀一招；三種打法或階段用三連短影音拼貼 |
+| 產品更新 / product update | 靜態截圖缺「怎麼運作」的證明 | 秀 觸發 → 互動 → 結果 | 單則 3-5s；三個功能或三個生成結果用三連拼貼 |
+| 教學技巧 / tutorial | 步驟圖太零碎 | 秀那一個關鍵動作或最容易失敗的步驟 | 單則 3-5s；長影片要裁切，不要整段壓縮 |
+| AI 模型測試 / model demo | 靜態結果無法證明過程或可信度 | 秀 prompt／過程／結果證據 | 多個結果用三連拼貼；單一清楚生成路徑用單則 |
+| 旅行攻略 / travel | 美景照有氛圍但沒過程 | 在靜態攻略卡外加抵達、路線、移動或現場感 | 單則 5s；避免純風景 loop 而沒有資訊角色 |
+| 生活風格／打包 / packing | 產品或物件照太擺拍 | 秀真實拿取、打包、開箱、擺設或使用 | 單則 5s；清單型序列用三連拼貼 |
+| 電商推薦 / product rec | 產品照證明不了質感、尺寸或使用狀態 | 秀觸控、旋轉、上身、前後對比或細節 | 單則 3-5s；細節／尺寸／結果用三連拼貼 |
+| 健身動作 / fitness movement | 一個姿勢說不清軌跡 | 秀範圍、節奏或矯正 | 單則 3-5s；錯／改／對用三連拼貼 |
+| 美食手作 / food & craft | 成品照少了「令人滿足的變化」 | 秀倒、攪、切、組合、融化或最後 reveal | 單則 3-5s；別把整份食譜塞進一則短影音 |
+| 居家改造 / home before-after | 前後靜態對照感覺沒連起來 | 秀轉場或實際動作 | 單則秀一次改造；前／中／後用三連拼貼 |
 
-Motion role shortcuts:
+動態角色速記：
 
-- **One action point** → single Live Photo, usually `3s` WeChat or `5s` Xiaohongshu.
-- **One small process** → single `5s`, possibly with light speed-up.
-- **Three parallel results / viewpoints / stages** → triple Live Photo collage.
-- **Long sequence or narration-heavy content** → diagnose first; trim, split, or recommend normal video/GIF.
+- **一個動作點** → 單則短影音，通常 限時動態 3s 或 Reels 5s。
+- **一段小過程** → 單則 5s，可輕微加速。
+- **三個平行結果／視角／階段** → 三連短影音拼貼。
+- **長序列或旁白很重的內容** → 先診斷；裁切、拆分，或改建議一般影片／GIF。
 
 ---
 
 ## 旅行 · Travel
 
-**Strongest fit.**
+**最強命中。**
 
-- **Recipes**: M01 (text-led cover, no photo dominance) **or M16 (image-led cover, when the user has 1+ great photos)**, M02 (field-note photo), M11 (marginalia essay), M07 (closing note), S11 (itinerary ledger). For image-heavy submissions use the M16 → S11/M05 → M02 sequence in `references/content-planning.md`.
-- **Style mode**: Editorial × kraft-paper / dune (warm-tone destinations) or × forest-ink (mountain/wilderness). Swiss × IKB works for "trip data report" style.
-- **Text scheme**: Text beside image is the default. Cover can use text-on-image only when the photo has a quiet zone; add localized tint only if the thumbnail check fails. Body pages use photo + caption pairs (field-note style).
-- **Image source**: User photos > Pexels (for China destinations — supports Chinese keyword search) > Unsplash (`/s/photos/<destination>`, best for overseas / English keywords) > Flickr CC (`license=2,3,4,5,6,9`, when you need documentary "real trip" feel rather than postcard polish). Always log to `assets/SOURCES.md`.
-- **Content shape**: 5-7 pages. Cover (destination + dates) → atmosphere photo + lead → itinerary ledger → 2-3 field notes (one location each) → closing quote / next-stop teaser.
-- **Pitfalls**: Generic "best places in X city" listicle voice. Cure: keep one specific date / weather / mileage detail per page to anchor it as observed, not researched.
+- **Recipes**：M01（文字主導封面、圖不搶戲）**或 M16（圖主導封面，使用者有 1 張以上好照片時）**、M02（田野筆記照）、M11（旁註隨筆）、M07（結語）、S11（行程帳本）。素材多的投稿走 `references/content-planning.md` 的 M16 → S11／M05 → M02 序列。
+- **風格模式**：Editorial × kraft-paper／dune（暖調目的地）或 × forest-ink（山系／野外）。Swiss × IKB 適合「旅行資料包告」風。
+- **文圖關係**：預設 text-beside-image。封面只有在照片有安靜區時才用 text-on-image；縮圖檢查沒過才補在地化色調。內頁走「照片＋圖說」配對（田野筆記風）。
+- **影像來源**：使用者照片 > Pexels（臺灣／華語景點關鍵字命中較好）> Unsplash（`/s/photos/<destination>`，海外／英文關鍵字最佳）> Flickr CC（`license=2,3,4,5,6,9`，要紀實「真的有去」感而非明信片精修時）。一律記錄到 `assets/SOURCES.md`。
+- **內容形狀**：5-7 頁。封面（目的地＋日期）→ 氛圍照＋引言 → 行程帳本 → 2-3 則田野筆記（一則一地點）→ 結語金句／下一站預告。
+- **地雷**：泛泛的「X 城市必去景點」清單語氣。解法：每頁保留一個具體日期／天氣／里程細節，把它錨定成「親眼所見」而非「查來的」。
 
-See: `local-tests/demo-image-01-yading/` for a reference build.
-
----
-
-## 职场 · Workplace
-
-**Strongest fit.** This is what Swiss-International was made for.
-
-- **Recipes**: S01 (cover), S02 (comparison), S05 (warning rows), S06 (pipeline), S07 (takeaway ledger), S09 (KPI tower), S11 (stacked ledger), S12 (matrix + hero stat).
-- **Style mode**: Swiss × IKB Blue or × Safety Orange. Avoid lemon-yellow / lemon-green for serious workplace content; they read as marketing.
-- **Text scheme**: Text-only or text-with-diagram. Almost never text-on-photo (workplace photos read as stock).
-- **Image source**: Avoid stock business photos. If you need an image, prefer a diagram, a screenshot of a real artifact (Notion, Linear, Figma), or omit. Generated images rarely add value here.
-- **Content shape**: 5-9 pages. Cover question / claim → context KPI → 3-5 numbered insights as ledger → one comparison or pipeline diagram → takeaway.
-- **Pitfalls**:
-  1. **Listicle voice** ("8 个让你..."). Cure: rewrite as a numbered argument, not numbered tips. Each row makes a falsifiable claim, not a platitude.
-  2. **Cheap "advice" energy** — soft language ("一定要", "千万别"). Cure: replace with observed action verbs and a number.
-  3. **Stock-photo seasoning** — handshake, laptop-with-coffee. Cure: omit, or use a small Lucide icon glyph instead.
-
----
-
-## 游戏 · Game
-
-**Strong fit** for journals, recap, build/strat lists. **Has image-rights risk** that the user must accept.
-
-- **Recipes**: M01 (cover with full-bleed art), M08 (boss tier ledger), S07 (takeaway ledger), S11 (chapter timeline), M15 (build before/after).
-- **Style mode**: Editorial dark (ink-classic with paper inverted to near-black) for atmospheric games (黑神话 / Elden Ring). Swiss for esports / competitive data ("胜率 / KDA / 出装").
-- **Text scheme**: Text-on-image is standard for game covers because game art is the primary draw. Use subject mapping and thumbnail checks from `image-overlay.md`; add a localized, image-toned tint only where the title needs support.
-- **Image source**: Wallhaven JSON API (see SKILL.md Step 6) for keyword pulls, official screenshots for specific moments. Always disclose copyright risk and log to `SOURCES.md`. If user opts out of attribution, do not crop the credit out of the image itself.
-- **Content shape**: 4-6 pages. Cover (game name + playtime) → first impression page → chapter-by-chapter ledger → memorable boss / scene page → verdict.
-- **Pitfalls**: 
-  1. **Score-card seriousness** (8.5/10 in a giant block). We're not IGN — keep the verdict as one short clause, not a number.
-  2. **Generic fan-art covers** with the game logo retraced — looks counterfeit. Prefer key art the publisher already released.
-
-See: `local-tests/demo-image-02-wukong/` for a reference build.
-
----
-
-## 影视 · Film & TV
-
-**Strong fit** for reviews, scene analysis, quote cards. **Image-rights risk**, same as Game.
-
-- **Recipes**: M04 (pull quote — for memorable lines), M10 (evidence feature — for scene analysis), M11 (marginalia essay), S02 (two signals — for comparison reviews), S12 (matrix — for film weeklies).
-- **Style mode**: Editorial × ink-classic or × indigo-porcelain. Letterboxd visual vocabulary fits Editorial naturally — serif title, italic original-language subtitle, monospace metadata.
-- **Text scheme**: Text-beside-image for review cards (poster on left, take on right). Text-on-image only for atmospheric "what this film made me feel" quote pages.
-- **Image source**: Official posters / stills. Do not generate fake stills — they look immediately wrong.
-- **Content shape**: For single film: cover (title + year + 1-line take) → 1-2 scene captures → director-quote / theme pullquote → verdict ledger. For weekly: matrix of 6-9 films + one hero recommendation.
-- **Pitfalls**: 
-  1. **Fake film-festival typography** — adding fake awards badges. Don't.
-  2. **Spoiler in title without warning.** If a cover gives away the ending, mark `剧透` in the kicker.
+參見：`local-tests/demo-image-01-yading/` 的參考建置。
 
 ---
 
 ## 美食 · Food
 
-**Split fit.** Recipes work. Food-photo showcase does not.
+**分裂命中。** 食譜可以做，美食照展示做不了。
 
-### What works: recipes & food essays
+### 可以做：食譜與美食隨筆
 
-- **Recipes**: M16 (image-led cover when finished-dish photo is hero-worthy) → S11 (ingredient/price ledger) → M14 (cooking steps pipeline) → M02 (extra dish detail). Also M05 (checklist for shopping list).
-- **Style mode**: Editorial × kraft-paper feels like a cookbook. Swiss × Lemon Yellow / Safety Orange works for "cost-per-serving" data posts.
-- **Text scheme**: Text-with-image. The finished-dish photo is one frame; everything else is text/data.
-- **Image source**: User photos of finished dish are best. For 中式菜品 / 国内餐厅 scenes, try Pexels first (Chinese keyword search hits 国内场景 better than Unsplash). Unsplash food photos read as Western stock; use sparingly.
-- **Content shape**: 5-7 pages. Cover (dish name + one verdict line) → ingredients ledger → numbered steps pipeline → finished-dish photo page → tips / variation marginalia.
+- **Recipes**：M16（成品照夠格當主角時的圖主導封面）→ S11（食材／價格帳本）→ M14（料理步驟 pipeline）→ M02（加菜細節）。也可 M05（採買清單）。
+- **風格模式**：Editorial × kraft-paper 有食譜書感。Swiss × Lemon Yellow／Safety Orange 適合「每份成本」資料貼文。
+- **文圖關係**：text-with-image。成品照是一格，其餘都是文字／資料。
+- **影像來源**：使用者拍的成品照最好。臺式料理／在地餐廳場景先試 Pexels（華語關鍵字對在地場景命中較好）；Unsplash 食物照偏西式 stock，少用。
+- **內容形狀**：5-7 頁。封面（菜名＋一句評語）→ 食材帳本 → 編號步驟 pipeline → 成品照頁 → 小撇步／變化旁註。
 
-### What does not work: food-photo showcase / restaurant reviews requiring drool-shot art direction
+### 做不了：需要「口水直流」美術指導的美食大片／餐廳食記
 
-- We don't shoot food, and stock food photos kill the "I cooked this" trust signal.
-- For restaurant posts, require user-shot photos at the table. If they don't have them, push back — a stock-photo restaurant post is filler.
-- For "look at this cake" pure-display posts, refer the user to a photography-focused workflow, not this skill.
+- 我們不拍食物，stock 食物照會殺掉「這是我煮的」信任感。
+- 餐廳貼文需要使用者在桌邊實拍的照片。沒有就往回推——用 stock 照的餐廳貼文是充數。
+- 純展示「你看這蛋糕」的貼文，請引導使用者走攝影導向的流程，不是這個 skill。
 
-**Pitfalls**:
-1. **Excited recipe voice** ("超绝!!!"). Editorial doesn't shout — let the dish do the talking.
-2. **Calorie-shaming asides** in casual recipes. Drop them.
-
----
-
-## 彩妆 · Makeup
-
-**Split fit.** Tutorials and product reviews work. Selfie-driven "look" posts need user images we can't generate.
-
-### What works
-
-- **Recipes**: M14 (tutorial step pipeline), S12 (product matrix), S11 (空瓶 / 复购 ledger), S02 (色号对比).
-- **Style mode**: Swiss × Lemon Yellow / Lemon Green / Safety Orange for bright product reviews. Editorial × indigo-porcelain for editorial-feel beauty essays.
-- **Text scheme**: Text-with-image. Each step gets a small hand/face crop + a one-sentence instruction.
-- **Image source**: User photos. Stock makeup photos have legal grey areas and look generic.
-- **Content shape**: Tutorial — cover (look name + occasion) → tools/products ledger → 5-7 numbered step pipeline → finish photo → tips marginalia.
-
-### What does not work
-
-- "Get-the-look" posts that rely on a recognizable model face. We can't generate those reliably; user must supply.
-- Trending Y2K / 哥特 / dolly aesthetic decoration — outside the Swiss/Editorial system.
-
-**Pitfalls**:
-1. **Color-swatch inaccuracy** if you eyeball CSS hex from a photo. Always ask the user for the official shade name + hex from the brand.
-2. **Skin-tone homogenization** when scaling photos — preserve user-supplied photos at native ratio.
-
----
-
-## 健身 · Fitness
-
-**Half fit.** Training plans and nutrition data work. Progress photos need user.
-
-- **Recipes**: M14 (workout pipeline), S11 (set/rep ledger), S09 (KPI tower for weekly volume), M15 (before/after — needs user photos).
-- **Style mode**: Swiss × Safety Orange / Lemon Green for energetic training posts. Editorial × forest-ink for "mindful movement / 山系跑步" essays.
-- **Text scheme**: Mostly text-with-data. Progress posts text-beside-image.
-- **Image source**: User progress photos (mandatory for before/after). For ambient illustrations, generated gym/outdoor shots are fine.
-- **Content shape**: Training plan — cover (cycle name + duration) → weekly schedule ledger → per-day pipeline of exercises → recovery / nutrition note → closing data.
-- **Pitfalls**:
-  1. **Fake aspirational numbers** (50 kg 卧推 8 周从 0 起步). Don't.
-  2. **Body-shaming subtext** in before/after captions. Use neutral language.
-
----
-
-## 家居 · Home & Living
-
-**Half fit.** Item recommendations, before/after, and floorplan analysis work. Pure interior-design photo posts need user photos.
-
-- **Recipes**: M16 (image-led cover when user has a strong room photo) → S11 (item ledger with price) → M02 (detail crops). Also M15 (before/after — needs paired user photos), M11 (marginalia for floorplan annotation), M03 (essay-style decor manifesto).
-- **Style mode**: Editorial × kraft-paper / dune for warm rustic homes. Editorial × indigo-porcelain for cool modern. Swiss × IKB for "rental hack data" posts.
-- **Text scheme**: Item recommendations are text-beside-image (small product crop + name + price + reason). Before/after is two photos with mid-page divider.
-- **Image source**: User interior photos. Web-sourced interior images have heavy copyright exposure (Pinterest creators are vigilant) — avoid unless user explicitly authorizes.
-- **Content shape**: Item rec — cover (room + budget) → 4-6 item rows ledger → 1 hero detail crop → closing tip.
-- **Pitfalls**: 
-  1. **Pinterest-aesthetic stock** that the user can't actually reproduce. Stick to what they live in.
-  2. **Price drift** — products move quickly. Don't quote a price more than 90 days old without re-checking.
+**地雷**：
+1. **興奮食譜語氣**（「超絕！！！」）。Editorial 不吼——讓菜自己說話。
+2. **卡路里羞辱**式的旁白。拿掉。
 
 ---
 
 ## 穿搭 · Outfit / Fashion
 
-**Weak fit.** Mood-board essays and product reviews work; OOTD full-body shots are outside our scope.
+**弱命中。** 情緒板隨筆與單品評測可以；OOTD 全身照超出範圍。
 
-### What works
+### 可以做
 
-- **Recipes**: M11 (marginalia essay — "this week I wore"), S12 (item matrix), M04 (style manifesto pull-quote), S11 (capsule wardrobe ledger).
-- **Style mode**: Editorial × ink-classic / indigo-porcelain for editorial-feel essays. Swiss × Lemon Yellow / Safety Orange for capsule-wardrobe data posts.
-- **Text scheme**: Text-beside-image — small item crops as evidence, one full-body hero only if user provides.
-- **Image source**: User OOTD photos (we don't generate body shots). For mood-board context, web-sourced flat-lay or product photos are okay with disclosure.
-- **Content shape**: Capsule guide — cover (season + count) → wardrobe ledger → 1-2 outfit demonstrations → care/styling marginalia.
+- **Recipes**：M11（旁註隨筆——「這週我穿了」）、S12（單品矩陣）、M04（風格宣言 pull-quote）、S11（膠囊衣櫥帳本）。
+- **風格模式**：Editorial × ink-classic／indigo-porcelain 走雜誌隨筆感。Swiss × Lemon Yellow／Safety Orange 走膠囊衣櫥資料貼文。
+- **文圖關係**：text-beside-image——小單品裁切當證據，全身主圖只在使用者提供時放一張。
+- **影像來源**：使用者 OOTD 照（我們不生成人像身體照）。情緒板脈絡用網路來源的平拍或單品照，需揭露。
+- **內容形狀**：膠囊指南——封面（季節＋件數）→ 衣櫥帳本 → 1-2 套穿搭示範 → 保養／搭配旁註。
 
-### What does not work
+### 做不了
 
-- Daily OOTD posts. The skill cannot generate or solicit body photography.
-- High-styling editorial fashion shoots — requires real photography production.
+- 每日 OOTD 貼文。這個 skill 無法生成或索取人體攝影。
+- 高造型的雜誌時裝拍攝——需要真的攝影製作。
 
-**Pitfalls**: 
-1. **Brand-and-price-tag overload** turning every poster into an ad. Limit to 6 named items max.
-2. **Generic "minimalist 25 件夏季基础款" listicle**. Cure: anchor to a specific climate / lifestyle constraint.
-
----
-
-## 情感 · Emotion / Personal Essay
-
-**Weak fit.** Essay-with-pullquote works. Dreamcore / 氛围感 aesthetic does not fit our system.
-
-### What works
-
-- **Recipes**: M04 (pull quote / thesis), M09 (atmospheric thesis), M11 (marginalia essay), M13 (hero question — for rhetorical-question covers), M07 (closing note).
-- **Style mode**: Editorial × ink-classic or × dune. Magazine pace with restraint.
-- **Text scheme**: Mostly text-only with one quiet supporting image. The text is the content.
-- **Image source**: Quiet documentary-style photo (a window, a chair, a hand) — user-supplied is best. If sourcing: **Flickr CC** (`license=2,3,4,5,6,9`) is the strongest match — real interiors, real hands, real moments without stock polish. Pexels for China-context scenes (Chinese keyword search). Unsplash works but skews styled; avoid the "moodcore" gradient-light stock entirely.
-- **Content shape**: 3-5 pages. Cover question → essay split (M03) or atmospheric thesis → pull quote → closing note. Resist over-stretching to 9 pages.
-
-### What does not work
-
-- "梦核 / 氛围感" with soft fluorescent gradients, glowing ovals, hazy lights. Our anti-pattern list explicitly bans those decorations.
-- Y2K / 早期网络回忆 / 千禧辣妹 aesthetic — outside Swiss and Editorial both.
-- Heavy emoji / kaomoji captions. We use no emoji.
-
-**Pitfalls**:
-1. **Inspirational generic copy** ("愿你...愿我..."). Editorial demands specifics — name the day, the weather, the person.
-2. **Pretty empty space** — page after page of one pullquote on paper. Risk: reads as filler. Mix with one M02 field photo or M11 marginalia to ground it.
+**地雷**：
+1. **品牌＋標價塞爆**，每張海報都變廣告。上限 6 個具名單品。
+2. **泛泛的「極簡 25 件夏季基本款」清單**。解法：錨定到具體氣候／生活型態限制。
 
 ---
 
-## 推荐 · Recommended / Mixed
+## 美妝 · Makeup
 
-**Default channel.** This category is the catch-all on the platform; the actual content underneath is always one of the above 10.
+**分裂命中。** 教學與產品評測可以；靠可辨識模特臉的「妝容」貼文需要使用者提供影像。
 
-When the user says 推荐 without specifying, ask which underlying type before designing. If they can't say, default to:
+### 可以做
 
-- Swiss × IKB for "I tested 5 products" → S12 matrix + S11 ledger.
-- Editorial × kraft-paper for "this week's reading / watching" → M02 field notes.
+- **Recipes**：M14（教學步驟 pipeline）、S12（產品矩陣）、S11（空瓶／回購帳本）、S02（色號對比）。
+- **風格模式**：Swiss × Lemon Yellow／Lemon Green／Safety Orange 走明亮產品評測。Editorial × indigo-porcelain 走雜誌感美妝隨筆。
+- **文圖關係**：text-with-image。每步一小張手／臉裁切＋一句指令。
+- **影像來源**：使用者照片。Stock 美妝照有法律灰區又很 generic。
+- **內容形狀**：教學——封面（妝名＋場合）→ 工具／產品帳本 → 5-7 步編號 pipeline → 完妝照 → 小撇步旁註。
+
+### 做不了
+
+- 靠可辨識模特臉的「複製這個妝」貼文。我們無法穩定生成，需使用者提供。
+- 正流行的 Y2K／哥德／dolly 裝飾美學——在 Swiss／Editorial 系統之外。
+
+**地雷**：
+1. **色號不準**——別對著照片憑眼睛抓 CSS hex。一律跟使用者要品牌官方色號名＋hex。
+2. **膚色被均質化**——縮放照片時保留使用者提供照片的原生比例。
 
 ---
 
-## Capability Circle Summary
+## 生活風格／日常 · Lifestyle / Daily
 
-Categories where this skill produces strong work end-to-end (text + structure + image story all from us):
+**看切法命中。** 隨筆帶 pull-quote 可以；夢核／氛圍感裝飾風不合系統。
 
-- 旅行 · 职场 · 推荐 (with subtype)
+### 可以做
 
-Categories where the skill is strong on text/structure but needs user photos for image story:
+- **Recipes**：日常散文走 M04（pull-quote／論點）、M09（氛圍論點）、M11（旁註隨筆）、M13（主題大哉問——修辭疑問封面）、M07（結語）。實物日常（打包／整理／一日流程）走 M16（圖主導封面）→ S11（物件帳本）→ M05（清單）→ M02（細節）。
+- **風格模式**：Editorial × ink-classic 或 × dune，雜誌節奏但收斂。實物日常也可 Swiss × IKB 走「租屋改造資料」感。
+- **文圖關係**：散文向多為 text-only 配一張安靜的圖；實物日常走 text-beside-image。文字是內容主體。
+- **影像來源**：安靜紀實風照片（一扇窗、一張椅、一隻手）——使用者提供最好。若要外找：**Flickr CC**（`license=2,3,4,5,6,9`）最合——真實室內、真實的手、真實時刻，沒有 stock 精修味。Pexels 對臺灣在地場景（華語關鍵字）較好命中。Unsplash 可用但偏造型，「moodcore」漸層光 stock 完全別碰。
+- **內容形狀**：3-5 頁。封面大哉問 → 隨筆分段（M03）或氛圍論點 → pull-quote → 結語。別硬撐到 9 頁。
 
-- 游戏 · 影视 · 美食(食谱) · 彩妆(教程) · 健身 · 家居 · 穿搭(精选)
+### 做不了
 
-Categories that are outside scope (skill cannot reliably produce):
+- 「夢核／氛圍感」的柔螢光漸層、發光橢圓、朦朧光暈。我們的反樣式清單明文禁止這些裝飾。
+- Y2K／早期網路回憶／千禧辣妹美學——在 Swiss 與 Editorial 兩者之外。
+- 大量 emoji／顏文字圖說。我們不用 emoji。
 
-- 美食(菜品大片摆盘) · 穿搭(日常 OOTD 全身) · 情感(梦核 / 氛围感装饰风)
-- Any post requiring high-saturation Y2K / 千禧辣妹 / dolly / kawaii decoration vocabulary
-- Pure photography showcase posts where the image is the entire product
+**地雷**：
+1. **勵志罐頭文案**（「願你…願我…」）。Editorial 要具體——講出那天、那天氣、那個人。
+2. **漂亮的空**——一頁又一頁只有一句 pull-quote 壓在紙上，會讀成充數。混一張 M02 田野照或 M11 旁註把它踩實。
 
-Be explicit with the user when their request lands in the "outside scope" bucket. Do not promise a result the system was not designed to make.
+---
+
+## 居家 · Home & Living
+
+**半命中。** 好物推薦、前後對比、格局分析可以；純室內設計美照貼文需要使用者照片。
+
+- **Recipes**：M16（使用者有一張強的房間照時的圖主導封面）→ S11（含價格的物件帳本）→ M02（細節裁切）。也可 M15（前後對比——需成對使用者照片）、M11（格局標註旁註）、M03（隨筆式裝潢宣言）。
+- **風格模式**：Editorial × kraft-paper／dune 走溫暖鄉村。Editorial × indigo-porcelain 走冷調現代。Swiss × IKB 走「租屋改造資料」貼文。
+- **文圖關係**：好物推薦走 text-beside-image（小產品裁切＋名稱＋價格＋理由）。前後對比是兩張照片＋中線分隔。
+- **影像來源**：使用者室內照。網路來源室內圖版權曝險重（Pinterest 創作者盯很緊）——除非使用者明確授權，否則避免。
+- **內容形狀**：好物推薦——封面（房間＋預算）→ 4-6 列物件帳本 → 1 張主圖細節裁切 → 結語小撇步。
+- **地雷**：
+  1. **Pinterest 美學 stock** 使用者根本重現不了。守住他真的住的樣子。
+  2. **價格漂移**——產品變動快。超過 90 天沒重查的價格別引用。
+
+---
+
+## 健身 · Fitness
+
+**半命中。** 訓練計畫與營養資料可以；進度照需要使用者。
+
+- **Recipes**：M14（訓練 pipeline）、S11（組數／次數帳本）、S09（每週訓練量 KPI 塔）、M15（前後對比——需使用者照片）。
+- **風格模式**：Swiss × Safety Orange／Lemon Green 走活力訓練貼文。Editorial × forest-ink 走「正念運動／山系跑步」隨筆。
+- **文圖關係**：多為 text-with-data。進度貼文走 text-beside-image。
+- **影像來源**：使用者進度照（前後對比必備）。氛圍插圖用生成的健身房／戶外照可以。
+- **內容形狀**：訓練計畫——封面（週期名＋長度）→ 每週課表帳本 → 每日動作 pipeline → 恢復／營養註記 → 結語資料。
+- **地雷**：
+  1. **假的勵志數字**（8 週從 0 到臥推 50kg）。別。
+  2. **前後對比圖說的身材羞辱潛臺詞**。用中性語言。
+
+---
+
+## 寵物 · Pets
+
+**半命中。** 日常紀錄、好物開箱、養寵知識可以；主角本尊需要飼主自己的照片。
+
+- **Recipes**：M16（有一張強的寵物照時的圖主導封面）→ M02（細節／田野照，例如毛孩的一個小動作）→ M11（旁註隨筆，例如養寵日誌）→ S11（帳本，例如用品／每月開銷）→ M07（結語）。養寵成本／疫苗排程等資料走 S09（KPI 塔）或 S11。
+- **風格模式**：Editorial × kraft-paper／dune 走溫暖可愛的日常。Swiss × Safety Orange／Lemon Green 走「養寵成本／疫苗時程」資料貼文。
+- **文圖關係**：text-beside-image（寵物照＋一句圖說）為主；成本／時程走 text-with-data。
+- **影像來源**：飼主自己拍的寵物照（主角必備，stock 貓狗照會殺掉真實感）。純氛圍插圖用生成的場景可以。
+- **內容形狀**：好物開箱——封面（毛孩＋主題）→ 4-6 列用品帳本 → 1 張主圖細節裁切 → 結語小撇步。養寵知識——封面大哉問 → 帳本／pipeline → 結語。
+- **地雷**：
+  1. **靠 emoji／顏文字裝可愛**。我們不用 emoji——讓照片本身可愛。
+  2. **stock 寵物照冒充本尊**。沒有本尊照就往回推，別拿罐頭圖硬湊。
+
+---
+
+## 親子 · Parenting / Family
+
+**半命中。** 育兒日誌、好物清單、副食品／收納流程可以；曬娃全臉照需要謹慎處理隱私。
+
+- **Recipes**：M11（旁註隨筆——育兒日誌）、S11（好物／作息帳本）、M14（步驟 pipeline——副食品做法／收納流程）、M05（清單——出門清單／採買）、M02（田野照細節）、M07（結語）。
+- **風格模式**：Editorial × dune／kraft-paper 走溫暖日常。Swiss × Lemon Green 走清單／作息資料貼文。
+- **文圖關係**：text-beside-image（好物／場景小裁切）或 text-with-data（作息／清單）。
+- **影像來源**：使用者自己的孩子／物件照。**保護孩子的臉**——優先建議用背影、區域性（手、腳、物件）或裁掉臉的構圖；不要把可辨識童臉當封面主體。
+- **內容形狀**：好物清單——封面（月齡／情境＋預算）→ 4-6 列物件帳本 → 1 張細節裁切 → 結語小撇步。育兒日誌——封面 → M11 旁註隨筆 → 結語。
+- **地雷**：
+  1. **曬娃隱私**——預設迴避可辨識童臉，除非使用者明確要求且理解風險。
+  2. **育兒說教語氣**（「一定要」「千萬別」）。換成具體觀察＋數字，別當育兒糾察隊。
+
+---
+
+## 知識／教學（懶人包）· Knowledge / Tutorial
+
+**最強命中。** 這正是 Swiss-International 為它而生的。
+
+- **Recipes**：S01（封面）、S02（對比）、S05（警告列）、S06（pipeline）、S07（重點帳本）、S09（KPI 塔）、S11（堆疊帳本）、S12（矩陣＋主數字）。逐步教學也可 M14（教學步驟 pipeline）。
+- **風格模式**：Swiss × IKB Blue 或 × Safety Orange。嚴肅知識內容避免 lemon-yellow／lemon-green，那讀起來像行銷。
+- **文圖關係**：text-only 或 text-with-diagram。幾乎不用 text-on-photo（懶人包配 stock 照讀起來很假）。
+- **影像來源**：避免 stock 商務照。要圖就優先用圖表、真實產物截圖（Notion、Linear、Figma），或乾脆不放。生成圖在這裡通常沒加分。
+- **內容形狀**：5-9 頁。封面提問／主張 → 脈絡 KPI → 3-5 條編號洞見做成帳本 → 一張對比或 pipeline 圖 → 重點收束。
+- **地雷**：
+  1. **清單語氣**（「8 個讓你…」）。解法：改寫成編號論證，不是編號小撇步。每一列做一個可證偽的主張，不是空話。
+  2. **廉價「建議」能量**——軟語言（「一定要」「千萬別」）。解法：換成觀察到的動作動詞＋一個數字。
+  3. **stock 照調味**——握手、筆電配咖啡。解法：拿掉，或改用一個小 Lucide icon 字元。
+
+---
+
+## 品牌／開箱 · Brand / Unboxing
+
+**看切法命中。** 多產品實測、開箱推薦可以，但要真實質感就需要使用者的產品照。這也是平臺上的「種草」預設頻道。
+
+- **Recipes**：S12（產品矩陣——「我實測了 5 樣」）、S11（含價格帳本）、M16（產品照夠格時的圖主導封面）、M02（細節裁切）、M15（前後對比）。
+- **風格模式**：Swiss × IKB 走「我實測了 N 樣」資料。Editorial × kraft-paper 走生活感開箱。
+- **文圖關係**：text-beside-image（小產品裁切＋名稱＋價格＋理由）。
+- **影像來源**：使用者的產品照（要證明質感、尺寸、使用狀態時必備）。stock 產品照撐不起「我真的用過」。
+- **內容形狀**：實測——封面（品類＋預算）→ 4-6 列產品帳本 → S12 矩陣 → 1 張主圖細節 → 結語推薦。
+- **地雷**：
+  1. **整篇變廣告**——把每張海報都塞成 DM。名具品項上限 6 個。
+  2. **價格漂移**——產品／價格變動快，超過 90 天沒重查別引用。
+
+當使用者只說「推薦」「開箱」卻沒指定實際主題時，先問底下是哪一種（美妝／居家／3C／寵物…）再設計。真的說不出來，預設：Swiss × IKB 走 S12 矩陣＋S11 帳本；Editorial × kraft-paper 走「這週的閱讀／收藏」M02 田野筆記。
+
+---
+
+## 影視／娛樂 · Film, TV & Entertainment
+
+**強命中**（評論、場景分析、金句卡、遊戲手札）。**有影像版權風險**，使用者必須接受。
+
+- **Recipes**：M04（pull-quote——記住的臺詞）、M10（證據特寫——場景分析）、M11（旁註隨筆）、S02（兩訊號——對比評論）、S12（矩陣——影視週報）、M01（滿版主視覺封面）、M08（角色／Boss 分級帳本——排名、遊戲）、S11（章節時間軸）。
+- **風格模式**：Editorial × ink-classic 或 × indigo-porcelain。氛圍向作品（含遊戲）走 Editorial 深色（ink-classic 把 paper 反成近黑）。電競／票房資料走 Swiss。Letterboxd 的視覺語彙天生合 Editorial——serif 標題、斜體原文副標、mono metadata。
+- **文圖關係**：封面標配 text-on-image，因為主視覺／劇照／遊戲美術是主要吸引力。用 `image-overlay.md` 的主體對映與縮圖檢查；只在標題需要支撐處補一層跟影像同調的在地化色調。
+- **影像來源**：官方海報／劇照／主視覺；遊戲關鍵字可用 Wallhaven JSON API（見 `SKILL.md` Step 6）。**一律揭露版權風險並記錄到 `SOURCES.md`**。別生成假劇照——一眼就假。使用者選擇不標註時，也不要把圖片內的來源浮水印裁掉。
+- **內容形狀**：單片——封面（片名＋年份＋一句評語）→ 1-2 張場景擷取 → 導演金句／主題 pull-quote → 評分帳本。週報——6-9 部矩陣＋一部主推。遊戲——封面（遊戲名＋遊玩時數）→ 首印象 → 章節帳本 → 難忘 Boss／場景 → 結論。
+- **地雷**：
+  1. **假影展排版**——加假的獎項徽章。別。
+  2. **標題暴雷不標警語**——封面若洩底，在 kicker 標「劇透」。
+  3. **山寨感的同人封面**（重描遊戲／片名 logo）看起來像盜版。用發行商已釋出的主視覺。
+  4. **打分數的嚴肅**（大大一格 8.5/10）。我們不是 IGN／爛番茄——評語留一句短句，不是一個數字。
+
+參見：`local-tests/demo-image-02-wukong/` 的參考建置。
+
+---
+
+## 能力圈總結
+
+這個 skill 能端到端做出強作品（文字＋結構＋影像故事全部由我們產）的型別：
+
+- 旅行 · 知識／教學（懶人包）· 生活風格／日常（散文向，含少量安靜配圖）
+
+文字／結構很強、但影像故事需要使用者照片的型別：
+
+- 美食（食譜）· 美妝（教學）· 穿搭（精選）· 健身 · 居家 · 寵物 · 親子 · 品牌／開箱 · 影視／娛樂（需官方海報／劇照／主視覺，含版權風險）
+
+超出範圍（這個 skill 無法穩定產出）的型別：
+
+- 美食（菜品大片擺盤）· 穿搭（日常 OOTD 全身）· 生活風格（夢核／氛圍感裝飾風）· 親子（可辨識童臉的曬娃主視覺）
+- 任何需要高飽和 Y2K／千禧辣妹／dolly／kawaii 裝飾語彙的貼文
+- 影像本身即整個成品的純攝影展示貼文
+
+當使用者的需求落在「超出範圍」時，要對他明講。別承諾這個系統做不出的結果。

@@ -12,7 +12,7 @@
  *   R2  footer collision      .foot is position:absolute AND content above reaches into its band
  *   R3  swiss bold display    .h-xl / .h-hero / .h-statement / .num-mega with computed weight >= 600
  *   R4  min readable font     body/lead/caption/label/meta below the mobile-safe floor
- *   R5  4-band density        on 3:4 boards: <75% filled OR any under-filled band > 216px
+ *   R5  4-band density        on 4:5 boards: <75% filled OR any under-filled band > 202px
  *   R6  h-xl hard cap         display title lines/chars exceed the per-board cap
  *   R7  figure margin drift    browser-default <figure> margin offsets media alignment
  *   R8  visual bounds          measured top/bottom blank space and visual overflow
@@ -86,9 +86,9 @@ const MIN_FONT = {
 };
 
 const HXL_CAPS = {
-  xhs:    { maxLines: 2, maxChars: 8 },
+  post:   { maxLines: 2, maxChars: 8 },
   square: { maxLines: 2, maxChars: 7 },
-  wide:   { maxLines: 1, maxChars: 14 },
+  story:  { maxLines: 3, maxChars: 12 },
 };
 
 const DISPLAY_CLASSES = ["h-xl", "h-hero", "h-statement", "h-display", "num-mega", "num-xl"];
@@ -110,14 +110,14 @@ function overflowFix(px) {
 for (const s of sections) {
   const meta = await s.evaluate(el => {
     const w = el.clientWidth, h = el.clientHeight;
-    let board = el.classList.contains("xhs") ? "xhs"
+    let board = el.classList.contains("post") ? "post"
               : el.classList.contains("square") ? "square"
-              : el.classList.contains("wide") ? "wide" : null;
+              : el.classList.contains("story") ? "story" : null;
     if (!board) {
       const ratio = w / h;
-      if (Math.abs(ratio - 0.75) < 0.02) board = "xhs";        // 3:4
-      else if (Math.abs(ratio - 1.0) < 0.02) board = "square"; // 1:1
-      else if (Math.abs(ratio - 7 / 3) < 0.05) board = "wide"; // 21:9
+      if (Math.abs(ratio - 0.8) < 0.02) board = "post";          // 4:5
+      else if (Math.abs(ratio - 1.0) < 0.02) board = "square";   // 1:1
+      else if (Math.abs(ratio - 9 / 16) < 0.02) board = "story"; // 9:16
       else board = "unknown";
     }
     return { id: el.id || "(no-id)", dataId: el.dataset.id || "", board, clientH: h, scrollH: el.scrollHeight, clientW: w };
@@ -220,7 +220,7 @@ for (const s of sections) {
         fix: "move the content group down by the measured overflow plus 16-24px",
       });
     }
-    const bottomGapLimit = meta.board === "wide" ? 130 : meta.board === "square" ? 160 : 190;
+    const bottomGapLimit = meta.board === "story" ? 300 : meta.board === "square" ? 160 : 190;
     if (visualBounds.bottomGap > bottomGapLimit && visualBounds.activeRatio < 0.78) {
       warns.push({
         rule: "R8",
@@ -350,7 +350,7 @@ for (const s of sections) {
   }
 
   // R5 4-band density (3:4 only)
-  if (meta.board === "xhs") {
+  if (meta.board === "post") {
     const bands = await s.evaluate(el => {
       const er = el.getBoundingClientRect();
       const H = el.clientHeight;
@@ -460,7 +460,7 @@ for (const s of sections) {
       if (!title.textContent.trim()) continue;
       const tr = title.getBoundingClientRect();
       const isLocal = title.matches(".h-md, .row-title, .step-title");
-      const minGap = isLocal ? 16 : board === "wide" ? 24 : 28;
+      const minGap = isLocal ? 16 : board === "story" ? 24 : 28;
       let nearest = null;
       let nearestGap = Infinity;
       for (const node of nodes) {

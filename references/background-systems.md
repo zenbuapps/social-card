@@ -1,20 +1,20 @@
-# Background Systems
+# 背景系統
 
-The original Guizang PPT electronic-magazine mode uses WebGL fluid, contour, ink, and chromatic atmosphere. Static Rednote/WeChat images should preserve that feeling when the style mode is Editorial Magazine x E-ink.
+原始的 Guizang PPT 電子雜誌模式使用 WebGL 流體、等高線、水墨與色彩氛圍。當風格模式為 Editorial Magazine x E-ink 時，靜態 Instagram 圖片應保留這種感覺。
 
-Do not reduce this mode to a flat beige page with a faint grid. Do not add visible grid, dot-matrix, or drafting-paper patterns to the background.
+不要把這個模式簡化成一張淺米色配上一層淡淡網格的平面。不要在背景加上明顯的網格、點陣或方格紙圖樣。
 
-## Layer Model
+## 分層模型
 
-Use 3-5 layers:
+使用 3-5 層：
 
-1. Paper base from `theme-presets.md`.
-2. Procedural paper grain.
-3. Ink wash, contour field, or WebGL fluid canvas.
-4. Optional hairline structure as content dividers only, not as a page-wide background grid.
-5. Content layer.
+1. 來自 `theme-presets.md` 的紙張底色。
+2. 程式化的紙張顆粒（grain）。
+3. 水墨暈染、等高線場，或 WebGL 流體 canvas。
+4. 選用的髮絲線結構，只當內容分隔線用，不要當作整頁的背景網格。
+5. 內容層。
 
-Recommended CSS order:
+建議的 CSS 層序：
 
 ```html
 <section class="poster magazine hero">
@@ -46,28 +46,28 @@ Recommended CSS order:
 .content { position:relative; z-index:3; }
 ```
 
-## When To Show WebGL
+## 何時該顯示 WebGL
 
-Use stronger visible atmosphere for:
+在以下場合使用較強、較明顯的氛圍：
 
-- Cover.
-- Chapter/divider.
-- Pull quote.
-- Sparse thesis page.
-- Closing page.
+- 封面。
+- 章節／分隔頁。
+- Pull quote。
+- 稀疏的論點頁。
+- 結尾頁。
 
-Use subtle atmosphere for:
+在以下場合使用細微的氛圍：
 
-- Screenshot pages.
-- Dense ledgers.
-- Checklists.
-- Product evidence pages.
+- 截圖頁。
+- 密集的 ledger。
+- Checklist。
+- 產品佐證頁。
 
-If screenshots are the main evidence, the background should support them rather than compete with them.
+如果截圖是主要佐證，背景應該襯託它，而不是跟它爭搶注意力。
 
-## WebGL Helper
+## WebGL 輔助工具
 
-The skill includes `assets/magazine-bg-webgl.js`, a small helper for a deterministic ink-flow background:
+本 skill 內含 `assets/magazine-bg-webgl.js`，一個用來產生確定性 ink-flow 背景的小工具：
 
 ```html
 <canvas class="mag-bg" data-seed="workbuddy"></canvas>
@@ -85,24 +85,24 @@ The skill includes `assets/magazine-bg-webgl.js`, a small helper for a determini
 </script>
 ```
 
-For screenshot exports, prefer `frozenTime` so repeated renders look stable.
+匯出截圖時，建議用 `frozenTime`，這樣重複算圖的結果才會穩定一致。
 
-## 2D Fallback
+## 2D 後備方案
 
-If WebGL fails, create a 2D canvas with:
+如果 WebGL 失效，改用 2D canvas 畫出：
 
-- Large radial ink wash.
-- Several translucent contour arcs.
-- Soft paper noise or uneven ink wash.
-- Theme color at very low opacity.
+- 大面積的放射狀水墨暈染。
+- 數道半透明的等高線弧線。
+- 柔和的紙張雜訊或不均勻的水墨暈染。
+- 極低透明度的主題色。
 
-The output should still feel like an editorial background, not a plain fill.
+輸出結果仍應該像一張編輯風背景，而不是單調的純色填滿。
 
-## Do Not
+## 不要這樣做
 
-- Do not use bright gradients.
-- Do not use page-wide grid, dot-matrix, graph-paper, or drafting-paper backgrounds.
-- Do not use decorative blobs or circles with no relationship to the layout.
-- Do not place strong background marks behind body text.
-- Do not let WebGL obscure screenshots or small captions.
-- Do not animate the final image sequence unless the task is video.
+- 不要用鮮豔的漸層。
+- 不要用整頁的網格、點陣、方格紙或製圖紙背景。
+- 不要用與版面毫無關聯的裝飾性色塊或圓圈。
+- 不要在內文後方放強烈的背景痕跡。
+- 不要讓 WebGL 蓋住截圖或小字說明。
+- 除非任務是影片，否則不要為最終的圖片序列加上動畫。

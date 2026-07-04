@@ -1,188 +1,188 @@
-# Style System
+# 風格系統
 
-This skill extracts Guizang PPT visual principles for static social images. It does not depend on the original PPT templates.
+本 skill 從 Guizang PPT 萃取視覺原則，用於製作靜態社群圖片。它不依賴原始的 PPT 模板。
 
-## Shared Rules
+## 共通規則
 
-- Content shape decides layout. Do not pick a pretty layout first and invent content to fit it.
-- Use strong hierarchy: title, hook, evidence, caption, metadata.
-- Use real images as evidence or atmosphere, not decoration.
-- Avoid visible clutter: no random SVG circles, oval drops, blobs, bokeh, ornamental stickers, fake diagram decorations, or decorative gradients.
-- Keep all pages in a package visually related through grid, typography, palette, and recurring metadata.
-- Every page should have a clear focal point.
+- 由內容的形狀決定版面。不要先挑一個漂亮的版面，再硬編內容去塞。
+- 使用強烈的層次：標題、hook、佐證、圖說、metadata。
+- 用真實的圖片當佐證或氛圍，不要當裝飾。
+- 避免看得見的雜訊：不要隨機的 SVG 圓圈、橢圓水滴、色塊、散景、裝飾貼紙、假的圖表裝飾，或裝飾性漸層。
+- 讓一個組合裡的所有頁面，透過網格、字型排印、色板與反覆出現的 metadata 在視覺上彼此相關。
+- 每一頁都應該有明確的視覺焦點。
 
-## Style ↔ content type are decoupled
+## 風格 ↔ 內容型別是解耦的
 
-The two modes below are **visual stances, not content categories**. Any topic can be rendered in either mode — what changes is the page's feel and which structural devices are available (ledger / marginalia / pull quote vs matrix / KPI tower / h-bar). Pick by editorial intent ("feature story" vs "release note" / "system explainer"), not by topic lookup. The lists below are *good fits*, not exhaustive.
+下面兩種模式是**視覺立場，不是內容分類**。任何主題都能用其中任一模式呈現——改變的是頁面的質感，以及可用的結構裝置（ledger／邊註／pull quote，對比 matrix／KPI tower／h-bar）。要依編輯意圖來挑（「特寫報導」對比「release note」／「系統解說」），不是靠主題查表。下面的清單是*合適的例子*，不是窮盡列舉。
 
-## Mode A: Editorial Magazine x E-ink
+## Mode A：Editorial Magazine x E-ink
 
-Good fits: outdoor, lifestyle, reflective, humanistic, cultural, narrative — but also workplace essays, AI think-pieces, product retrospectives, anything that wants a slow magazine-feature pace.
+適合：戶外、生活風格、反思、人文、文化、敘事——但也適合職場隨筆、AI 觀點文、產品回顧，以及任何想要慢步調雜誌特寫感的內容。
 
-Visual anchors:
+視覺錨點：
 
-- Serif or Songti-like display title plus quiet sans-serif body text.
-- Warm paper, deep ink, refined greys, restrained color.
-- WebGL or procedural ink/contour atmosphere, especially on covers, dividers, pull quotes, and sparse pages.
-- Documentary photography, field-note captions, issue labels, page numbers.
-- Large but purposeful whitespace.
-- Fine rules, magazine columns, image captions, pull quotes, and editorial contrast.
-- Subtle paper texture is allowed; it must not lower text readability.
+- 襯線或宋體感的展示標題，搭配安靜的無襯線內文。
+- 溫暖的紙張、深墨、細緻的灰、剋制的色彩。
+- WebGL 或程式化的水墨／等高線氛圍，尤其用在封面、分隔頁、pull quote 與稀疏的頁面。
+- 紀實攝影、田野筆記式圖說、issue 標籤、頁碼。
+- 大面積但有目的的留白。
+- 細緻的分隔線、雜誌欄位、圖說、pull quote，以及編輯式對比。
+- 允許細微的紙張紋理；但不能降低文字的可讀性。
 
-Use one of the 6 magazine palettes in `theme-presets.md`. Do not improvise arbitrary warm paper colors. Five palettes are light (paper-and-ink); one — **Midnight Ink** — is the only sanctioned dark variant, reserved for content where the source imagery is already dark (game art, night photography, cinematic covers). Do not invent a second dark palette.
+使用 `theme-presets.md` 裡 6 個雜誌色板之一。不要即興發明任意的溫暖紙張色。五個色板是淺色（紙與墨）；只有一個——**Midnight Ink**——是唯一被認可的深色版本，保留給素材本身就偏暗的內容（遊戲美術、夜景攝影、電影感封面）。不要發明第二個深色色板。
 
-**Typography stance — "the larger, the lighter."** This rule is non-negotiable for Editorial. Display titles run at **weight 500** with **wide tracking** (`+.03em` to `+.04em`). Small text (kicker, meta, label) is the *only* place where weight 500 is paired with mono uppercase and wide letter-spacing (`+.20em` to `+.22em`). Body uses **serif-zh**, not sans. The anti-pattern — 700 to 900 weight display, sans body, negative tracking — collapses Editorial into a generic "infographic banner" look. If a page feels heavy or shouty, the title is too bold or the body switched to sans. See `local-tests/demo-showcase/editorial.html` for source-of-truth.
+**字型排印立場——「越大越輕」。** 這條規則對 Editorial 而言沒有商量餘地。展示標題以**字重 500** 搭配**寬字距**（`+.03em` 到 `+.04em`）呈現。小字（kicker、meta、label）是*唯一*可以把字重 500 搭配等寬大寫與寬字母間距（`+.20em` 到 `+.22em`）的地方。內文用 **serif-zh**，不是無襯線。反面模式——700 到 900 字重的展示標題、無襯線內文、負字距——會讓 Editorial 崩塌成一般的「資訊圖 banner」外觀。如果一頁感覺很重或很吵，就是標題太粗，或內文換成了無襯線。請以 `local-tests/demo-showcase/editorial.html` 為準。
 
-Layout patterns:
+版面模式：
 
-- Cover: big title top or left, large photo/image evidence, bottom checklist or issue-strip.
-- Feature page: one large image plus a narrow column of compressed explanation.
-- Checklist page: editorial header, numbered items, one supporting image crop or icon-free diagram.
-- Quote/takeaway page: large pull quote with small source/context row.
-- Comparison page: two-column tension, simple labels, one visual anchor.
+- 封面：大標題置頂或置左，大張照片／圖片佐證，底部放 checklist 或 issue-strip。
+- 特寫頁：一張大圖，加上一欄窄而濃縮的說明。
+- Checklist 頁：編輯式頁首、編號專案，加一張輔助的圖片裁切或無 icon 的圖示。
+- 引言／重點頁：大的 pull quote，配一小列來源／脈絡。
+- 對比頁：兩欄張力、簡單的標籤、一個視覺錨點。
 
-Background rule:
+背景規則：
 
-- A flat paper color is not enough for this mode. Use a layered background from `background-systems.md`: paper base, subtle grain, ink wash or contour field, and optional WebGL canvas. The background should create atmosphere while keeping text readable.
+- 這個模式光靠一個平面紙張色是不夠的。請用 `background-systems.md` 裡的分層背景：紙張底色、細微顆粒、水墨暈染或等高線場，以及選用的 WebGL canvas。背景應該營造氛圍，同時保持文字可讀。
 
-## Mode B: Swiss International
+## Mode B：Swiss International
 
-Good fits: AI tools, product updates, engineering workflows, software explainers, release notes, comparison posts — but also travel ledgers, expense logs, fitness data, recipe step counts, anything that wants a engineered/quantified pace. Topic is not the gate; visual stance is.
+適合：AI 工具、產品更新、工程流程、軟體解說、release note、對比貼文——但也適合旅行帳本、開銷記錄、健身資料、食譜步驟計數，以及任何想要工程／量化步調的內容。主題不是關卡；視覺立場才是。
 
-Visual anchors:
+視覺錨點：
 
-- Inter, Helvetica Neue, Noto Sans SC feeling.
-- Very light display weights for huge type; stronger weights for small labels.
-- Strict 12/16-column grid, left alignment, asymmetric whitespace.
-- White/off-white, black, refined greys, exactly one high-saturation accent.
-- Straight modules, hairline rules, no rounded cards, no shadows, no glassmorphism.
+- Inter、Helvetica Neue、Noto Sans SC 的感覺。
+- 巨大字型用極輕的展示字重；小標籤用較強的字重。
+- 嚴格的 12／16 欄網格、靠左對齊、不對稱留白。
+- 白／米白、黑、細緻的灰，剛好一個高飽和的重點色。
+- 直角模組、髮絲線，不要圓角卡片、不要陰影、不要玻璃質感。
 
-Use one of the 4 Swiss accent palettes in `theme-presets.md`. One package gets exactly one accent.
+使用 `theme-presets.md` 裡 4 個 Swiss 重點色板之一。一個組合剛好用一個重點色。
 
-Rules:
+規則：
 
-- Use one accent only. Do not mix blue, yellow, green, and orange.
-- Avoid gradients. Use pure color blocks, hairline rules, and grid modules.
-- Headings usually sit on the top-left content axis, not center, except special square covers or explicit poster compositions.
-- Huge text should be lighter; small text should be heavier.
-- Images are proof blocks. Use straight edges and stable aspect-ratio containers.
+- 只用一個重點色。不要混用藍、黃、綠、橘。
+- 避免漸層。用純色塊、髮絲線與網格模組。
+- 標題通常落在左上的內容軸線上，而不是置中，除非是特殊的方形封面或明確的海報式構圖。
+- 巨大字型要更輕；小字要更重。
+- 圖片是佐證色塊。使用直角邊緣與穩定比例的容器。
 
-Typography guidance:
+字型排印指引：
 
-| Role | Size Guidance | Weight |
+| 角色 | 尺寸指引 | 字重 |
 | --- | --- | --- |
-| Main cover title | 84-128px on 1080x1440 | 200-400 |
-| Page title | 52-82px | 300-500 |
-| Body copy | 28-42px | 400-500 |
-| Captions/meta | 20-28px | 500-650 |
+| 主封面標題 | 1080×1350 上 84-128px | 200-400 |
+| 頁面標題 | 52-82px | 300-500 |
+| 內文 | 28-42px | 400-500 |
+| 圖說／meta | 20-28px | 500-650 |
 
-Chinese titles are visually dense. Shorten first, then reduce size. Do not solve overflow by shrinking body text below readability.
+中文標題在視覺上很密。先精簡，再縮小尺寸。不要靠把內文縮到低於可讀範圍來解決溢位。
 
-## Image Rules
+## 圖片規則
 
-- Photos: crop with intent. Keep faces, hands, products, and main objects in safe areas.
-- Product screenshots: preserve text; use `object-fit:contain` when detail matters.
-- Hardware photos: make the object a first-viewport signal. The photo should be large enough to inspect.
-- Generated images: generate only the image content, not the final poster with text.
-- Do not make generated images include page chrome, titles, borders, captions, or fake UI unless required by the concept.
+- 照片：有意圖地裁切。把臉、手、產品與主要物件留在安全區內。
+- 產品截圖：保留文字；細節重要時用 `object-fit:contain`。
+- 硬體照片：讓物件成為第一屏的訊號。照片要大到足以端詳。
+- 生成圖片：只生成圖片內容，不要生成含文字的最終海報。
+- 除非概念需要，否則不要讓生成圖片包含頁面外框、標題、邊框、圖說或假的 UI。
 
 ## Bad Smells
 
-Revise if you see:
+看到以下情況就要修：
 
-- A page that looks like a generic template with the article pasted in.
-- Large empty lower area across multiple pages.
-- Decorative shapes that do not explain anything.
-- Screenshots too small to read.
-- Inconsistent margins between pages.
-- Blue text on black or dark photo with poor contrast.
-- A 1:1 cover that is a cramped crop of a 21:9 cover.
+- 一頁看起來像把文章貼進通用模板。
+- 多頁下方都有大片空白。
+- 沒有解釋任何東西的裝飾性形狀。
+- 截圖小到讀不清。
+- 頁與頁之間的邊距不一致。
+- 黑底或暗色照片上的藍字，對比很差。
+- 一張 1:1 封面，只是把 9:16 封面硬裁出來的擁擠版本。
 
-## Style Identity Test
+## 風格身分測試
 
-A poster compiles cleanly long before its style identity is right. Run this test on every page before delivering.
+一張海報在它的風格身分對之前，老早就能乾淨編譯了。交付前對每一頁跑這個測試。
 
-### Swiss identity test
+### Swiss 身分測試
 
-A poster is Swiss only if **all four** hold:
+一張海報只有在**四項全部**成立時才算 Swiss：
 
-1. Every large display title (>=72px on 1080x1440) uses a typed class from `components.md` (`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`). Its computed `font-weight` is `<=300`.
-2. No serif family is loaded in the document head. No element uses `font-family: serif` or `Noto Serif SC` / `Playfair Display`.
-3. Section separators are hairline rules (1-2px) or grid gutters, not card borders + drop shadows.
-4. Exactly one accent palette is in use. No mixed accents across pages.
+1. 每個大型展示標題（1080×1350 上 >=72px）都使用 `components.md` 裡的具名 class（`.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`）。它算出來的 `font-weight` 是 `<=300`。
+2. 檔案的 head 沒有載入任何襯線字型族。沒有任何元素使用 `font-family: serif` 或 `Noto Serif SC` / `Playfair Display`。
+3. 段落分隔是髮絲線（1-2px）或網格 gutter，不是卡片邊框 + 投影。
+4. 剛好一個重點色板在使用。跨頁沒有混用重點色。
 
-If any one of these fails, the poster is not Swiss — it is generic editorial or "Swiss-flavored card". Fix it or relabel the package.
+只要其中一項失敗，這張海報就不是 Swiss——它是一般的 editorial 或「Swiss 風味卡片」。修正它，或誠實地把這個組合重新歸類。
 
-### Editorial identity test
+### Editorial 身分測試
 
-A poster is Editorial only if **all three** hold:
+一張海報只有在**三項全部**成立時才算 Editorial：
 
-1. The background has at least one atmosphere layer beyond a flat fill: paper grain, ink wash, frozen WebGL canvas, or contour field (see `background-systems.md`). A page-wide solid `#f3f0e8` with nothing on top is not Editorial.
-2. The display title uses a serif-zh / serif-en family (`Noto Serif SC` / `Songti SC` / `Playfair Display`).
-3. The poster contains at least one of: a large photo well, a serif pull-quote with em-italic English, a left/right marginalia column, or a ledger with real magazine row hierarchy.
+1. 背景至少有一層平塗以外的氛圍層：紙張顆粒、水墨暈染、凍結的 WebGL canvas，或等高線場（見 `background-systems.md`）。一整頁純色 `#f3f0e8` 上面什麼都沒有，不是 Editorial。
+2. 展示標題使用 serif-zh / serif-en 字型族（`Noto Serif SC` / `Songti SC` / `Playfair Display`）。
+3. 海報至少包含以下其中之一：一個大的照片井、一個帶 em-italic 英文的襯線 pull quote、一個左／右邊註欄，或一個具備真正雜誌列層次的 ledger。
 
-If a poster has a serif title, mono labels everywhere, structured pill grids, and a flat paper background — it is **Swiss-with-a-serif**, not Editorial. Either add atmosphere + magazine structure, or switch the package to Swiss honestly.
+如果一張海報有襯線標題、到處都是等寬標籤、結構化的膠囊格點，加上一個平面紙張背景——那它是 **Swiss-with-a-serif**，不是 Editorial。要嘛加上氛圍 + 雜誌結構，要嘛誠實地把這個組合換成 Swiss。
 
-## Anti-Patterns From Real Demos
+## 來自真實 Demo 的反面模式
 
-These all rendered without errors and looked plausible in isolation, but failed once compared against a clean reference.
+以下這些都沒有報錯就算圖成功，單看也很合理，但一旦拿去跟乾淨的參考比對就露餡了。
 
-### Anti-pattern A: thick big title in Swiss
+### 反面模式 A：Swiss 裡又粗又大的標題
 
 ```html
-<!-- WRONG: inline 700-800 weight on a huge title -->
-<h1 style="font-size: 92px; font-weight: 800">如果只能留 5 个,我留这些。</h1>
+<!-- 錯誤：在巨大標題上用 inline 700-800 字重 -->
+<h1 style="font-size: 92px; font-weight: 800">如果只能留 5 個，我留這些。</h1>
 
-<!-- RIGHT: typed class, automatic 200-300 weight -->
-<h1 class="h-statement">如果只能<br>留 <em>5 个</em>,<br>我留这些。</h1>
+<!-- 正確：用具名 class，自動 200-300 字重 -->
+<h1 class="h-statement">如果只能<br>留 <em>5 個</em>，<br>我留這些。</h1>
 ```
 
-"The larger, the lighter" is a hard rule. A 90px h1 at weight 700+ instantly downgrades the design from Swiss International to generic landing-page editorial. Always reach for `.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`. Do not bypass them with inline `font-size` + `font-weight`.
+「越大越輕」是硬規則。一個 90px 的 h1 用 700+ 字重，會立刻把設計從 Swiss International 降級成一般 landing-page editorial。永遠優先用 `.h-hero` / `.h-statement` / `.h-xl` / `.num-mega`。不要用 inline `font-size` + `font-weight` 繞過它們。
 
-### Anti-pattern B: Editorial without atmosphere
+### 反面模式 B：沒有氛圍的 Editorial
 
-A page with all of the following looks Swiss-in-disguise even if you intended Editorial:
+一頁如果同時具備以下所有特徵，即使你本意是 Editorial，看起來也會像偽裝的 Swiss：
 
-- Single flat paper color, no grain, no ink wash, no WebGL,
-- Mono labels (`IBM Plex Mono uppercase`) on every kicker, foot, pill, and row label,
-- A serif headline floating alone with no large image, pull quote, or marginalia column.
+- 單一平面紙張色，沒有顆粒、沒有水墨暈染、沒有 WebGL，
+- 每個 kicker、foot、pill、列標籤都用等寬標籤（`IBM Plex Mono uppercase`），
+- 一個襯線標題孤零零地浮著，沒有大圖、pull quote 或邊註欄。
 
-Fix by **one** of:
+用以下**其中一個**方法修正：
 
-- Add the paper grain + ink-wash background per `background-systems.md`.
-- Replace mono labels with serif / italic micro copy.
-- Introduce a large photo or serif pull quote with column structure.
-- Switch the package to Swiss honestly — the content might want Swiss.
+- 依 `background-systems.md` 加上紙張顆粒 + 水墨暈染背景。
+- 把等寬標籤換成襯線／斜體微文案。
+- 引入一張大照片，或帶欄位結構的襯線 pull quote。
+- 誠實地把這個組合換成 Swiss——這內容說不定就想要 Swiss。
 
-### Anti-pattern C: footer overlap (closing essay collides with `.foot`)
+### 反面模式 C：頁尾重疊（結尾隨筆撞到 `.foot`）
 
-When `.foot` or `.issue-strip` is positioned with `position: absolute; bottom: ...`, any content above that grows past its expected height crashes through the footer. Use one of these safe patterns instead:
+當 `.foot` 或 `.issue-strip` 用 `position: absolute; bottom: ...` 定位時，任何在它上方、長度超過預期高度的內容，都會撞穿頁尾。改用以下其中一種安全模式：
 
 ```css
-/* Pattern A — flex column. Foot is the last child, pushed by margin-top: auto. */
+/* 模式 A —— flex 直欄。foot 是最後一個子元素，用 margin-top: auto 往下推。 */
 .poster .pad { display: flex; flex-direction: column; height: 100%; }
 .poster .foot { margin-top: auto; }
 
-/* Pattern B — grid with fixed footer row. */
+/* 模式 B —— 帶固定頁尾列的 grid。 */
 .poster .pad { display: grid; grid-template-rows: auto 1fr auto; height: 100%; }
 ```
 
-Both seed templates already use Pattern A. Preserve it. If a recipe truly needs an absolutely-positioned foot, reserve `padding-bottom: <foot-height + 24px>` on the content container.
+兩個種子模板都已經用模式 A。請保留它。如果某個 recipe 真的需要絕對定位的 foot，就在內容容器上保留 `padding-bottom: <foot 高度 + 24px>`。
 
-### Anti-pattern D: full-bleed photo with title crossing the subject
+### 反面模式 D：滿版照片，標題壓過主體
 
-The poster looks dramatic at 100% zoom and unreadable at thumbnail size. Two common subfailures:
+這張海報在 100% 縮放時看起來很有戲劇性，縮到縮圖大小卻讀不出來。兩種常見的子失敗：
 
-- A hero photo covers the entire poster, the title sits directly on whatever pixel happens to be behind it. The image's own brightness varies across the canvas, so the title is legible in some bands and invisible in others.
-- A mask layer is present but only on one band (bottom), while the subject's face was pushed to the top by `object-position: center top`. The display title lands across the face.
+- 一張主視覺照片鋪滿整張海報，標題就直接壓在後方剛好的那些畫素上。圖片自身的亮度在畫面上各處不一，所以標題在某些帶狀區可讀、在另一些卻隱形。
+- 有一層遮罩，但只在單一帶狀區（底部），而主體的臉卻被 `object-position: center top` 推到了頂部。展示標題就落在臉上。
 
-Both pass HTML linting; both fail the thumbnail readability test.
+兩者都能透過 HTML linting；兩者都無法透過縮圖可讀性測試。
 
-Fix by following `image-overlay.md`:
+依 `image-overlay.md` 修正：
 
-1. **Qualify the photo first.** It needs a low-detail quiet zone and restrained light. If it fails, switch to a framed-photo recipe instead of forcing text on top.
-2. **Map the subject before placing the title.** Read the image, describe in plain language where the face/focal feature sits, record the subject map as an HTML comment next to the hero block. Place text only in documented safe zones.
-3. **Match `object-position` to subject location** — see the table in `image-overlay.md`. Never leave it at default for face / hero shots.
-4. **Thumbnail test** — render the PNG, downscale to 360 px wide, and look at the title. If it fights the photo, add a localized, image-toned tint only around the title area; if the photo looks dead, the tint is too heavy or the photo is wrong.
+1. **先為照片做資格審查。** 它需要一個低細節的安靜區與剋制的光線。如果不合格，就改用有外框的照片 recipe，別硬把文字壓上去。
+2. **放標題前先標定主體。** 讀一遍圖片，用白話描述臉／焦點特徵在哪，把 subject map 記成 hero 區塊旁的 HTML 註解。文字只放在有記錄的安全區內。
+3. **讓 `object-position` 對上主體位置**——見 `image-overlay.md` 裡的表格。臉／主視覺照片絕不要用預設值。
+4. **縮圖測試**——把 PNG 算出來，縮到 360 px 寬，看標題。如果它跟照片打架，就只在標題周圍加上一層區域性、與圖片色調相符的染色；如果照片看起來死掉了，就是染色太重或照片本身選錯了。
 
-This anti-pattern survives almost every other check because the HTML is valid, the image loads, and the title renders. The only way to catch it is to look at the rendered output at the size readers will actually see it.
+這個反面模式幾乎能躲過所有其他檢查，因為 HTML 有效、圖片載入、標題也算得出來。唯一抓得到它的方法，就是用讀者實際會看到的尺寸去看算出來的結果。

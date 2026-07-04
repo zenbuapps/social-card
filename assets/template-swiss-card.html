@@ -2,7 +2,7 @@
 <html lang="zh-CN" data-accent="ikb">
 <head>
   <meta charset="utf-8">
-  <title>[必填] 替换为社交卡组标题 · Social Card Set</title>
+  <title>[必填] 替換為社交卡組標題 · Social Card Set</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,10 +13,10 @@
        Swiss International — Social Card Seed Template
        ---------------------------------------------------------
        Three boards built in one HTML:
-         .poster.xhs      1080×1440  (3:4   小红书)
-         .poster.square   1080×1080  (1:1   微信方封面)
-         .poster.wide     2100× 900  (21:9  微信主封面)
-         .pair-preview                       21:9 + 1:1 配对预览
+         .poster.post      1080×1350  (4:5   IG 直式貼文／輪播)
+         .poster.square   1080×1080  (1:1   方形貼文)
+         .poster.story     1080×1920  (9:16  IG 限時動態／Reels 封面)
+         .pair-preview                       貼文 4:5 ＋ 限動 9:16 並排預覽
 
        Accent switching via <html data-accent="…">:
          ikb (Klein Blue) | lemon-yellow | lemon-green | safety-orange
@@ -115,14 +115,14 @@
       overflow: hidden;
       isolation: isolate;
     }
-    .poster.xhs    { width: 1080px; height: 1440px; }
+    .poster.post    { width: 1080px; height: 1350px; }
     .poster.square { width: 1080px; height: 1080px; }
-    .poster.wide   { width: 2100px; height:  900px; }
+    .poster.story   { width: 1080px; height: 1920px; }
     .poster figure { margin: 0; }
 
-    .poster.xhs    .content { padding: var(--sp-12) var(--sp-11); }
+    .poster.post    .content { padding: var(--sp-12) var(--sp-11); }
     .poster.square .content { padding: var(--sp-11) var(--sp-11); }
-    .poster.wide   .content { padding: var(--sp-11) var(--sp-13); }
+    .poster.story   .content { padding: 160px var(--sp-11) 220px; }
     .content { position: relative; width: 100%; height: 100%; z-index: 2; }
 
     /* Optional decorative layers — opt in per poster */
@@ -246,15 +246,15 @@
     }
     .mono { font-family: var(--mono); }
 
-    /* XHS (3:4) boards: 1080×1440 has the tightest vertical budget,
-       so display sizes step down vs the .wide default. These caps
-       were validated by the smoke-ai-tools deck — 2-line h-xl @96px
-       leaves room for matrix + hero-stat-bottom inside 1440px. */
-    .poster.xhs .h-hero          { font-size: 168px; }
-    .poster.xhs .h-statement     { font-size: 124px; }
-    .poster.xhs .h-xl            { font-size: 96px; }
-    .poster.xhs .num-mega        { font-size: 168px; }
-    .poster.xhs .num-xl          { font-size: 120px; }
+    /* Post (4:5) boards: 1080×1350 has the tightest vertical budget,
+       so display sizes step down vs the .story default. These caps
+       leave room for a 2-line h-xl @96px plus matrix + hero-stat-bottom
+       inside 1350px. */
+    .poster.post .h-hero          { font-size: 168px; }
+    .poster.post .h-statement     { font-size: 124px; }
+    .poster.post .h-xl            { font-size: 96px; }
+    .poster.post .num-mega        { font-size: 168px; }
+    .poster.post .num-xl          { font-size: 120px; }
 
     /* Square boards tighten scales */
     .poster.square .h-hero       { font-size: 180px; }
@@ -264,9 +264,9 @@
     .poster.square .num-xl       { font-size: 112px; }
 
     /* Wide boards rely on horizontal real estate */
-    .poster.wide .h-hero         { font-size: 200px; }
-    .poster.wide .h-statement    { font-size: 156px; }
-    .poster.wide .h-xl           { font-size: 104px; }
+    .poster.story .h-hero         { font-size: 180px; }
+    .poster.story .h-statement    { font-size: 136px; }
+    .poster.story .h-xl           { font-size: 100px; }
 
     /* ---------- 7. Layout primitives ---------- */
     .stack    { display: flex; flex-direction: column; }
@@ -671,7 +671,7 @@
     .kpi-tower-row .tower-col.muted .bar-tower {
       background: var(--grey-2);
     }
-    .poster.xhs .kpi-tower-row { grid-template-columns: 1fr 1fr; gap: var(--sp-9); }
+    .poster.post .kpi-tower-row { grid-template-columns: 1fr 1fr; gap: var(--sp-9); }
     .poster.square .kpi-tower-row { grid-template-columns: 1fr 1fr; gap: var(--sp-9); }
 
     /* S10 H-Bar Chart (port of S07) */
@@ -713,11 +713,11 @@
       color: var(--ink);
     }
     /* On portrait the labels move above the track */
-    .poster.xhs .h-bar-chart .bar-row {
+    .poster.post .h-bar-chart .bar-row {
       grid-template-columns: 1fr;
       gap: var(--sp-4);
     }
-    .poster.xhs .h-bar-chart .bar-row .row-val {
+    .poster.post .h-bar-chart .bar-row .row-val {
       text-align: left;
     }
 
@@ -812,20 +812,20 @@
     /* xhs uses 2 columns; up to 8 cells = 4 rows. Switch to min-content
        so rows don't stretch and crowd out hero-stat-bottom (validated
        in smoke-ai-tools/xhs-04). When pairing matrix-fill with
-       hero-stat-bottom inside .poster.xhs, prefer 6 cells (3 rows). */
-    .poster.xhs .matrix-fill {
+       hero-stat-bottom inside .poster.post, prefer 6 cells (3 rows). */
+    .poster.post .matrix-fill {
       grid-template-columns: repeat(2, 1fr);
       grid-auto-rows: min-content;
       gap: var(--sp-4);
     }
-    .poster.xhs .matrix-fill .matrix-cell { min-height: 0; padding: var(--sp-5); }
-    .poster.xhs .matrix-fill .matrix-cell .cell-title { font-size: 24px; }
-    .poster.xhs .hero-stat-bottom {
+    .poster.post .matrix-fill .matrix-cell { min-height: 0; padding: var(--sp-5); }
+    .poster.post .matrix-fill .matrix-cell .cell-title { font-size: 24px; }
+    .poster.post .hero-stat-bottom {
       margin-top: var(--sp-6);
       padding-top: var(--sp-5);
       align-items: center;
     }
-    .poster.xhs .hero-stat-bottom .num-mega { font-size: 128px; line-height: 1; }
+    .poster.post .hero-stat-bottom .num-mega { font-size: 128px; line-height: 1; }
     .poster.square .matrix-fill{ grid-template-columns: repeat(3, 1fr); grid-auto-rows: auto; }
     .poster.square .matrix-fill .matrix-cell { min-height: 0; }
 
@@ -846,19 +846,18 @@
 
     /* ---------- 12. Pair preview frame ---------- */
     .pair-preview {
-      width: 2400px;
-      min-height: 1180px;
+      width: 2304px;
+      min-height: 2016px;
       background: var(--grey-1);
       padding: var(--sp-9);
       display: grid;
-      grid-template-columns: 2100px 1080px;
-      grid-template-rows: 900px 1080px;
+      grid-template-columns: 1080px 1080px;
       gap: var(--sp-9);
-      align-content: center;
+      align-items: center;
       justify-content: center;
     }
-    .pair-preview .preview-wide   { grid-column: 1; grid-row: 1 / span 2; align-self: center; }
-    .pair-preview .preview-square { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+    .pair-preview .preview-post   { align-self: center; }
+    .pair-preview .preview-story  { align-self: center; }
     .pair-preview .preview-label {
       font-family: var(--mono);
       font-weight: 500;
@@ -892,12 +891,12 @@
       references/layout-recipes.md.
 
       Available board sizes:
-        <section class="poster xhs"    id="xhs-01">…</section>   3:4
-        <section class="poster square" id="wechat-1x1">…</section> 1:1
-        <section class="poster wide"   id="wechat-21x9">…</section> 21:9
+        <section class="poster post"    id="post-01">…</section>   4:5  IG 直式貼文／輪播
+        <section class="poster square" id="square-01">…</section> 1:1  方形貼文
+        <section class="poster story"   id="story-01">…</section> 9:16 IG 限時動態／Reels 封面
 
-      For WeChat covers, also include a <section class="pair-preview">
-      that places the 21:9 + 1:1 side-by-side for review.
+      For an IG post + story pair, also include a <section class="pair-preview">
+      that places the 4:5 post and 9:16 story side-by-side for review.
 
       Hard rules every poster must honor:
         - exactly one --accent in the entire deck
@@ -908,10 +907,10 @@
     -->
 
     <!-- ============================================================
-         Placeholder: S01 Accent Cover (3:4)
+         Placeholder: S01 Accent Cover (4:5)
          Replace with real cover content from layout-recipes.md.
          ============================================================ -->
-    <section class="poster xhs" id="xhs-01">
+    <section class="poster post" id="post-01">
       <div class="content stack gap-9">
         <div class="chrome-min">
           <span>Vol. 01 · Swiss</span>
@@ -919,11 +918,11 @@
         </div>
         <div class="stack gap-7">
           <p class="t-cat">封面 · Cover</p>
-          <h1 class="h-statement">替换<br>标题</h1>
+          <h1 class="h-statement">換成<br>標題</h1>
         </div>
         <div class="grow"></div>
         <hr class="hr-accent">
-        <p class="lead">用一句克制的解释,告诉读者这一组卡片在讲什么。</p>
+        <p class="lead">用一句剋制的說明，告訴讀者這組貼文在講什麼。</p>
         <div class="row gap-6">
           <p class="t-meta">Issue 01</p>
           <p class="t-meta">/ [作者]</p>
